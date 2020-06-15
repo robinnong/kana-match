@@ -9,7 +9,7 @@ const hiragana = [
     },
     {
         kana: "う",
-        romaji: "I"
+        romaji: "U"
     },
     {
         kana: "え",

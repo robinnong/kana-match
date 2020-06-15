@@ -13,9 +13,9 @@
 <body>
     <header class="wrapper">
     </header>
-    <main>
+    <main> 
         <nav>
-            <h1>Kana Flash</h1>
+            <h1>Kana Match<span>🔥</span></h1>
             <ul>
                 <li>
                     <div>あ</div>
@@ -31,37 +31,47 @@
                 </li>
             </ul>
         </nav>
-        <section class="wrapper chartContainer">  
-            <p>"Hiragana is a Japanese syllabary, one component of the Japanese writing system, along with katakana, kanji
-            and in some cases rōmaji. It is a phonetic lettering system. The word hiragana literally means "ordinary" or "simple"
-            kana. Hiragana and katakana are both kana systems."</p>
-            <div class="hiraganaContainer">
-                <ul class="hiraganaList" id="hiraganaList"></ul> 
-                <ul class="xaxis">
-                    <li>A</li>
-                    <li>I</li>
-                    <li>U</li>
-                    <li>E</li>
-                    <li>O</li>
-                </ul>
-                <ul class="yaxis">
-                    <li></li>
-                    <li>K</li>
-                    <li>S</li>
-                    <li>T</li>
-                    <li>N</li>
-                    <li>H</li>
-                    <li>M</li>
-                    <li>Y</li>
-                    <li>R</li>
-                    <li>W</li>
-                    <li>n</li>
-                </ul>
-            </div>
-        </section>
+        <div>
+            <!-- <p>Which kana do you want to test?</p> -->
+            <section class="quizContainer wrapper">
+                <div class="promptScreen">
+                    <ul class="promptCards" id="promptCards"></ul>
+                </div>
+                <div class="answerScreen">
+                    <ul class="answerCards" id="answerCards"> 
+                    </ul>
+                </div>
+            </section> 
+            <button type="button" class="nextButton" id="nextButton">Next ></button>
+            <!-- <section class="chartContainer">   
+                <div class="hiraganaContainer">
+                    <ul class="hiraganaList" id="hiraganaList"></ul> 
+                    <ul class="xaxis">
+                        <li>A</li>
+                        <li>I</li>
+                        <li>U</li>
+                        <li>E</li>
+                        <li>O</li>
+                    </ul>
+                    <ul class="yaxis">
+                        <li></li>
+                        <li>K</li>
+                        <li>S</li>
+                        <li>T</li>
+                        <li>N</li>
+                        <li>H</li>
+                        <li>M</li>
+                        <li>Y</li>
+                        <li>R</li>
+                        <li>W</li>
+                        <li>n</li>
+                    </ul>
+                </div>
+            </section> -->
+        </div>
     </main>
     <footer>
-        <p>© 2020 Robin Nong</p>
+        <p>© 2020 Robin Nong. Icons from the Noun Project.</p>
     </footer>
     <script type="module" src="./scripts/script.js"></script>
 </body>
