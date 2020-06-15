@@ -9,7 +9,9 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 .visuallyHidden:not(:focus):not(:active) { position: absolute; width: 1px; height: 1px; margin: -1px;border: 0;padding: 0;white-space: nowrap;clip-path: inset(100%);clip: rect(00 0 0);overflow: hidden;}
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
-
+ 
+.draggable { background-color: #4AAE9B; padding: 10px; } 
+.dropzone { background-color: #6DB65B; padding: 10px; }
 
 /* GLOBAL */
 /* GENERIC OVERRIDES */
@@ -90,7 +92,7 @@ h1 {
 nav {
     position: absolute;
     padding: 30px;
-    background-color: #2e2e2e;
+    background-color: #000638;
     top: 0; 
     bottom: 0;
     width: 250px;
@@ -100,8 +102,11 @@ nav {
 nav li {
     margin: 20px 0;
     display: flex;
-    align-items: center; 
-}
+    align-items: center;  
+    /* background-image: linear-gradient(to right, #4389A2 0%, #1054ac 100%);  */
+    border-radius: 5px;
+    background-image: linear-gradient(to right, #9743a2 0%, #5C258D 100%); 
+} 
 
 nav div {
     display: flex;
@@ -119,8 +124,82 @@ nav a:focus {
     color: #e02683;
 }
 
-.chartContainer {
-    padding: 0 30px;
+main > div {
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    max-width: 1050px; 
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+} 
+
+.quizContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.quizContainer > div {  
+    width: calc(50% - 50px);   
+    flex: 1 0 250px;
+}
+
+.promptCards,
+.answerCards {
+    font-family: 'Kosugi Maru', sans-serif; 
+    display: grid;
+    grid-gap: 10px;
+}
+
+.promptCards {
+    font-size: 2.8rem;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    grid-auto-rows: 100px;  
+}
+
+.answerScreen { 
+    margin: auto;
+}
+
+.answerCards {
+    font-size: 2.2rem;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    grid-auto-rows: 60px; 
+}
+
+.quizContainer li {
+    background-color: white;
+    box-shadow: 0px 0px 8px 6px #00a9dd21;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center; 
+    height: 100%;
+}
+
+.quizContainer li div {
+    height: 50%;
+    width: 80%;
+    border-radius: 5px;
+    border: 2px dashed #949494;
+    background-color: #f0f0f0;
+}  
+
+.answerCards li { 
+    letter-spacing: 0.2rem;
+    background-color: #4d4d4d;
+    color: white;
+    cursor: pointer;
+}
+
+.nextButton {  
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px; 
+    background-image: linear-gradient(to right, #9743a2 0%, #5C258D 100%);
 }
 
 .hiraganaContainer {
@@ -137,8 +216,7 @@ nav a:focus {
 }
 
 .hiraganaList {
-    font-family: 'Kosugi Maru', sans-serif;
-    list-style: none;
+    font-family: 'Kosugi Maru', sans-serif; 
     display: grid;
     grid-template-columns: repeat(5, minmax(40px, 1fr));
     grid-auto-rows: 50px;
@@ -198,4 +276,9 @@ footer {
         position: absolute;
         left: -250px;
     }
+
+    main > div {
+        width: 100%;
+        margin-left: 0; 
+    } 
 }
