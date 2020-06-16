@@ -1,0 +1,25 @@
+{
+  "name": "hiraganaflash",
+  "homepage": "https://robinnong.github.io/hiraganaFlash",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Japanese Hiragana alphabet learning quiz",
+  "main": "index.js",
+  "dependencies": {
+    "gh-pages": "^3.0.0",
+    "stylus": "^0.54.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robinnong/hiraganaFlash.git"
+  },
+  "author": "Robin Nong", 
+  "bugs": {
+    "url": "https://github.com/robinnong/hiraganaFlash/issues"
+  } 
+}

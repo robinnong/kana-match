@@ -1,104 +1,154 @@
 const hiragana = [
     {
         kana: "あ",
-        romaji: "AH"
+        romaji: "AH",
+        type: "basic"
     },
     {
         kana: "い",
-        romaji: "I"
+        romaji: "I",
+        type: "basic"
     },
     {
         kana: "う",
-        romaji: "U"
+        romaji: "U",
+        type: "basic"
     },
     {
         kana: "え",
-        romaji: "E"
+        romaji: "E",
+        type: "basic"
     },
     {
         kana: "お",
-        romaji: "O"
+        romaji: "O",
+        type: "basic"
     },
     {
         kana: "か",
-        romaji: "KA"
+        romaji: "KA",
+        type: "basic"
     },
     {
         kana: "き",
-        romaji: "KI"
+        romaji: "KI",
+        type: "basic"
     },
     {
         kana: "く",
-        romaji: "KU" 
+        romaji: "KU",
+        type: "basic"
     },
     {
         kana: "け",
-        romaji: "KE"
+        romaji: "KE",
+        type: "basic"
     },
     {
         kana: "こ",
-        romaji: "KO"
+        romaji: "KO",
+        type: "basic"
+    }, 
+    {
+        kana: "が",
+        romaji: "GA",
+        type: "dakuten"
+    },
+    {
+        kana: "ぎ",
+        romaji: "GI",
+        type: "dakuten"
+    },
+    {
+        kana: "ぐ",
+        romaji: "GU",
+        type: "dakuten"
+    },
+    {
+        kana: "げ",
+        romaji: "GE",
+        type: "dakuten"
+    },
+    {
+        kana: "ご",
+        romaji: "GO",
+        type: "dakuten"
     },
     {
         kana: "さ",
-        romaji: "SA"
+        romaji: "SA",
+        type: "basic"
     },
     {
         kana: "し",
-        romaji: "SHI"
+        romaji: "SHI",
+        type: "basic"
     },
     {
         kana: "す",
-        romaji: "SU"
+        romaji: "SU",
+        type: "basic"
     }
     ,
     {
         kana: "せ",
-        romaji: "SE"
+        romaji: "SE",
+        type: "basic"
     },
     {
         kana: "そ",
-        romaji: "SO"
+        romaji: "SO",
+        type: "basic"
     },
     {
         kana: "た",
-        romaji: "TA"
+        romaji: "TA",
+        type: "basic"
     },
     {
         kana: "ち",
-        romaji: "CHI"
+        romaji: "CHI",
+        type: "basic"
     },
     {
         kana: "つ",
-        romaji: "TSU"
+        romaji: "TSU",
+        type: "basic"
     },
     {
         kana: "て",
-        romaji: "TE"
+        romaji: "TE",
+        type: "basic"
     },
     {
         kana: "と",
-        romaji: "TO"
+        romaji: "TO",
+        type: "basic"
     },
     {
         kana: "な",
-        romaji: "NA"
+        romaji: "NA",
+        type: "basic"
     },
     {
         kana: "に",
-        romaji: "NI"
+        romaji: "NI",
+        type: "basic"
     },
     {
         kana: "ぬ",
-        romaji: "NU"
+        romaji: "NU", 
+        type: "basic"
     },
     {
         kana: "ね",
-        romaji: "NE"
+        romaji: "NE",
+        type: "basic"
     },
     {
         kana: "の",
-        romaji: "NO"
+        romaji: "NO",
+        type: "basic"
     },
     {
         kana: "は",
@@ -186,7 +236,7 @@ const hiragana = [
     }
 ]
 
-// ["が", "ぎ", "ぐ", "げ", "ご"],  
+
 // ["ざ", "じ", "ず", "ぜ", "ぞ"],  
 // ["だ", "ぢ", "づ", "で", "ど"],  
 // ["ば", "び", "ぶ", "べ", "ぼ"],

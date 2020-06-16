@@ -10,9 +10,7 @@
     <script src="https://kit.fontawesome.com/f3369905b3.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header class="wrapper">
-    </header>
+<body> 
     <main> 
         <nav>
             <h1>Kana Match<span>🔥</span></h1>
@@ -27,22 +25,12 @@
                 </li>
                 <li>
                     <div>☆</div>
-                    <a href="#" id="quiz">Test Me!</a>
+                    <a href="./index.html" id="quiz">Test Me!</a>
                 </li>
             </ul>
         </nav>
-        <section class="quiz">
-            <!-- <p>Which kana do you want to test?</p> -->
-            <div class="quizContainer wrapper">
-                <p>Drag and drop to match</p>
-                <div class="cardsContainer"> 
-                    <ul class="promptCards" id="promptCards"></ul>
-                    <ul class="answerCards" id="answerCards"> 
-                    </ul> 
-                </div>
-                <button type="button" class="nextButton" id="nextButton">Next ></button>
-            </div> 
-            <!-- <section class="chartContainer">   
+        <div class="chart"> 
+            <section class="chartContainer">   
                 <div class="hiraganaContainer">
                     <ul class="hiraganaList" id="hiraganaList"></ul> 
                     <ul class="xaxis">
@@ -66,12 +54,12 @@
                         <li>n</li>
                     </ul>
                 </div>
-            </section> -->
-        </section>
+            </section>
+        </div>
     </main>
     <footer>
         <p>© 2020 Robin Nong.</p>
     </footer>
-    <script type="module" src="./scripts/script.js"></script>
+    <script type="module" src="./scripts/chartScript.js"></script>
 </body>
 </html>
