@@ -152,87 +152,108 @@ const hiragana = [
     },
     {
         kana: "は",
-        romaji: "HA"
+        romaji: "HA",
+        type: "basic"
     },
     {
         kana: "ひ",
-        romaji: "HI"
+        romaji: "HI",
+        type: "basic"
     },
     {
         kana: "ふ",
-        romaji: "FU"
+        romaji: "FU",
+        type: "basic"
     },
     {
         kana: "へ",
-        romaji: "HE"
+        romaji: "HE",
+        type: "basic"
     },
     {
         kana: "ほ",
-        romaji: "HO"
+        romaji: "HO",
+        type: "basic"
     },
     {
         kana: "ま",
-        romaji: "MA"
+        romaji: "MA",
+        type: "basic"
     },
     {
         kana: "み",
-        romaji: "MI"
+        romaji: "MI",
+        type: "basic"
     },
     {
         kana: "む",
-        romaji: "MU"
+        romaji: "MU",
+        type: "basic"
     },
     {
         kana: "め",
-        romaji: "ME"
+        romaji: "ME",
+        type: "basic"
     },
     {
         kana: "も",
-        romaji: "MO"
+        romaji: "MO",
+        type: "basic"
     },
     {
         kana: "や",
-        romaji: "YA"
+        romaji: "YA",
+        type: "basic"
     },
     {
         kana: "ゆ",
-        romaji: "YU"
+        romaji: "YU",
+        type: "basic"
     },
     {
         kana: "よ",
-        romaji: "YO"
+        romaji: "YO",
+        type: "basic"
     },
     {
         kana: "ら",
-        romaji: "RA"
+        romaji: "RA",
+        type: "basic"
     },
     {
         kana: "り",
-        romaji: "RI"
+        romaji: "RI",
+        type: "basic"
     },
     {
         kana: "る",
-        romaji: "RU"
+        romaji: "RU",
+        type: "basic"
     },
     {
         kana: "れ",
-        romaji: "RE"
+        romaji: "RE",
+        type: "basic"
     },
     {
         kana: "ろ",
-        romaji: "RO"
+        romaji: "RO",
+        type: "basic"
     },
     {
         kana: "わ",
-        romaji: "WA"
+        romaji: "WA",
+        type: "basic"
     },
     {
         kana: "を",
-        romaji: "WO"
+        romaji: "WO",
+        type: "basic"
     },
     {
         kana: "ん",
-        romaji: "N"
+        romaji: "N",
+        type: "basic"
     }
 ]
 

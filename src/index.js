@@ -1,3 +1,4 @@
+// import _ from 'lodash';
 import hiragana from './hiragana.js'; 
 
 let answerKey = []; // array of objects
@@ -20,19 +21,10 @@ const getRandomArray = (array, length) => {
     return randomArray; 
 } 
 
-// Allows elements to be dropped into the dropzone
-const allowDrop = (e) => {
-    e.preventDefault();
-} 
-
 // Effect when the card is picked up
 const onDragStart = (event) => {
     event.dataTransfer.setData('text/html', event.target.id);
-    // console.log(event.target.id)
-}
-
-const dragging = (event) => {
-}
+} 
 
 // Effect when the card is dropped into the dropzone
 const drop = (event) => {
@@ -66,8 +58,10 @@ const setQuestions = () => {
     answerKey.forEach(index => {  
         const cards = document.createElement("li"); 
         const card = document.createTextNode(index.kana);
-        const dropzone = document.createElement('div'); 
-        dropzone.addEventListener("dragover", allowDrop);
+        const dropzone = document.createElement('div');  
+        dropzone.addEventListener("dragover", function(e){
+            e.preventDefault();
+        });
         dropzone.addEventListener("drop", drop);
         cards.appendChild(card);
         cards.appendChild(dropzone);
@@ -78,22 +72,59 @@ const setQuestions = () => {
     answers.forEach(index => {  
         const cards = document.createElement("li"); 
         cards.setAttribute("draggable", "true"); 
-        cards.setAttribute("id", `${index.romaji}`)
-        cards.addEventListener("dragstart", onDragStart);  
-        cards.addEventListener("drag", dragging); 
+        cards.setAttribute("id", `${index.romaji}`)   
+        cards.addEventListener("dragstart", onDragStart, false);   
         cards.textContent = index.romaji; 
         document.getElementById("answerCards").appendChild(cards);
     })
 } 
 
+const showChart = () => {
+    document.getElementById("chart").style.display = '';
+    document.getElementById("quiz").style.display = 'none';
+    document.getElementById("home").style.display = 'none';
+}
+
+const showQuiz = () => {
+    document.getElementById("chart").style.display = 'none';
+    document.getElementById("quiz").style.display = '';
+    document.getElementById("home").style.display = 'none';
+}
+
+const flipCard = (e) => {
+
+}
+
+const loadChart = () => {
+    const basicKana = hiragana.filter(item => item.type === "basic");
+    basicKana.forEach(char => {
+        const node = document.createElement("li");
+        node.classList.add('animate__animated');
+        node.classList.add('animate__fadeIn');
+        const kanaText = document.createElement("span");
+        kanaText.innerText = char.kana;
+        const romajiText = document.createElement("span");
+        romajiText.innerText = char.romaji;
+        // node.addEventListener("click", flipCard, false);
+        node.appendChild(kanaText);
+        node.appendChild(romajiText);
+        document.getElementById("hiraganaList").appendChild(node);
+    });
+} 
+
 const init = () => { 
     setQuestions();
+    loadChart();
+    document.getElementById("chart").style.display = 'none';
+    document.getElementById("quiz").style.display = 'none';
+    document.getElementById("chartButton").addEventListener("click", showChart);
+    document.getElementById("quizButton").addEventListener("click", showQuiz);
     document.getElementById("nextButton").addEventListener("click", function() {
         answerKey = [];
         answerLog = [];
         document.getElementById("promptCards").innerHTML = "";
         setQuestions();
-    })
+    });
 }
 // Define a convenience method and use it
 const ready = (callback) => {
