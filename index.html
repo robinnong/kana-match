@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiragana Flashcards</title> 
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru:wght@500&family=Manrope:wght@400;600&display=swap"
+        rel="stylesheet">
+    <!-- link to Fontawesome -->
+    <script src="https://kit.fontawesome.com/f3369905b3.js" crossorigin="anonymous"></script> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+    <header> 
+        <h1>Kana Match<span>🔥</span></h1>
+        <div class="navButtons">
+            <button id="chartButton"> 
+                <p>Learn <span aria-hidden="true">📖</span></p>
+            </button> 
+            <button id="quizButton">  
+                <p>Test <span aria-hidden="true">🎴</span></p>
+            </button>  
+        </div>   
+    </header>
+    <main> 
+        <section class="wrapper"> 
+            <div class="home wrapper" id="home">
+                <div>
+                    <h2>ka-na</h2>
+                    <p>"Hiragana is a Japanese syllabary, one component of the Japanese writing system, along with katakana, kanji and in some
+                        cases rōmaji. It is a phonetic lettering system. The word hiragana literally means "ordinary" or "simple" kana. Hiragana
+                        and katakana are both kana systems. - Wikipedia" </p>
+                    </div>
+            </div>
+            <div class="quizContainer wrapper animate__animated animate__fadeIn" id="quiz">
+                <p>Drag and drop to match 💭</p>
+                <div class="cardsContainer"> 
+                    <ul class="promptCards" id="promptCards"></ul>            
+                    <ul class="answerCards" id="answerCards"></ul> 
+                </div>
+                <button type="button" class="nextButton" id="nextButton">Next ></button>
+            </div>  
+            <div class="hiraganaContainer wrapper" id="chart">
+                <ul class="hiraganaList" id="hiraganaList"></ul>
+                <!-- <ul class="xaxis">
+                    <li>A</li>
+                    <li>I</li>
+                    <li>U</li>
+                    <li>E</li>
+                    <li>O</li>
+                </ul>
+                <ul class="yaxis">
+                    <li></li>
+                    <li>K</li>
+                    <li>S</li>
+                    <li>T</li>
+                    <li>N</li>
+                    <li>H</li>
+                    <li>M</li>
+                    <li>Y</li>
+                    <li>R</li>
+                    <li>W</li>
+                    <li>n</li>
+                </ul> -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2020 Robin Nong 💡</p>
+    </footer>
+    <script type="module" src="../src/index.js"></script>
+</body>
+</html>
