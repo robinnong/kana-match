@@ -22,6 +22,8 @@ const nextButton = document.getElementById("nextButton");
 const chartButton = document.getElementById("chartButton");
 const quizButton = document.getElementById("quizButton");
 
+const hiraganaList = document.getElementById("hiraganaList");
+
 // Returns a randomized array, accepts the data array and desired length as parameters
 const getRandomArray = (array, length) => {
     let randomArray = [];
@@ -82,6 +84,12 @@ function evaluateAnswers () {
 }
 
 const setQuestions = () => {
+    while (promptCards.firstChild)
+    promptCards.removeChild(promptCards.firstChild);
+
+    while (answerCards.firstChild)
+    answerCards.removeChild(answerCards.firstChild);
+
     // Returns an array of 6 random hiragana
     answerKey = getRandomArray(hiragana, 6);  
     answerKey.forEach(index => {  
@@ -124,7 +132,7 @@ const setQuestions = () => {
 } 
 
 // Switch page content between Home, Chart and Quiz
-const switchDisplay = (type) => { 
+const switchDisplay = (type) => {    
     switch(type) {
         case 'home' :
             chart.style.display = 'none';
@@ -158,19 +166,24 @@ const incrementRound = () => {
 }
 
 const loadChart = () => {
+    while (hiraganaList.firstChild)
+    hiraganaList.removeChild(hiraganaList.firstChild);
+
     const basicKana = hiragana.filter(item => item.type === "basic");
     basicKana.forEach(char => {
         const node = document.createElement("li");
         node.classList.add('animate__animated');
         node.classList.add('animate__fadeIn');
 
-        const kanaText = document.createElement("span").innerText = char.kana; 
-        const romajiText = document.createElement("span").innerText = char.romaji;  
+        const kanaText = document.createElement("span");
+        kanaText.innerText = char.kana; 
+        const romajiText = document.createElement("span");
+        romajiText.innerText = char.romaji;  
 
         node.appendChild(kanaText);
         node.appendChild(romajiText);
         
-        document.getElementById("hiraganaList").appendChild(node);
+        hiraganaList.appendChild(node);
     });
 } 
 
@@ -187,7 +200,7 @@ const init = () => {
         incrementRound()
 
         while (answerCards.firstChild)
-            answerCards.removeChild(answerCards.firstChild); 
+        answerCards.removeChild(answerCards.firstChild); 
 
         promptCards.innerHTML = "";
         setQuestions();
