@@ -1,21 +1,37 @@
-// import _ from 'lodash';
+// Modules
 import hiragana from './hiragana.js'; 
 
+// Global Variables
 let answerKey = []; // array of objects
 let answerLog = []; // array of objects
 let score = 0;
-// const rows = document.getElementsByTagName("ul");
-// console.log(rows)  
+let round = 0;
+
+// Selectors
+const scoreCounter = document.getElementById("score");
+const roundCounter = document.getElementById("round");
+
+const chart = document.getElementById("chart");
+const quiz = document.getElementById("quiz");
+const home = document.getElementById("home");
+
+const promptCards = document.getElementById("promptCards");
+const answerCards = document.getElementById("answerCards");
+
+const nextButton = document.getElementById("nextButton");
+const chartButton = document.getElementById("chartButton");
+const quizButton = document.getElementById("quizButton");
 
 // Returns a randomized array, accepts the data array and desired length as parameters
 const getRandomArray = (array, length) => {
     let randomArray = [];
+
     for (let i = 0; i < length; i++) {
-        const randomIndex = Math.floor(Math.random()*array.length);
-        if (randomArray.includes(array[randomIndex])) {
+        const index = Math.floor(Math.random()*array.length);
+        if (randomArray.includes(array[index])) {
             i -= 1;
         } else {
-            randomArray.push(array[randomIndex]);
+            randomArray.push(array[index]);
         }
     } 
     return randomArray; 
@@ -24,29 +40,42 @@ const getRandomArray = (array, length) => {
 // Effect when the card is picked up
 const onDragStart = (event) => {
     event.dataTransfer.setData('text/html', event.target.id);
-} 
+    // const listitems = document.querySelectorAll('.droppable') 
+    // listitems.forEach(item =>{
+    //     item.childNodes[1].classList.add('glow');
+    // }) 
+}  
 
 // Effect when the card is dropped into the dropzone
 const drop = (event) => {
     event.preventDefault();
+    
+    // const listItems = document.querySelectorAll('.droppable')
+    // listItems.forEach(item => {
+    //     item.childNodes[1].classList.remove('glow');
+    // }) 
+    
+    // Data transfer from item being droppped to the dropzone
     const data = event.dataTransfer.getData("text/html");
     event.target.appendChild(document.getElementById(data)); 
     const userkana = event.target.previousSibling.data;
-    const userromaji = event.target.innerText
-    answerLog.push({kana: userkana, romaji: userromaji}); // pushes the object
-    console.log(answerLog);
-    if (answerLog.length === 6) {
-        evaluateAnswers();
-    }
+    const userromaji = event.target.innerText;
+
+    // Updates the answer log
+    answerLog.push({kana: userkana, romaji: userromaji}); 
+
+    // If all 6 cards have been dropped, then evaluate the matches
+    answerLog.length === 6 ? evaluateAnswers() : null;
 } 
 
 // Checks if the user has match the paris of kana and romaji correctly by comparing the pairs to the original object
 function evaluateAnswers () { 
-    answerLog.forEach(answer=> {  
+    answerLog.forEach(answer => {  
         const ref = answerKey.find(item => item.romaji === answer.romaji);
         if (ref.kana === answer.kana) {
-            score++;
-            console.log(answer)
+            score++; 
+            scoreCounter.innerHTML = `${score}`;
+            // console.log(answer)
             // highlight card 
         }
     }) 
@@ -59,13 +88,28 @@ const setQuestions = () => {
         const cards = document.createElement("li"); 
         const card = document.createTextNode(index.kana);
         const dropzone = document.createElement('div');  
+
         dropzone.addEventListener("dragover", function(e){
             e.preventDefault();
-        });
+        }); 
+
+        dropzone.addEventListener("dragenter", function(e) { 
+            const box = e.target;
+            box.classList.add("dragover");
+            box.classList.remove("dragleave");
+        })
+
+        dropzone.addEventListener("dragleave", function (e) {
+            const box = e.target;
+            box.classList.remove("dragover");
+            box.classList.add("dragleave");
+        })
+
         dropzone.addEventListener("drop", drop);
+        cards.classList.add("droppable")
         cards.appendChild(card);
         cards.appendChild(dropzone);
-        document.getElementById("promptCards").appendChild(cards);
+        promptCards.appendChild(cards);
     })
     // Return the first array of hiragana in a random order
     const answers = getRandomArray(answerKey, answerKey.length)
@@ -73,26 +117,44 @@ const setQuestions = () => {
         const cards = document.createElement("li"); 
         cards.setAttribute("draggable", "true"); 
         cards.setAttribute("id", `${index.romaji}`)   
-        cards.addEventListener("dragstart", onDragStart, false);   
+        cards.addEventListener("dragstart", onDragStart, false);    
         cards.textContent = index.romaji; 
-        document.getElementById("answerCards").appendChild(cards);
+        answerCards.appendChild(cards);
     })
 } 
 
-const showChart = () => {
-    document.getElementById("chart").style.display = '';
-    document.getElementById("quiz").style.display = 'none';
-    document.getElementById("home").style.display = 'none';
-}
+// Switch page content between Home, Chart and Quiz
+const switchDisplay = (type) => { 
+    switch(type) {
+        case 'home' :
+            chart.style.display = 'none';
+            quiz.style.display = 'none';
+            home.style.display = '';
+            break;
 
-const showQuiz = () => {
-    document.getElementById("chart").style.display = 'none';
-    document.getElementById("quiz").style.display = '';
-    document.getElementById("home").style.display = 'none';
-}
+        case 'chart' :
+            loadChart();
+            chart.style.display = '';
+            quiz.style.display = 'none';
+            home.style.display = 'none';
+            break;
 
-const flipCard = (e) => {
+        case 'quiz' :
+            setQuestions();
+            scoreCounter.innerHTML = `${score}`;
+            roundCounter.innerHTML = `${round} / 10`;
 
+            chart.style.display = 'none';
+            quiz.style.display = '';
+            home.style.display = 'none';
+            break; 
+    } 
+} 
+
+// Increments the round counter when user clicks Next button
+const incrementRound = () => {
+    round = (round < 10) ? round + 1 : 0;
+    roundCounter.innerHTML = `${round} / 10`;
 }
 
 const loadChart = () => {
@@ -101,28 +163,33 @@ const loadChart = () => {
         const node = document.createElement("li");
         node.classList.add('animate__animated');
         node.classList.add('animate__fadeIn');
-        const kanaText = document.createElement("span");
-        kanaText.innerText = char.kana;
-        const romajiText = document.createElement("span");
-        romajiText.innerText = char.romaji;
-        // node.addEventListener("click", flipCard, false);
+
+        const kanaText = document.createElement("span").innerText = char.kana; 
+        const romajiText = document.createElement("span").innerText = char.romaji;  
+
         node.appendChild(kanaText);
         node.appendChild(romajiText);
+        
         document.getElementById("hiraganaList").appendChild(node);
     });
 } 
 
 const init = () => { 
-    setQuestions();
-    loadChart();
-    document.getElementById("chart").style.display = 'none';
-    document.getElementById("quiz").style.display = 'none';
-    document.getElementById("chartButton").addEventListener("click", showChart);
-    document.getElementById("quizButton").addEventListener("click", showQuiz);
-    document.getElementById("nextButton").addEventListener("click", function() {
+    switchDisplay('home');
+    chartButton.addEventListener("click", () => switchDisplay('chart'));
+    quizButton.addEventListener("click", () => switchDisplay('quiz'));
+
+    // On clicking Next button: reset the DOM, clear answer log, and display the next question set 
+    nextButton.addEventListener("click", function() {
         answerKey = [];
         answerLog = [];
-        document.getElementById("promptCards").innerHTML = "";
+
+        incrementRound()
+
+        while (answerCards.firstChild)
+            answerCards.removeChild(answerCards.firstChild); 
+
+        promptCards.innerHTML = "";
         setQuestions();
     });
 }

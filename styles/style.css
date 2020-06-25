@@ -208,9 +208,17 @@ section {
     height: 40%;
     width: 80%;
     border-radius: 5px;
-    border: 2px dashed #949494;
-    background-color: #f0f0f0;
+    border: 1px dashed #949494; 
+    transition: all 0.2s;
 } 
+
+.dragleave {
+    background-color: #f0f0f0;
+}
+
+.dragover {
+    background-color: pink;
+}
 
 .answerCards {
     margin: auto;
@@ -225,6 +233,7 @@ section {
     color: white;
     cursor: pointer;
 }
+
 
 .nextButton {  
     color: white;
@@ -326,4 +335,4 @@ footer {
     .hiraganaList span:last-child {
         font-size: 1.4rem; 
     }
-}
+} 
