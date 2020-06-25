@@ -82,10 +82,12 @@ body {
 } 
 
 h1 {
+    display: inline-block; 
     font-size: 2.4rem;
     font-weight: 600;
     text-align: center; 
-    margin-bottom: 10px;
+    margin: 0 auto 10px auto; 
+    cursor: pointer;
 }
 
 h2 {
@@ -93,6 +95,10 @@ h2 {
 }
 
 header {  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     padding: 20px;
     background-color: #000638;  
     color: white;
@@ -141,14 +147,13 @@ nav div {
 section {    
     display: flex;  
     justify-content: center;
-    /* padding: 50px;  */
+    padding: 50px; 
 }
 
 .home { 
     display: flex; 
     text-align: center;
-    align-items: center;
-    padding: 50px 0;
+    align-items: center; 
 }
 
 .home p {
@@ -229,11 +234,14 @@ section {
 
 .answerCards li { 
     letter-spacing: 0.2rem;
-    background-color: #4d4d4d;
-    color: white;
+    /* background-color: #4d4d4d; */
+    /* color: white; */
     cursor: pointer;
 }
 
+.correct {
+    background-color: red;
+}
 
 .nextButton {  
     color: white;
@@ -244,9 +252,27 @@ section {
 }
 
 /* Hiragana Chart Styles */
+.chartOptions {
+    display: flex; 
+    margin-bottom: 20px;
+}
+
+.chartOptions input {
+    margin-right: 5px;
+}
+
+.chartOptions label {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+input:checked + label {
+    font-weight: 600;
+}
+
 .hiraganaContainer {
     position: relative;  
-    /* max-width: 500px;  */
+    max-width: 500px; 
     margin: 0 auto; 
 }
 

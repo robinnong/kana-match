@@ -18,6 +18,7 @@ const home = document.getElementById("home");
 const promptCards = document.getElementById("promptCards");
 const answerCards = document.getElementById("answerCards");
 
+const heading = document.querySelector('h1');
 const nextButton = document.getElementById("nextButton");
 const chartButton = document.getElementById("chartButton");
 const quizButton = document.getElementById("quizButton");
@@ -75,11 +76,13 @@ function evaluateAnswers () {
     answerLog.forEach(answer => {  
         const ref = answerKey.find(item => item.romaji === answer.romaji);
         if (ref.kana === answer.kana) {
-            score++; 
+            score++;  
             scoreCounter.innerHTML = `${score}`;
+            const answers = document.getElementById(answer.romaji);
+            answers.style.backgroundColor = '#D4EA55';
             // console.log(answer)
             // highlight card 
-        }
+        } 
     }) 
 }
 
@@ -163,6 +166,7 @@ const switchDisplay = (type) => {
 const incrementRound = () => {
     round = (round < 10) ? round + 1 : 0;
     roundCounter.innerHTML = `${round} / 10`;
+    // Reset the score after round and display a percentage accuracy at the end of the quiz as a modal
 }
 
 const loadChart = () => {
@@ -189,6 +193,7 @@ const loadChart = () => {
 
 const init = () => { 
     switchDisplay('home');
+    heading.addEventListener("click", () => switchDisplay('home'));
     chartButton.addEventListener("click", () => switchDisplay('chart'));
     quizButton.addEventListener("click", () => switchDisplay('quiz'));
 

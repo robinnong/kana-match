@@ -1,7 +1,7 @@
 const hiragana = [
     {
         kana: "あ",
-        romaji: "AH",
+        romaji: "A",
         type: "basic"
     },
     {
@@ -101,6 +101,32 @@ const hiragana = [
         type: "basic"
     },
     {
+        kana: "ざ",
+        romaji: "ZA",
+        type: "dakuten"
+    },
+    {
+        kana: "じ",
+        romaji: "JI",
+        type: "basic"
+    },
+    {
+        kana: "ず",
+        romaji: "ZU",
+        type: "dakuten"
+    }
+    ,
+    {
+        kana: "ぜ",
+        romaji: "ZE",
+        type: "dakuten"
+    },
+    {
+        kana: "ぞ",
+        romaji: "ZO",
+        type: "dakuten"
+    }, 
+    {
         kana: "た",
         romaji: "TA",
         type: "basic"
@@ -125,6 +151,31 @@ const hiragana = [
         romaji: "TO",
         type: "basic"
     },
+    {
+        kana: "だ"",
+        romaji: "DA",
+        type: "dakuten"
+    },
+    {
+        kana: "ぢ",
+        romaji: "JI",
+        type: "dakuten"
+    },
+    {
+        kana: "づ",
+        romaji: "DZU",
+        type: "dakuten"
+    },
+    {
+        kana: "で",
+        romaji: "DE",
+        type: "dakuten"
+    },
+    {
+        kana: "ど"",
+        romaji: "DO",
+        type: "dakuten"
+    }, 
     {
         kana: "な",
         romaji: "NA",
@@ -175,6 +226,56 @@ const hiragana = [
         romaji: "HO",
         type: "basic"
     },
+    {
+        kana: "ば",
+        romaji: "BA",
+        type: "dakuten"
+    },
+    {
+        kana: "び",
+        romaji: "BI",
+        type: "dakuten"
+    },
+    {
+        kana: "ぶ",
+        romaji: "BU",
+        type: "dakuten"
+    },
+    {
+        kana: "べ",
+        romaji: "BE",
+        type: "dakuten"
+    },
+    {
+        kana: "ぼ",
+        romaji: "BO",
+        type: "dakuten"
+    }, 
+    {
+        kana: "ぱ",
+        romaji: "PA",
+        type: "dakuten"
+    },
+    {
+        kana: "ぴ",
+        romaji: "PI",
+        type: "dakuten"
+    },
+    {
+        kana: "ぷ",
+        romaji: "PU",
+        type: "dakuten"
+    },
+    {
+        kana: "ぺ",
+        romaji: "PE",
+        type: "hanadakuten"
+    }, 
+    {
+        kana: "ぽ",
+        romaji: "PO",
+        type: "hanadakuten"
+    }, 
     {
         kana: "ま",
         romaji: "MA",
@@ -255,11 +356,6 @@ const hiragana = [
         romaji: "N",
         type: "basic"
     }
-]
+]   
 
-
-// ["ざ", "じ", "ず", "ぜ", "ぞ"],  
-// ["だ", "ぢ", "づ", "で", "ど"],  
-// ["ば", "び", "ぶ", "べ", "ぼ"],
-// ["ぱ", "ぴ", "ぷ", "ぺ", "ぽ"] 
 export default hiragana;

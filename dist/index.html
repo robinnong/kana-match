@@ -44,6 +44,16 @@
                 <button type="button" class="nextButton" id="nextButton">Next ></button>
             </div>  
             <div class="hiraganaContainer wrapper" id="chart">
+                <form action="" class="chartOptions">
+                    <input type="radio" id="basic" name="sound" value="basic" checked="checked">
+                    <label for="basic">Basic (Gojūon)</label>
+                    <input type="radio" id="dakuon" name="sound" value="dakuon">
+                    <label for="dakuon">Dakuon</label> 
+                    <input type="radio" id="handakuon" name="sound" value="handakuon">
+                    <label for="handakuon">Handakuon</label>
+                    <input type="radio" id="yōon" name="sound" value="yōon">
+                    <label for="yōon">Yōon</label>
+                </form>
                 <ul class="hiraganaList" id="hiraganaList"></ul>
                 <!-- <ul class="xaxis">
                     <li>A</li>
