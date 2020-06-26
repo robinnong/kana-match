@@ -327,123 +327,6 @@ p {
   background-color: #dff7ff;
 }
 
-body {
-  position: relative;
-  background-color: #f2fafd;
-  min-height: 100vh;
-  min-width: 320px;
-  font-size: 1.8rem;
-  font-family: 'Manrope', sans-serif;
-  color: #222222;
-}
-
-h1 {
-  display: inline-block;
-  font-size: 2.4rem;
-  font-weight: 600;
-  text-align: center;
-  margin: 0 auto 10px auto;
-  cursor: pointer;
-}
-
-button,
-h2 {
-  letter-spacing: 0.2rem;
-}
-
-header {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  padding: 20px;
-  background-color: #000638;
-  color: white;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-}
-
-.navButtons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.navButtons button {
-  font-weight: 600;
-  font-size: 1.6rem;
-  color: pink;
-  width: 90px;
-  padding: 5px 0;
-  margin: 0 20px;
-}
-
-section {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding: 50px;
-}
-
-.home {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  text-align: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.home div {
-  margin: 0 auto;
-}
-
-.home p {
-  margin-top: 10px;
-}
-
-.home button {
-  text-transform: uppercase;
-  font-size: 2rem;
-  font-weight: 600;
-  margin: 20px 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  /* background-image: linear-gradient(to right, #4389A2 0%, #1054ac 100%);  */
-  border-radius: 5px;
-}
-
-/* 
-nav div { 
-    background-color: #e02683;
-    border-radius: 50%; 
-    margin-right: 10px;
-    width: 30px;
-    height: 30px;
-}  */
 .quizContainer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -505,6 +388,7 @@ nav div {
   display: grid;
   grid-gap: 10px;
   padding: 0 20px;
+  margin-bottom: 20px;
 }
 
 .promptCards {
@@ -631,6 +515,214 @@ input:checked + label {
   font-weight: 600;
   letter-spacing: 0.2rem;
   color: #ff9fb4;
+}
+
+.modalOuter.visible {
+  pointer-events: all;
+  opacity: 1;
+}
+
+.modalOuter {
+  opacity: 0;
+  pointer-events: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+  background-color: #0000003a;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.modalOuter h3 {
+  margin-bottom: 10px;
+}
+
+.modalOuter div {
+  padding: 20px;
+  width: 300px;
+  margin: auto;
+  background-color: white;
+  border: 1px solid #d4d4d4;
+  -webkit-box-shadow: 0 0 5px 5px #24242407;
+          box-shadow: 0 0 5px 5px #24242407;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 20;
+}
+
+.modalOuter button {
+  margin-top: 15px;
+  color: white;
+  background-color: #ff85aa;
+  -webkit-box-shadow: 0 0 10px 2px rgba(231, 122, 155, 0.363);
+          box-shadow: 0 0 10px 2px rgba(231, 122, 155, 0.363);
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px 30px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.modalOuter button:focus, .modalOuter button:hover {
+  background-color: #e77a9b;
+}
+
+.modalOuter p:last-of-type {
+  font-size: 1.6rem;
+}
+
+.grade {
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  width: 40px;
+  height: 40px;
+  font-weight: 600;
+  color: white;
+  background-color: #e02683;
+  border-radius: 50%;
+  margin-right: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.score {
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+body {
+  position: relative;
+  background-color: #f2fafd;
+  min-height: 100vh;
+  min-width: 320px;
+  font-size: 1.8rem;
+  font-family: 'Manrope', sans-serif;
+  color: #222222;
+}
+
+h1 {
+  display: inline-block;
+  font-size: 2.4rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  cursor: pointer;
+}
+
+button,
+h2 {
+  letter-spacing: 0.2rem;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 20px;
+  background-color: #000638;
+  color: white;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.navButtons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.navButtons button {
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: pink;
+  width: 90px;
+  padding: 5px 0;
+  margin: 0 20px;
+}
+
+section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 50px 0;
+}
+
+.home {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.home div {
+  margin: 0 auto;
+}
+
+.home p {
+  margin-top: 10px;
+}
+
+.home button {
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  /* background-image: linear-gradient(to right, #4389A2 0%, #1054ac 100%);  */
+  border-radius: 5px;
 }
 
 footer {

@@ -52,27 +52,27 @@ const hiragana = [
     {
         kana: "が",
         romaji: "GA",
-        type: "dakuten"
+        type: "dakuon"
     },
     {
         kana: "ぎ",
         romaji: "GI",
-        type: "dakuten"
+        type: "dakuon"
     },
     {
         kana: "ぐ",
         romaji: "GU",
-        type: "dakuten"
+        type: "dakuon"
     },
     {
         kana: "げ",
         romaji: "GE",
-        type: "dakuten"
+        type: "dakuon"
     },
     {
         kana: "ご",
         romaji: "GO",
-        type: "dakuten"
+        type: "dakuon"
     },
     {
         kana: "さ",
@@ -103,7 +103,7 @@ const hiragana = [
     {
         kana: "ざ",
         romaji: "ZA",
-        type: "dakuten"
+        type: "dakuon"
     },
     {
         kana: "じ",
@@ -113,18 +113,18 @@ const hiragana = [
     {
         kana: "ず",
         romaji: "ZU",
-        type: "dakuten"
+        type: "dakuon"
     }
     ,
     {
         kana: "ぜ",
         romaji: "ZE",
-        type: "dakuten"
+        type: "dakuon"
     },
     {
         kana: "ぞ",
         romaji: "ZO",
-        type: "dakuten"
+        type: "dakuon"
     }, 
     {
         kana: "た",
@@ -154,27 +154,27 @@ const hiragana = [
     {
         kana: "だ",
         romaji: "DA",
-        type: "dakuten"
+        type: "dakuon"
     },
     {
         kana: "ぢ",
         romaji: "JI",
-        type: "dakuten"
+        type: "dakuon"
     },
     {
         kana: "づ",
         romaji: "DZU",
-        type: "dakuten"
+        type: "dakuon"
     },
     {
         kana: "で",
         romaji: "DE",
-        type: "dakuten"
+        type: "dakuon"
     },
     {
         kana: "ど",
         romaji: "DO",
-        type: "dakuten"
+        type: "dakuon"
     }, 
     {
         kana: "な",
@@ -229,52 +229,52 @@ const hiragana = [
     {
         kana: "ば",
         romaji: "BA",
-        type: "dakuten"
+        type: "dakuon"
     },
     {
         kana: "び",
         romaji: "BI",
-        type: "dakuten"
+        type: "dakuon"
     },
     {
         kana: "ぶ",
         romaji: "BU",
-        type: "dakuten"
+        type: "dakuon"
     },
     {
         kana: "べ",
         romaji: "BE",
-        type: "dakuten"
+        type: "dakuon"
     },
     {
         kana: "ぼ",
         romaji: "BO",
-        type: "dakuten"
+        type: "dakuon"
     }, 
     {
         kana: "ぱ",
         romaji: "PA",
-        type: "dakuten"
+        type: "handakuon"
     },
     {
         kana: "ぴ",
         romaji: "PI",
-        type: "dakuten"
+        type: "handakuon"
     },
     {
         kana: "ぷ",
         romaji: "PU",
-        type: "dakuten"
+        type: "handakuon"
     },
     {
         kana: "ぺ",
         romaji: "PE",
-        type: "hanadakuten"
+        type: "handakuon"
     }, 
     {
         kana: "ぽ",
         romaji: "PO",
-        type: "hanadakuten"
+        type: "handakuon"
     }, 
     // ぱぴぷ
     {

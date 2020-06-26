@@ -23,7 +23,9 @@ const nextButton = document.getElementById("nextButton");
 const chartButton = document.getElementById("chartButton");
 const quizButton = document.getElementById("quizButton");
 
+const radioButtons = document.getElementsByName("sound");
 const hiraganaList = document.getElementById("hiraganaList");
+const modal = document.getElementById('modal');
 
 // Returns a randomized array, accepts the data array and desired length as parameters
 const getRandomArray = (array, length) => {
@@ -53,7 +55,7 @@ const onDragStart = (event) => {
 const drop = (event) => {
     event.preventDefault(); 
     const currentCard = event.target;
-    
+
     // Data transfer from item being droppped to the dropzone
     const data = event.dataTransfer.getData("text/html");
     currentCard.appendChild(document.getElementById(data)); 
@@ -69,8 +71,7 @@ const drop = (event) => {
 function evaluateAnswers () { 
     for (const prop in answerLog) {
         if (answerLog[prop] === answerKey[prop]) { 
-            score++;  
-            scoreCounter.innerHTML = `${score}`;
+            score++;   
             const answers = document.getElementById(prop);
             // Highlights the correct answers in green
             answers.style.backgroundColor = '#D4EA55'; 
@@ -128,7 +129,7 @@ const setQuestions = () => {
         cards.textContent = index.romaji; 
         answerCards.appendChild(cards);
     })
-} 
+}  
 
 // Switch page content between Home, Chart and Quiz
 const switchDisplay = (type) => {    
@@ -139,16 +140,15 @@ const switchDisplay = (type) => {
             home.style.display = '';
             break;
 
-        case 'chart' :
-            loadChart();
+        case 'chart' : 
+            loadChart("basic");
             chart.style.display = '';
             quiz.style.display = 'none';
             home.style.display = 'none';
             break;
 
         case 'quiz' :
-            setQuestions();
-            scoreCounter.innerHTML = `${score}`;
+            setQuestions(); 
             roundCounter.innerHTML = `${round} / 10`;
 
             chart.style.display = 'none';
@@ -163,14 +163,17 @@ const incrementRound = () => {
     round = (round < 10) ? round + 1 : 0;
     roundCounter.innerHTML = `${round} / 10`;
     // Reset the score after round and display a percentage accuracy at the end of the quiz as a modal
+    if (round > 10) {
+        modal.classList.add('visible');
+    }
 }
 
-const loadChart = () => {
+const loadChart = (kanaType) => {
     while (hiraganaList.firstChild)
     hiraganaList.removeChild(hiraganaList.firstChild);
 
-    const basicKana = hiragana.filter(item => item.type === "basic");
-    basicKana.forEach(char => {
+    const kanaList = hiragana.filter(item => item.type === kanaType);
+    kanaList.forEach(char => {
         const node = document.createElement("li");
         node.classList.add('animate__animated');
         node.classList.add('animate__fadeIn');
@@ -187,11 +190,30 @@ const loadChart = () => {
     });
 } 
 
-const init = () => { 
+const init = () => {  
+    // When user clicks outside of the modal, close modal
+    modal.addEventListener('click', function (e) { 
+        //Hides modal if click event on the box is not registered
+        e.target.closest('.modalInner') === null ? this.classList.remove('visible') : null; 
+    });
+
+    //When user clicks the escape key while modal is open, close modal
+    window.addEventListener('keydown', function (e) {
+        e.key === 'Escape' ? modal.classList.remove('visible') : null;
+    }); 
+
     switchDisplay('home');
     heading.addEventListener("click", () => switchDisplay('home'));
     chartButton.addEventListener("click", () => switchDisplay('chart'));
     quizButton.addEventListener("click", () => switchDisplay('quiz'));
+
+    radioButtons.forEach(button =>{
+        button.addEventListener("click", function(event) {
+            console.log(this)
+            const userSelection = event.target.value;
+            loadChart(userSelection);
+        })
+    }) 
 
     // On clicking Next button: reset the DOM, clear answer log, and display the next question set 
     nextButton.addEventListener("click", function() {
