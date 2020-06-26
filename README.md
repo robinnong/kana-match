@@ -1,3 +1,3 @@
 # hiraganaFlash
-Beginner Hiragana learning application and quiz. Project in progress! 
+Beginner Hiragana learning application and quiz built with vanilla javascript. 
 
