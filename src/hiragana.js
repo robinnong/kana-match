@@ -152,7 +152,7 @@ const hiragana = [
         type: "basic"
     },
     {
-        kana: "だ"",
+        kana: "だ",
         romaji: "DA",
         type: "dakuten"
     },
@@ -172,7 +172,7 @@ const hiragana = [
         type: "dakuten"
     },
     {
-        kana: "ど"",
+        kana: "ど",
         romaji: "DO",
         type: "dakuten"
     }, 
@@ -276,6 +276,7 @@ const hiragana = [
         romaji: "PO",
         type: "hanadakuten"
     }, 
+    // ぱぴぷ
     {
         kana: "ま",
         romaji: "MA",
