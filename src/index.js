@@ -2,12 +2,12 @@
 import hiragana from './hiragana.js'; 
 
 // Global Variables
-let answerKey = []; // array of objects
-let answerLog = []; // array of objects
+let answerKey = {};  // Format ==> {O: "お", KO: "こ"}
+let answerLog = {};  // Format ==> {O: "お", KO: "こ"}
 let score = 0;
 let round = 0;
 
-// Selectors
+// Selectors for DOM elements
 const scoreCounter = document.getElementById("score");
 const roundCounter = document.getElementById("round");
 
@@ -51,39 +51,34 @@ const onDragStart = (event) => {
 
 // Effect when the card is dropped into the dropzone
 const drop = (event) => {
-    event.preventDefault();
-    
-    // const listItems = document.querySelectorAll('.droppable')
-    // listItems.forEach(item => {
-    //     item.childNodes[1].classList.remove('glow');
-    // }) 
+    event.preventDefault(); 
+    const currentCard = event.target;
     
     // Data transfer from item being droppped to the dropzone
     const data = event.dataTransfer.getData("text/html");
-    event.target.appendChild(document.getElementById(data)); 
-    const userkana = event.target.previousSibling.data;
-    const userromaji = event.target.innerText;
-
-    // Updates the answer log
-    answerLog.push({kana: userkana, romaji: userromaji}); 
-
-    // If all 6 cards have been dropped, then evaluate the matches
-    answerLog.length === 6 ? evaluateAnswers() : null;
+    currentCard.appendChild(document.getElementById(data)); 
+    const userkana = currentCard.previousSibling.data;
+    const userromaji = currentCard.innerText;
+    
+    // Updates an object containing a log of user's past matches. Allows a match to be updated if the user wants to change their answer
+    answerLog[userromaji] = userkana; 
+    console.log(answerLog);
 } 
 
 // Checks if the user has match the paris of kana and romaji correctly by comparing the pairs to the original object
 function evaluateAnswers () { 
-    answerLog.forEach(answer => {  
-        const ref = answerKey.find(item => item.romaji === answer.romaji);
-        if (ref.kana === answer.kana) {
+    for (const prop in answerLog) {
+        if (answerLog[prop] === answerKey[prop]) { 
             score++;  
             scoreCounter.innerHTML = `${score}`;
-            const answers = document.getElementById(answer.romaji);
-            answers.style.backgroundColor = '#D4EA55';
-            // console.log(answer)
-            // highlight card 
-        } 
-    }) 
+            const answers = document.getElementById(prop);
+            // Highlights the correct answers in green
+            answers.style.backgroundColor = '#D4EA55'; 
+        } else {
+            const answers = document.getElementById(prop);
+            answers.style.backgroundColor = 'tomato'; 
+        }
+    } 
 }
 
 const setQuestions = () => {
@@ -94,8 +89,9 @@ const setQuestions = () => {
     answerCards.removeChild(answerCards.firstChild);
 
     // Returns an array of 6 random hiragana
-    answerKey = getRandomArray(hiragana, 6);  
-    answerKey.forEach(index => {  
+    const promptSet = getRandomArray(hiragana, 6);  
+    promptSet.forEach(index => {  
+        answerKey[index.romaji] = index.kana; 
         const cards = document.createElement("li"); 
         const card = document.createTextNode(index.kana);
         const dropzone = document.createElement('div');  
@@ -123,7 +119,7 @@ const setQuestions = () => {
         promptCards.appendChild(cards);
     })
     // Return the first array of hiragana in a random order
-    const answers = getRandomArray(answerKey, answerKey.length)
+    const answers = getRandomArray(promptSet, promptSet.length)
     answers.forEach(index => {  
         const cards = document.createElement("li"); 
         cards.setAttribute("draggable", "true"); 
@@ -199,16 +195,19 @@ const init = () => {
 
     // On clicking Next button: reset the DOM, clear answer log, and display the next question set 
     nextButton.addEventListener("click", function() {
-        answerKey = [];
-        answerLog = [];
+        evaluateAnswers()
 
-        incrementRound()
-
-        while (answerCards.firstChild)
-        answerCards.removeChild(answerCards.firstChild); 
-
-        promptCards.innerHTML = "";
-        setQuestions();
+        setTimeout(()=>{
+            answerKey = {};
+            answerLog = {};
+    
+            while (answerCards.firstChild)
+            answerCards.removeChild(answerCards.firstChild); 
+            
+            promptCards.innerHTML = "";
+            incrementRound();
+            setQuestions();
+        }, 2000)
     });
 }
 // Define a convenience method and use it

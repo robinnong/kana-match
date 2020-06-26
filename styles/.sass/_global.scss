@@ -1,0 +1,56 @@
+/* smooth scroll and default font size set */
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+/* default wrapper - DO NOT CHANGE */
+.wrapper {
+    width: 90%;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+/* removes default padding and margins*/
+body,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+button,
+p {
+	margin: 0;
+    padding: 0;
+}
+
+/* removes list style bullets */
+li {list-style: none;}
+
+a {
+	color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;   
+}
+
+button {
+    background-color: inherit;
+    font-family: inherit;   
+    border: none; 
+    cursor: pointer;    
+    transition: all 0.2s;
+}
+
+img {display: block;} 
+
+input {   
+    display: block;   
+} 
+
+p {line-height: 2.6rem;} 
+
+.draggable { background-color: #4AAE9B; padding: 10px; } 
+.dropzone { background-color: #6DB65B; padding: 10px; }
+.dragleave {background-color: #ffffff;}
+.dragover {background-color: rgb(223, 247, 255);}
