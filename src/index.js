@@ -10,6 +10,7 @@ let round = 0;
 // Selectors for DOM elements
 const scoreCounter = document.getElementById("score");
 const roundCounter = document.getElementById("round");
+const grade = document.querySelector(".grade")
 
 const chart = document.getElementById("chart");
 const quiz = document.getElementById("quiz");
@@ -149,8 +150,7 @@ const switchDisplay = (type) => {
 
         case 'quiz' :
             setQuestions(); 
-            roundCounter.innerHTML = `${round} / 10`;
-
+            roundCounter.innerHTML = `${round} / 5`;
             chart.style.display = 'none';
             quiz.style.display = '';
             home.style.display = 'none';
@@ -158,14 +158,34 @@ const switchDisplay = (type) => {
     } 
 } 
 
-// Increments the round counter when user clicks Next button
-const incrementRound = () => {
-    round = (round < 10) ? round + 1 : 0;
-    roundCounter.innerHTML = `${round} / 10`;
-    // Reset the score after round and display a percentage accuracy at the end of the quiz as a modal
-    if (round > 10) {
-        modal.classList.add('visible');
+const assignGrade = (finalScore) => { 
+    if (finalScore === 0) { 
+        return "F"; 
+    } else if (finalScore > 0 && finalScore < 15) {
+        return "D";
+    } else if (finalScore > 15 && finalScore < 21) {
+        return "C";
+    } else if (finalScore > 21 && finalScore < 24) {
+        return "B";
+    } else if (finalScore > 24 && finalScore < 30) {
+        return "A"; 
+    } else if (finalScore === 100) {
+        return "A+"; 
     }
+}
+
+// Increments the round counter when user clicks Next button
+const incrementRound = () => { 
+    if (round === 5) {
+        modal.classList.add('visible');
+        scoreCounter.innerText = score; 
+        grade.innerText = assignGrade(score);
+        round = 0;
+        score = 0;
+    } else {
+        round++; 
+    }
+    roundCounter.innerHTML = `${round} / 5`;
 }
 
 const loadChart = (kanaType) => {
@@ -229,7 +249,7 @@ const init = () => {
             promptCards.innerHTML = "";
             incrementRound();
             setQuestions();
-        }, 2000)
+        }, 1000)
     });
 }
 // Define a convenience method and use it

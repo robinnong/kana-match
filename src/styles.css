@@ -343,9 +343,8 @@ p {
 .quizContainer li {
   background-color: white;
   height: 100%;
-  -webkit-box-shadow: 0px 0px 8px 6px #00a9dd21;
-          box-shadow: 0px 0px 8px 6px #00a9dd21;
   border-radius: 5px;
+  border: 1px solid #bae3ff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -417,13 +416,15 @@ p {
 }
 
 .answerCards li {
+  -webkit-box-shadow: 0px 0px 8px 3px #00a9dd1c;
+          box-shadow: 0px 0px 8px 3px #00a9dd1c;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   cursor: pointer;
 }
 
 .answerCards li:hover {
-  background-color: #ffeef7;
+  background-color: #eefaff;
 }
 
 .nextButton {
@@ -431,8 +432,13 @@ p {
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
-  background-image: -webkit-gradient(linear, left top, right top, from(#9743a2), to(#5C258D));
-  background-image: linear-gradient(to right, #9743a2 0%, #5C258D 100%);
+  background-color: #ff85aa;
+  -webkit-box-shadow: 0 0 10px 2px rgba(231, 122, 155, 0.363);
+          box-shadow: 0 0 10px 2px rgba(231, 122, 155, 0.363);
+}
+
+.nextButton:focus, .nextButton:hover {
+  background-color: #e77a9b;
 }
 
 .chartOptions {
@@ -500,8 +506,8 @@ input:checked + label {
   border-radius: 5px;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  -webkit-box-shadow: 0px 0px 8px 6px #00a9dd21;
-          box-shadow: 0px 0px 8px 6px #00a9dd21;
+  -webkit-box-shadow: 0px 0px 8px 3px #00a9dd1c;
+          box-shadow: 0px 0px 8px 3px #00a9dd1c;
 }
 
 .hiraganaList li:focus, .hiraganaList li:hover {
@@ -544,7 +550,7 @@ input:checked + label {
 }
 
 .modalOuter div {
-  padding: 20px;
+  padding: 30px 20px;
   width: 300px;
   margin: auto;
   background-color: white;
