@@ -15,17 +15,17 @@
     <header> 
         <h1>Kana Match<span>🔥</span></h1>
         <div class="navButtons">
-            <button id="chartButton"> 
+            <button class="chartButton"> 
                 <p>Learn <span aria-hidden="true">📖</span></p>
             </button> 
-            <button id="quizButton">  
+            <button class="quizButton">  
                 <p>Test <span aria-hidden="true">🎴</span></p>
             </button>  
         </div>   
     </header>
     <main> 
         <section class="wrapper"> 
-            <div class="home wrapper" id="home">
+            <div class="home wrapper">
                 <div>
                     <h2>ka-na</h2>
                     <p>"Hiragana is a Japanese syllabary, one component of the Japanese writing system, along with katakana, kanji and in some
@@ -33,16 +33,16 @@
                         and katakana are both kana systems. - Wikipedia" </p>
                     </div>
             </div>
-            <div class="quizContainer wrapper animate__animated animate__fadeIn" id="quiz">
+            <div class="quiz wrapper animate__animated animate__fadeIn">
                 <p>Drag and drop to match 💭</p>
                 <div class="cardsContainer"> 
-                    <ul class="promptCards" id="promptCards"></ul>            
-                    <ul class="answerCards" id="answerCards"></ul> 
+                    <ul class="promptCards"></ul>            
+                    <ul class="answerCards"></ul> 
                 </div> 
-                <p id="round"></p> 
-                <button type="button" class="nextButton" id="nextButton">Next ></button>
+                <p class="round"></p> 
+                <button type="button" class="nextButton">Next ></button>
             </div>  
-            <div class="hiraganaContainer wrapper" id="chart">
+            <div class="chart wrapper">
                 <form action="" class="chartOptions">
                     <input type="radio" id="basic" name="sound" value="basic" checked="checked">
                     <label for="basic">Basic (Gojūon)</label>
@@ -51,15 +51,15 @@
                     <input type="radio" id="handakuon" name="sound" value="handakuon">
                     <label for="handakuon">Handakuon</label> 
                 </form>
-                <ul class="hiraganaList" id="hiraganaList"></ul> 
+                <ul class="hiraganaList"></ul> 
             </div>
         </section>
         <!-- Pop-up modal box at end of quiz-->
-        <div class="modalOuter" id="modal">
+        <div class="modalOuter modal">
             <div class="modalInner">
-                <p class="grade">A</p>
-                <h3>Good job!</h3>
-                <p class="score" id="score"></p>
+                <p class="grade"></p>
+                <h3 class="finalMessage"></h3>
+                <p class="score"></p>
                 <p>of 30 matches correct</p>
                 <button>Exit</button>
             </div>
@@ -69,5 +69,6 @@
         <p>© 2020 Robin Nong</p>
     </footer>
     <script type="module" src="../src/index.js"></script>
+    <!-- <script type="module" src="./bundle.js"></script> -->
 </body>
 </html>

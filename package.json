@@ -1,32 +1,32 @@
 {
-  "name": "hiraganaflash",
-  "homepage": "https://robinnong.github.io/hiraganaFlash",
+  "name": "hiraganaMatch",
+  "homepage": "https://robinnong.github.io/robin-nong-beyond-bootcamp",
   "version": "1.0.0",
   "private": true,
   "description": "Japanese Hiragana alphabet learning quiz",
   "dependencies": {
-    "gh-pages": "^3.0.0",
-    "lodash": "^4.17.15",
-    "stylus": "^0.54.7"
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
+    "css-loader": "^3.6.0",
+    "gh-pages": "^3.1.0",
+    "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.12"
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/robinnong/hiraganaFlash.git"
+    "url": "git+https://github.com/robinnong/robin-nong-beyond-bootcamp.git"
   },
   "author": "Robin Nong",
   "bugs": {
-    "url": "https://github.com/robinnong/hiraganaFlash/issues"
+    "url": "https://github.com/robinnong/robin-nong-beyond-bootcamp/issues"
   },
-  "keywords": [],
-  "license": "ISC"
+  "keywords": []
 }

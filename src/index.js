@@ -1,4 +1,5 @@
-// Modules
+// import _ from 'lodash';
+// import './styles.css';
 import hiragana from './hiragana.js'; 
 
 // Global Variables
@@ -8,25 +9,26 @@ let score = 0;
 let round = 0;
 
 // Selectors for DOM elements
-const scoreCounter = document.getElementById("score");
-const roundCounter = document.getElementById("round");
-const grade = document.querySelector(".grade")
+const scoreCounter = document.querySelector(".score");
+const roundCounter = document.querySelector(".round");
+const grade = document.querySelector(".grade");
+const message = document.querySelector(".finalMessage");
 
-const chart = document.getElementById("chart");
-const quiz = document.getElementById("quiz");
-const home = document.getElementById("home");
+const chart = document.querySelector(".chart");
+const quiz = document.querySelector(".quiz");
+const home = document.querySelector(".home");
 
-const promptCards = document.getElementById("promptCards");
-const answerCards = document.getElementById("answerCards");
+const promptCards = document.querySelector(".promptCards");
+const answerCards = document.querySelector(".answerCards");
 
 const heading = document.querySelector('h1');
-const nextButton = document.getElementById("nextButton");
-const chartButton = document.getElementById("chartButton");
-const quizButton = document.getElementById("quizButton");
+const nextButton = document.querySelector(".nextButton");
+const chartButton = document.querySelector(".chartButton");
+const quizButton = document.querySelector(".quizButton");
 
 const radioButtons = document.getElementsByName("sound");
-const hiraganaList = document.getElementById("hiraganaList");
-const modal = document.getElementById('modal');
+const hiraganaList = document.querySelector(".hiraganaList");
+const modal = document.querySelector('.modal');
 
 // Returns a randomized array, accepts the data array and desired length as parameters
 const getRandomArray = (array, length) => {
@@ -44,13 +46,7 @@ const getRandomArray = (array, length) => {
 } 
 
 // Effect when the card is picked up
-const onDragStart = (event) => {
-    event.dataTransfer.setData('text/html', event.target.id);
-    // const listitems = document.querySelectorAll('.droppable') 
-    // listitems.forEach(item =>{
-    //     item.childNodes[1].classList.add('glow');
-    // }) 
-}  
+const onDragStart = (event) => event.dataTransfer.setData('text/html', event.target.id); 
 
 // Effect when the card is dropped into the dropzone
 const drop = (event) => {
@@ -64,8 +60,7 @@ const drop = (event) => {
     const userromaji = currentCard.innerText;
     
     // Updates an object containing a log of user's past matches. Allows a match to be updated if the user wants to change their answer
-    answerLog[userromaji] = userkana; 
-    console.log(answerLog);
+    answerLog[userromaji] = userkana;  
 } 
 
 // Checks if the user has match the paris of kana and romaji correctly by comparing the pairs to the original object
@@ -160,17 +155,23 @@ const switchDisplay = (type) => {
 
 const assignGrade = (finalScore) => { 
     if (finalScore === 0) { 
-        return "F"; 
+        grade.innerText = "F"; 
+        message.innerText = "Keep Studying! 😢";
     } else if (finalScore > 0 && finalScore < 15) {
-        return "D";
+        message.innerText = "Keep Studying! 😢";
+        grade.innerText = "D";
     } else if (finalScore > 15 && finalScore < 21) {
-        return "C";
+        message.innerText = "Keep Studying! 😢";
+        grade.innerText = "C";
     } else if (finalScore > 21 && finalScore < 24) {
-        return "B";
+        message.innerText = "Good Job! 😄";
+        grade.innerText = "B";
     } else if (finalScore > 24 && finalScore < 30) {
-        return "A"; 
+        message.innerText = "Good Job! 😄";
+        grade.innerText = "A"; 
     } else if (finalScore === 100) {
-        return "A+"; 
+        message.innerText = "Perfect! 🎉";
+        grade.innerText = "A+"; 
     }
 }
 
@@ -179,7 +180,7 @@ const incrementRound = () => {
     if (round === 5) {
         modal.classList.add('visible');
         scoreCounter.innerText = score; 
-        grade.innerText = assignGrade(score);
+        assignGrade(score);
         round = 0;
         score = 0;
     } else {
