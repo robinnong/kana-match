@@ -1,18 +1,17 @@
 // import _ from 'lodash';
 // import './styles.css';
 import hiragana from './hiragana.js'; 
+import assignGrade from './assignGrade.js'; 
 
 // Global Variables
 let answerKey = {};  // Format ==> {O: "お", KO: "こ"}
 let answerLog = {};  // Format ==> {O: "お", KO: "こ"}
 let score = 0;
-let round = 0;
+let round = 0; 
 
 // Selectors for DOM elements
 const scoreCounter = document.querySelector(".score");
 const roundCounter = document.querySelector(".round");
-const grade = document.querySelector(".grade");
-const message = document.querySelector(".finalMessage");
 
 const chart = document.querySelector(".chart");
 const quiz = document.querySelector(".quiz");
@@ -45,14 +44,13 @@ const getRandomArray = (array, length) => {
     return randomArray; 
 } 
 
-// Effect when the card is picked up
-const onDragStart = (event) => event.dataTransfer.setData('text/html', event.target.id); 
+// Effect when a card is picked up
+const onDragStart = (event) => event.dataTransfer.setData('text/html', event.target.id);  
 
-// Effect when the card is dropped into the dropzone
+// Effect when a card is dropped into the dropzone
 const drop = (event) => {
     event.preventDefault(); 
     const currentCard = event.target;
-
     // Data transfer from item being droppped to the dropzone
     const data = event.dataTransfer.getData("text/html");
     currentCard.appendChild(document.getElementById(data)); 
@@ -63,7 +61,7 @@ const drop = (event) => {
     answerLog[userromaji] = userkana;  
 } 
 
-// Checks if the user has match the paris of kana and romaji correctly by comparing the pairs to the original object
+// Checks if the user has match the pairs of kana and romaji correctly by comparing pairs to the original object
 function evaluateAnswers () { 
     for (const prop in answerLog) {
         if (answerLog[prop] === answerKey[prop]) { 
@@ -73,20 +71,22 @@ function evaluateAnswers () {
             answers.style.backgroundColor = '#D4EA55'; 
         } else {
             const answers = document.getElementById(prop);
+            // Highlights the incorrect answers in red
             answers.style.backgroundColor = 'tomato'; 
         }
     } 
 }
 
 const setQuestions = () => {
+    // Clears the prompt cards' child elements
     while (promptCards.firstChild)
     promptCards.removeChild(promptCards.firstChild);
-
+    // Clears the answer cards' child elements
     while (answerCards.firstChild)
     answerCards.removeChild(answerCards.firstChild);
-
     // Returns an array of 6 random hiragana
     const promptSet = getRandomArray(hiragana, 6);  
+    // Populates the container for prompt cards 
     promptSet.forEach(index => {  
         answerKey[index.romaji] = index.kana; 
         const cards = document.createElement("li"); 
@@ -110,18 +110,22 @@ const setQuestions = () => {
         })
 
         dropzone.addEventListener("drop", drop);
+        // dropzone.addEventListener("click", drop);
+
         cards.classList.add("droppable")
         cards.appendChild(card);
         cards.appendChild(dropzone);
         promptCards.appendChild(cards);
     })
+    
     // Return the first array of hiragana in a random order
     const answers = getRandomArray(promptSet, promptSet.length)
     answers.forEach(index => {  
         const cards = document.createElement("li"); 
         cards.setAttribute("draggable", "true"); 
         cards.setAttribute("id", `${index.romaji}`)   
-        cards.addEventListener("dragstart", onDragStart, false);    
+        cards.addEventListener("dragstart", onDragStart, false); 
+        // cards.addEventListener("click", getCardData, false);   
         cards.textContent = index.romaji; 
         answerCards.appendChild(cards);
     })
@@ -151,29 +155,7 @@ const switchDisplay = (type) => {
             home.style.display = 'none';
             break; 
     } 
-} 
-
-const assignGrade = (finalScore) => { 
-    if (finalScore === 0) { 
-        grade.innerText = "F"; 
-        message.innerText = "Keep Studying! 😢";
-    } else if (finalScore > 0 && finalScore < 15) {
-        message.innerText = "Keep Studying! 😢";
-        grade.innerText = "D";
-    } else if (finalScore > 15 && finalScore < 21) {
-        message.innerText = "Keep Studying! 😢";
-        grade.innerText = "C";
-    } else if (finalScore > 21 && finalScore < 24) {
-        message.innerText = "Good Job! 😄";
-        grade.innerText = "B";
-    } else if (finalScore > 24 && finalScore < 30) {
-        message.innerText = "Good Job! 😄";
-        grade.innerText = "A"; 
-    } else if (finalScore === 100) {
-        message.innerText = "Perfect! 🎉";
-        grade.innerText = "A+"; 
-    }
-}
+}  
 
 // Increments the round counter when user clicks Next button
 const incrementRound = () => { 
@@ -199,22 +181,23 @@ const loadChart = (kanaType) => {
         node.classList.add('animate__animated');
         node.classList.add('animate__fadeIn');
 
-        const kanaText = document.createElement("span");
-        kanaText.innerText = char.kana; 
-        const romajiText = document.createElement("span");
-        romajiText.innerText = char.romaji;  
+        const card = 
+        `<div class="cardFront">
+            <span>${char.kana}</span> 
+        </div>
+        <div class="cardBack"> 
+            <span>${char.romaji}</span>
+        </div>`  
 
-        node.appendChild(kanaText);
-        node.appendChild(romajiText);
+        node.innerHTML = card; 
         
         hiraganaList.appendChild(node);
     });
 } 
 
-const init = () => {  
+const init = () => {   
     // When user clicks outside of the modal, close modal
-    modal.addEventListener('click', function (e) { 
-        //Hides modal if click event on the box is not registered
+    modal.addEventListener('click', function (e) {  
         e.target.closest('.modalInner') === null ? this.classList.remove('visible') : null; 
     });
 
@@ -228,9 +211,8 @@ const init = () => {
     chartButton.addEventListener("click", () => switchDisplay('chart'));
     quizButton.addEventListener("click", () => switchDisplay('quiz'));
 
-    radioButtons.forEach(button =>{
-        button.addEventListener("click", function(event) {
-            console.log(this)
+    radioButtons.forEach(button => {
+        button.addEventListener("click", function(event) { 
             const userSelection = event.target.value;
             loadChart(userSelection);
         })
