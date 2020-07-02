@@ -6,6 +6,10 @@ Features:
 - Quiz with 5 rounds of random hiragana matching
 - Project as an exercise for using Javascript modules and bundling with Webpack
 
+To Do:
+- Incorporate Katakana charts
+- Add a Kanji learning section and calls to an API to receive kanji information
+
 ## How to use this repository
 
 Clone the repository and ensure the latest version of Node.js is installed on your machine.
