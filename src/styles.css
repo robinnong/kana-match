@@ -453,8 +453,12 @@ p {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
 .chartOptions input {
@@ -478,6 +482,16 @@ input:checked + label {
   margin: 0 auto;
 }
 
+.cardBack {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  opacity: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+  color: #ff9fb4;
+}
+
 .hiraganaList {
   font-family: 'Kosugi Maru', sans-serif;
   display: -ms-grid;
@@ -489,20 +503,8 @@ input:checked + label {
 }
 
 .hiraganaList li {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  position: relative;
   text-align: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   font-size: 2.8rem;
   background-color: white;
   border-radius: 5px;
@@ -513,16 +515,40 @@ input:checked + label {
 }
 
 .hiraganaList li:focus, .hiraganaList li:hover {
-  -webkit-transform: translateY(-10px);
-          transform: translateY(-10px);
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
   cursor: pointer;
 }
 
-.hiraganaList span:last-child {
-  font-size: 1.6rem;
-  font-weight: 600;
-  letter-spacing: 0.2rem;
-  color: #ff9fb4;
+.hiraganaList li:focus .cardBack, .hiraganaList li:hover .cardBack {
+  opacity: 1;
+}
+
+.hiraganaList li:focus .cardFront, .hiraganaList li:hover .cardFront {
+  opacity: 0;
+}
+
+.hiraganaList li > div {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .modalOuter.visible {
@@ -729,7 +755,6 @@ section {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  /* background-image: linear-gradient(to right, #4389A2 0%, #1054ac 100%);  */
   border-radius: 5px;
 }
 
