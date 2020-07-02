@@ -7,6 +7,8 @@ Features:
 - Project as an exercise for using Javascript modules and bundling with Webpack
 
 To Do:
+- Enable drag and drop functions on mobile with touch events
+- Refactor Drag and Drop functions using a library, to minimize bugs and error handing
 - Incorporate Katakana charts
 - Add a Kanji learning section and calls to an API to receive kanji information
 
