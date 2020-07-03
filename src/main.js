@@ -1,5 +1,5 @@
-// import _ from 'lodash';
-// import './styles.css';
+import _ from 'lodash';
+import './styles.css';
 import hiragana from './hiragana.js'; 
 import assignGrade from './assignGrade.js'; 
 
@@ -64,33 +64,32 @@ const drop = (event) => {
 // Checks if the user has match the pairs of kana and romaji correctly by comparing pairs to the original object
 function evaluateAnswers () { 
     for (const prop in answerLog) {
+        const answer = document.getElementById(prop);
         if (answerLog[prop] === answerKey[prop]) { 
             score++;   
-            const answers = document.getElementById(prop);
-            // Highlights the correct answers in green
-            answers.style.backgroundColor = '#D4EA55'; 
+            answer.style.backgroundColor = '#D4EA55'; // Highlights the correct answers
         } else {
-            const answers = document.getElementById(prop);
-            // Highlights the incorrect answers in red
-            answers.style.backgroundColor = 'tomato'; 
+            answer.style.backgroundColor = 'tomato'; // Highlights the incorrect answers
         }
     } 
 }
 
 const setQuestions = () => {
     // Clears the prompt cards' child elements
-    while (promptCards.firstChild)
-    promptCards.removeChild(promptCards.firstChild);
+    while (promptCards.firstChild) {
+        promptCards.removeChild(promptCards.firstChild);
+    }
     // Clears the answer cards' child elements
-    while (answerCards.firstChild)
-    answerCards.removeChild(answerCards.firstChild);
+    while (answerCards.firstChild) {
+        answerCards.removeChild(answerCards.firstChild);
+    }
     // Returns an array of 6 random hiragana
     const promptSet = getRandomArray(hiragana, 6);  
     // Populates the container for prompt cards 
     promptSet.forEach(index => {  
         answerKey[index.romaji] = index.kana; 
         const cards = document.createElement("li"); 
-        const card = document.createTextNode(index.kana);
+        cards.classList.add("droppable"); 
         const dropzone = document.createElement('div');  
 
         dropzone.addEventListener("dragover", function(e){
@@ -109,11 +108,8 @@ const setQuestions = () => {
             box.classList.add("dragleave");
         })
 
-        dropzone.addEventListener("drop", drop);
-        // dropzone.addEventListener("click", drop);
-
-        cards.classList.add("droppable")
-        cards.appendChild(card);
+        dropzone.addEventListener("drop", drop); 
+        cards.innerText = index.kana;
         cards.appendChild(dropzone);
         promptCards.appendChild(cards);
     })
@@ -124,12 +120,13 @@ const setQuestions = () => {
         const cards = document.createElement("li"); 
         cards.setAttribute("draggable", "true"); 
         cards.setAttribute("id", `${index.romaji}`)   
-        cards.addEventListener("dragstart", onDragStart, false); 
-        // cards.addEventListener("click", getCardData, false);   
+        cards.addEventListener("dragstart", onDragStart, false);  
         cards.textContent = index.romaji; 
         answerCards.appendChild(cards);
     })
 }  
+
+const updateRound = () => roundCounter.innerHTML = `${round} / 5`;
 
 // Switch page content between Home, Chart and Quiz
 const switchDisplay = (type) => {    
@@ -149,7 +146,7 @@ const switchDisplay = (type) => {
 
         case 'quiz' :
             setQuestions(); 
-            roundCounter.innerHTML = `${round} / 5`;
+            updateRound();
             chart.style.display = 'none';
             quiz.style.display = '';
             home.style.display = 'none';
@@ -168,28 +165,29 @@ const incrementRound = () => {
     } else {
         round++; 
     }
-    roundCounter.innerHTML = `${round} / 5`;
+    updateRound();
 }
 
+// Displays the type of hiragana depending on user's radio button selection 
 const loadChart = (kanaType) => {
-    while (hiraganaList.firstChild)
-    hiraganaList.removeChild(hiraganaList.firstChild);
+    // Removes previously appended child elements from hiraganaList
+    while (hiraganaList.firstChild) {
+        hiraganaList.removeChild(hiraganaList.firstChild);
+    }
 
     const kanaList = hiragana.filter(item => item.type === kanaType);
+
     kanaList.forEach(char => {
         const node = document.createElement("li");
-        node.classList.add('animate__animated');
-        node.classList.add('animate__fadeIn');
+        node.classList.add('animate__animated', 'animate__fadeIn'); 
 
-        const card = 
-        `<div class="cardFront">
-            <span>${char.kana}</span> 
-        </div>
-        <div class="cardBack"> 
-            <span>${char.romaji}</span>
-        </div>`  
-
-        node.innerHTML = card; 
+        node.innerHTML = 
+            `<div class="cardFront">
+                <span>${char.kana}</span> 
+            </div>
+            <div class="cardBack"> 
+                <span>${char.romaji}</span>
+            </div>`   
         
         hiraganaList.appendChild(node);
     });
@@ -197,24 +195,24 @@ const loadChart = (kanaType) => {
 
 const init = () => {   
     // When user clicks outside of the modal, close modal
-    modal.addEventListener('click', function (e) {  
+    modal.addEventListener('click', function(e) {  
         e.target.closest('.modalInner') === null ? this.classList.remove('visible') : null; 
     });
 
-    //When user clicks the escape key while modal is open, close modal
-    window.addEventListener('keydown', function (e) {
+    // When user clicks the escape key while modal is open, close modal
+    window.addEventListener('keydown', function(e) {
         e.key === 'Escape' ? modal.classList.remove('visible') : null;
     }); 
 
-    switchDisplay('home');
+    switchDisplay('home'); 
     heading.addEventListener("click", () => switchDisplay('home'));
     chartButton.addEventListener("click", () => switchDisplay('chart'));
     quizButton.addEventListener("click", () => switchDisplay('quiz'));
 
+    // Adds an event listener to each radio button in the chart 
     radioButtons.forEach(button => {
-        button.addEventListener("click", function(event) { 
-            const userSelection = event.target.value;
-            loadChart(userSelection);
+        button.addEventListener("click", function(e) {  
+            loadChart(e.target.value);
         })
     }) 
 
@@ -226,8 +224,9 @@ const init = () => {
             answerKey = {};
             answerLog = {};
     
-            while (answerCards.firstChild)
-            answerCards.removeChild(answerCards.firstChild); 
+            while (answerCards.firstChild) {
+                answerCards.removeChild(answerCards.firstChild); 
+            }
             
             promptCards.innerHTML = "";
             incrementRound();
@@ -236,7 +235,7 @@ const init = () => {
     });
 }
 // Define a convenience method and use it
-const ready = (callback) => {
+const ready = callback => {
     if (document.readyState != "loading") callback();
     else document.addEventListener("DOMContentLoaded", callback);
 }
