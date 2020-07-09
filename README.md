@@ -1,5 +1,5 @@
 # Kana Match
-Beginner Hiragana learning application and quiz written in vanilla Javascript. 
+Beginner Hiragana learning application and quiz written in vanilla Javascript. WORK IN PROGRESS, NOT YET MOBILE COMPATIBLE.
 
 Features: 
 - Learning with a Hiragana chart displaying different sounds and equivalent english (romaji) pronounciation
