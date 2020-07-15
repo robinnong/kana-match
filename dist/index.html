@@ -35,20 +35,25 @@
                         </div>
                 </div>-->
                 <div class="quiz wrapper animate__animated animate__fadeIn">
-                    <p>Drag and drop or tap to match 💭</p>
+                    <p>Tap to match <span role="img" aria-hidden="true">💭</span></p>
                     <div class="cardsContainer"> 
                         <ul class="promptCards">
                             <li v-for="card, index in promptCards">
-                                <span>{{ card.kana }}</span>
-                                <div>
-                                    <span v-if="currentMatch === index" class="key">{{ index + 1 }}</span>
+                                <span>{{ card }}</span>
+                                <div>  
+                                    <transition name="fade">
+                                        <span v-if="currentMatch === index" class="key">{{ index + 1 }}</span>
+                                    </transition>
+                                    <transition name="fade">
+                                        <span v-if="currentMatch > index" class="matchCard">{{ Object.keys(answerLog)[index] }}</span>
+                                    </transition>
                                 </div>
                             </li>
-                        </ul>            
+                            </ul>            
                         <ul class="answerCards">
-                            <li v-for="card in answerCards" v-bind:id=card.romaji @click=setCurrentCard>
+                            <li v-for="card in answerCards" v-bind:id=card @click=setCurrentCard :class="{disabled:answerLog[card]}">
                                 <div>
-                                    <span>{{ card.romaji }}</span>
+                                    <span>{{ card }}</span>
                                 </div>
                             </li>
                         </ul> 
@@ -64,8 +69,7 @@
                         <label for="dakuon">Dakuon</label> 
                         <input type="radio" id="handakuon" name="sound" value="handakuon">
                         <label for="handakuon">Handakuon</label> 
-                    </form>
-                    <button-counter></button-counter>
+                    </form> 
                     <ul class="hiraganaList">
                         <li v-for="items in chart">
                             <p class="cardFront">{{ items.kana }}</p>
@@ -75,15 +79,17 @@
                 </div>
             </section> 
             <!-- Pop-up modal box at end of quiz-->
-            <div class="modalOuter" v-if="isModalOn === true" @click=closeModal>
-                <div class="modalInner">
-                    <p class="grade">{{ result.grade }}</p>
-                    <h3 class="finalMessage">{{ result.message }}</h3>
-                    <p class="score">{{ score }}</p>
-                    <p>of 30 matches correct</p>
-                    <button>Exit</button>
+            <transition name="fadeIn">
+                <div class="modalOuter" v-if="isModalOn === true" @click=closeModal>
+                    <div class="modalInner">
+                        <p class="grade">{{ result.grade }}</p>
+                        <h3 class="finalMessage">{{ result.message }}</h3>
+                        <p class="score">{{ score }}</p>
+                        <p>of 30 matches correct</p>
+                        <button>Exit</button>
+                    </div>
                 </div>
-            </div>
+            </transition>
         </main>
         <footer>
             <p>© 2020 Robin Nong. View code <a href="https://github.com/robinnong/robin-nong-beyond-bootcamp">here</a>.</p>

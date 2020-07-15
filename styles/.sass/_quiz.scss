@@ -47,6 +47,10 @@
         border-radius: 5px;
         border: 1px dashed #949494; 
         transition: all 0.2s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem; 
     }  
 }
 
@@ -61,8 +65,8 @@
         cursor: pointer;
         &:hover {background-color: #eefaff;}
         touch-action: none;
-        user-select: none;
-    }
+        user-select: none; 
+    } 
 }
 
 .key {
@@ -70,13 +74,15 @@
     top: 3px;
     left: 0;
     right: 0;
-    margin: 0 auto;
+
     color: white;
     font-size: 1.6rem;
-    border-radius: 50%;
-    background-color: rgb(252, 182, 194);
     width: 30px;
     height: 30px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: rgb(252, 182, 194);
+
     display: flex;
     justify-content: center;
     align-items: center;

@@ -408,6 +408,16 @@ p {
   border: 1px dashed #949494;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 2rem;
 }
 
 .answerCards {
@@ -441,13 +451,13 @@ p {
   top: 3px;
   left: 0;
   right: 0;
-  margin: 0 auto;
   color: white;
   font-size: 1.6rem;
-  border-radius: 50%;
-  background-color: #fcb6c2;
   width: 30px;
   height: 30px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-color: #fcb6c2;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -785,6 +795,35 @@ footer {
   text-align: center;
   padding: 10px;
   font-size: 1.4rem;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.fade-enter-active, .fade-leave-active {
+  opacity: 1;
+  -webkit-transform: scale(100%);
+          transform: scale(100%);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+  -webkit-transform: scale(50%);
+          transform: scale(50%);
+}
+
+.fadeIn-enter-active, .fadeIn-leave-active {
+  opacity: 1;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.fadeIn-enter, .fadeIn-leave-to {
+  opacity: 0;
 }
 
 @media (max-width: 768px) {

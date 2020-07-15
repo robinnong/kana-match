@@ -89,6 +89,33 @@ footer {
     font-size: 1.4rem;
 }
 
+// Modifiers 
+.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+// Transitions 
+.fade-enter-active, .fade-leave-active {
+    opacity: 1;
+    transform: scale(100%);
+    transition: all 0.3s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    transform: scale(50%);
+}
+
+.fadeIn-enter-active, .fadeIn-leave-active {
+    opacity: 1; 
+    transition: all 0.3s;
+}
+
+.fadeIn-enter, .fadeIn-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0; 
+}
+
 @media (max-width:768px) { 
     .hiraganaList {
         padding: 50px 0;
