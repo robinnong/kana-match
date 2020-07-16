@@ -1,7 +1,6 @@
-// import _ from 'lodash';
-// import './styles.css';
+import './styles.css';
+import Vue from '../node_modules/vue/dist/vue.esm.js';  
 import hiragana from './hiragana.js';   
-import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js';  
 
 const app = new Vue({
     el: '#app',
