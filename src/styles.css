@@ -338,8 +338,6 @@ p {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-touch-action: none;
-      touch-action: none;
 }
 
 .quiz li {
@@ -434,12 +432,6 @@ p {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   cursor: pointer;
-  -ms-touch-action: none;
-      touch-action: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
 }
 
 .answerCards li:hover {
@@ -500,10 +492,22 @@ p {
 }
 
 .chartOptions label {
-  margin-right: 20px;
   margin: 5px 0;
-  margin-right: 15px;
   cursor: pointer;
+}
+
+.chartOptions div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 15px;
+  margin-right: 10px;
+  background-color: white;
+  border-radius: 25px;
+  border: 1px solid #bae3ff;
 }
 
 input:checked + label {
@@ -689,8 +693,6 @@ header {
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 20px;
-  background-color: #000638;
-  color: white;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
@@ -710,52 +712,22 @@ header {
 .navButtons button {
   font-weight: 600;
   font-size: 1.6rem;
-  color: pink;
   width: 90px;
   padding: 5px 0;
   margin: 0 20px;
 }
 
-section {
+main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 50px 0;
-}
-
-.home {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  text-align: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.home div {
-  margin: 0 auto;
-}
-
-.home p {
-  margin-top: 10px;
-}
-
-.home button {
-  text-transform: uppercase;
-  font-size: 2rem;
-  font-weight: 600;
-  margin: 20px 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border-radius: 5px;
 }
 
 footer {
@@ -766,6 +738,10 @@ footer {
   text-align: center;
   padding: 10px;
   font-size: 1.4rem;
+}
+
+footer a {
+  text-decoration: underline;
 }
 
 .disabled {

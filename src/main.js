@@ -17,8 +17,8 @@ const app = new Vue({
         score: 0,
         currentMatch: 0, 
         currentCard: "",
-        isModalOn: false, 
-        selected: undefined,
+        isModalOn: false,  
+        display: "quiz"
     },
     methods: {
         // Displays chart type based on user's selection  
@@ -37,20 +37,21 @@ const app = new Vue({
             this.answerCards = getRandomArray(promptSet, promptSet.length).map(item => item.romaji); 
         }, 
         evaluateAnswer: function() {
+            evaluateAnswers();    
             if (this.round === 5) {         
                 this.isModalOn = true;
                 this.result = assignGrade(this.score); 
                 this.round = 0;
-                this.score = 0;
-            } 
-            evaluateAnswers();   
-            app.answerKey = {};
-            app.answerLog = {}; 
+            } else {
+                app.round++;
+            }
+            app.loadQuiz();
             this.currentMatch = 0; 
         },
         closeModal: function(e) {
             // When user clicks outside of the modal, close modal 
             e.target.closest('.modalInner') === null ? this.isModalOn = false : null;  
+            this.score = 0;
         },
         setCurrentCard: function(e) {
             if (this.currentMatch < 6) {
@@ -65,19 +66,14 @@ const app = new Vue({
 })
 
 // Checks if the user has match the pairs of kana and romaji correctly by comparing pairs to the original object
-function evaluateAnswers() { 
-    console.log(app.answerKey); 
-    console.log(app.answerLog); 
+function evaluateAnswers() {  
     for (const prop in app.answerLog) { 
         if (app.answerLog[prop] === app.answerKey[prop]) { 
             app.score++;   
-            // answer.style.backgroundColor = '#D4EA55'; // Highlights the correct answers
-        } else {
-            // answer.style.backgroundColor = 'tomato'; // Highlights the incorrect answers
         }
     }     
-    app.loadQuiz();
-    app.round++;
+    app.answerKey = {};
+    app.answerLog = {};
 } 
 
 // Returns a randomized array, accepts the data array and desired length as parameters
@@ -92,23 +88,7 @@ const getRandomArray = (array, length) => {
         }
     } 
     return randomArray; 
-}   
-
-// Switch page content between Home, Chart and Quiz
-const switchDisplay = (type) => {    
-    switch(type) {
-        // case 'home' : 
-        //     break;
-
-        case 'chart' : 
-            app.loadChart("basic"); 
-            break;
-
-        // case 'quiz' :
-        //     // setQuestions();   
-        //     break; 
-    } 
-}  
+}    
 
 function assignGrade(finalScore) {
     if (finalScore === 0) {
@@ -127,13 +107,9 @@ function assignGrade(finalScore) {
 }
 
 const init = () => {    
-    app.loadQuiz();
-
-    switchDisplay('chart'); 
-    // heading.addEventListener("click", () => switchDisplay('home'));
-    // chartButton.addEventListener("click", () => switchDisplay('chart'));
-    // quizButton.addEventListener("click", () => switchDisplay('quiz'));
+    app.loadQuiz(); 
 }
+
 // Define a convenience method and use it
 const ready = callback => {
     if (document.readyState != "loading") callback();
