@@ -1,5 +1,7 @@
 # Kana Match
-Beginner Hiragana learning application and quiz written in vanilla Javascript, curently migrating project to Vue. WORK IN PROGRESS, NOT MOBILE COMPATIBLE.
+![Screenshot](./assets/screenshot.png) 
+
+A beginner Hiragana learning application and quiz written in vanilla Javascript. Currently migrating project to Vue. A work in progress, no yet mobile compatible.  
 
 ## Features
 - Learning with a Hiragana chart displaying different sounds and equivalent english (romaji) pronounciation
@@ -7,6 +9,8 @@ Beginner Hiragana learning application and quiz written in vanilla Javascript, c
 - Project as an exercise for using ES6 modules and bundling with Webpack
 
 ### To Do
+- Responsiveness
+- Accessibility audit
 - Incorporate Katakana charts
 - Add a Kanji learning section and calls to an API to receive kanji information
 
