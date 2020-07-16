@@ -12,63 +12,85 @@
     <link rel="stylesheet" href="../src/styles.css">
 </head>
 <body>
-    <header> 
-        <h1>Kana Match<span>🔥</span></h1>
-        <div class="navButtons">
-            <button class="chartButton"> 
-                <p>Learn <span aria-hidden="true">📖</span></p>
-            </button> 
-            <button class="quizButton">  
-                <p>Test <span aria-hidden="true">🎴</span></p>
-            </button>  
-        </div>   
-    </header>
-    <main> 
-        <section class="wrapper"> 
-            <div class="home wrapper">
-                <div>
-                    <h2>ka-na</h2>
-                    <p>"Hiragana is a Japanese syllabary, one component of the Japanese writing system, along with katakana, kanji and in some
-                        cases rōmaji. It is a phonetic lettering system. The word hiragana literally means "ordinary" or "simple" kana. Hiragana
-                        and katakana are both kana systems. - Wikipedia" </p>
-                    </div>
-            </div>
-            <div class="quiz wrapper animate__animated animate__fadeIn">
-                <p>Drag and drop or tap to match 💭</p>
+    <div id="app">
+        <header> 
+            <h1>Kana Match<span>🔥</span></h1>
+            <div class="navButtons">
+                <button @click="display='chart'" class="chartButton"> 
+                    <p>Learn <span aria-hidden="true">📖</span></p>
+                </button> 
+                <button @click="display='quiz'" class="quizButton">  
+                    <p>Test <span aria-hidden="true">🎴</span></p>
+                </button>  
+            </div>   
+        </header>
+        <main class="wrapper">   
+            <section v-if="display === 'quiz'" class="quiz wrapper animate__animated animate__fadeIn">
+                <p>Tap to match <span role="img" aria-hidden="true">💭</span></p>
                 <div class="cardsContainer"> 
-                    <ul class="promptCards"></ul>            
-                    <ul class="answerCards"></ul> 
+                    <ul class="promptCards">
+                        <li v-for="card, index in promptCards">
+                            <span>{{ card }}</span>
+                            <div>  
+                                <transition name="fade">
+                                    <span v-if="currentMatch === index" class="key">{{ index + 1 }}</span>
+                                </transition>
+                                <transition name="fade">
+                                    <span v-if="currentMatch > index" class="matchCard">{{ Object.keys(answerLog)[index] }}</span>
+                                </transition>
+                            </div>
+                        </li>
+                    </ul>            
+                    <ul class="answerCards">
+                        <li v-for="card in answerCards" v-bind:id=card @click=setCurrentCard :class="{disabled:answerLog[card]}">
+                            <div>
+                                <span>{{ card }}</span>
+                            </div>
+                        </li>
+                    </ul> 
                 </div> 
-                <p class="round"></p> 
-                <button type="button" class="nextButton">Next ></button>
-            </div>  
-            <div class="chart wrapper">
-                <form action="" class="chartOptions">
-                    <input type="radio" id="basic" name="sound" value="basic" checked="checked">
-                    <label for="basic">Basic (Gojūon)</label>
-                    <input type="radio" id="dakuon" name="sound" value="dakuon">
-                    <label for="dakuon">Dakuon</label> 
-                    <input type="radio" id="handakuon" name="sound" value="handakuon">
-                    <label for="handakuon">Handakuon</label> 
-                </form>
-                <ul class="hiraganaList"></ul> 
-            </div>
-        </section>
-        <!-- Pop-up modal box at end of quiz-->
-        <div class="modalOuter modal">
-            <div class="modalInner">
-                <p class="grade"></p>
-                <h3 class="finalMessage"></h3>
-                <p class="score"></p>
-                <p>of 30 matches correct</p>
-                <button>Exit</button>
-            </div>
-        </div>
-    </main>
-    <footer>
-        <p>© 2020 Robin Nong. View code <a href="https://github.com/robinnong/robin-nong-beyond-bootcamp">here</a>.</p>
-    </footer>
-    <!-- <script type="module" src="../src/main.js"></script> -->
+                <p class="round">{{ round }} / 5</p> 
+                <button type="button" class="nextButton" @click=evaluateAnswer>Next ></button>
+            </section>
+            <section v-if="display === 'chart'" class="chart wrapper">
+                <form action="" class="chartOptions" v-on:change="changeChart">
+                    <div>
+                        <input type="radio" id="basic" name="sound" value="basic" checked="checked">
+                        <label for="basic">Basic (Gojūon)</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="dakuon" name="sound" value="dakuon">
+                        <label for="dakuon">Dakuon</label> 
+                    </div>
+                    <div>
+                        <input type="radio" id="handakuon" name="sound" value="handakuon">
+                        <label for="handakuon">Handakuon</label> 
+                    </div>
+                </form> 
+                <ul class="hiraganaList"> 
+                    <li v-for="items in chart">
+                        <p class="cardFront">{{ items.kana }}</p>
+                        <p class="cardBack">{{ items.romaji }}</p>
+                    </li>
+                </ul> 
+            </section> 
+            <!-- Pop-up modal box at end of quiz-->
+            <transition name="fadeIn">
+                <div class="modalOuter" v-if="isModalOn === true" @click=closeModal>
+                    <div class="modalInner">
+                        <h3 class="finalMessage">{{ result.message }}</h3> 
+                        <p class="grade">{{ result.grade }}</p>
+                        <p>{{ score }} of 30 matches correct</p>
+                        <button @click="isModalOn = false, this.score = 0">Exit</button>
+                    </div>
+                </div>
+            </transition>
+        </main>
+        <footer>
+            <p>© 2020 Robin Nong. View the code <a href="https://github.com/robinnong/robin-nong-beyond-bootcamp">here</a>.</p>
+        </footer>
+    </div>    
+    <!-- <script type="module" src="../src/main.js"></script>   -->
     <script type="module" src="./bundle.js"></script> 
 </body>
 </html>
