@@ -5,7 +5,8 @@
   "private": true,
   "description": "Japanese Hiragana alphabet learning quiz",
   "dependencies": {
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "vue": "^2.6.11"
   },
   "devDependencies": {
     "css-loader": "^3.6.0",

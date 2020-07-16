@@ -4,13 +4,21 @@
     align-items: center;
     flex-wrap: wrap; 
     margin-bottom: 10px;
-    input {margin-right: 5px;}
-
+    input {
+        margin-right: 5px;
+    }
     label {
-        margin-right: 20px;
-        margin: 5px 0;
-        margin-right: 15px;
-        cursor: pointer;
+        margin: 5px 0; 
+        cursor: pointer; 
+    }
+    div {
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+        margin-right: 10px;
+        background-color: white;
+        border-radius: 25px;
+        border: 1px solid #bae3ff;
     }
 }
 
@@ -45,6 +53,7 @@ input:checked + label {
         font-size: 2.8rem; 
         background-color: white; 
         border-radius: 5px;
+        border: 1px solid #bae3ff;
         transition: all 0.3s;
         box-shadow: 0px 0px 8px 3px #00a9dd1c;
         &:focus, 
@@ -58,7 +67,7 @@ input:checked + label {
                 opacity: 0;
             }
         }
-        & > div {
+        p {
             position: absolute;
             top: 0;
             bottom: 0;

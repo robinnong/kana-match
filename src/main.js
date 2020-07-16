@@ -1,38 +1,83 @@
-import _ from 'lodash';
 import './styles.css';
-import hiragana from './hiragana.js'; 
-import assignGrade from './assignGrade.js'; 
+import Vue from '../node_modules/vue/dist/vue.esm.js';  
+import hiragana from './hiragana.js';   
 
-// Global Variables
-let answerKey = {};  // Format ==> {O: "お", KO: "こ"}
-let answerLog = {};  // Format ==> {O: "お", KO: "こ"}
-let score = 0;
-let round = 0; 
+const app = new Vue({
+    el: '#app',
+    data: {
+        chart: {},  
+        answerKey: {}, // Format ==> {O: "お", KO: "こ"}
+        answerLog: {}, // Format ==> {O: "お", KO: "こ"}
+        result: {},
+        answerCards: [],
+        promptCards: [],
+        key: 0,
+        round: 0, 
+        score: 0,
+        currentMatch: 0, 
+        currentCard: "",
+        isModalOn: false,  
+        display: "quiz"
+    },
+    methods: {
+        // Displays chart type based on user's selection  
+        loadChart: function(kanaType) {
+            this.chart = hiragana.filter(item => item.type === kanaType);
+        },
+        changeChart: function(e) {
+            app.loadChart(e.target.value);
+        },
+        loadQuiz: function() {
+            // Returns an array of 6 random hiragana  
+            const promptSet = getRandomArray(hiragana, 6);  
+            // Set current round's answer key
+            promptSet.forEach(index => this.answerKey[index.romaji] = index.kana);
+            this.promptCards = promptSet.map(item => item.kana); 
+            this.answerCards = getRandomArray(promptSet, promptSet.length).map(item => item.romaji); 
+        }, 
+        evaluateAnswer: function() {
+            evaluateAnswers();    
+            if (this.round === 5) {         
+                this.isModalOn = true;
+                this.result = assignGrade(this.score); 
+                this.round = 0;
+            } else {
+                app.round++;
+            }
+            app.loadQuiz();
+            this.currentMatch = 0; 
+        },
+        closeModal: function(e) {
+            // When user clicks outside of the modal, close modal 
+            e.target.closest('.modalInner') === null ? this.isModalOn = false : null;  
+            this.score = 0;
+        },
+        setCurrentCard: function(e) {
+            if (this.currentMatch < 6) {
+                this.currentCard = e.currentTarget.id;    
+                this.answerLog[e.currentTarget.id] = this.promptCards[this.currentMatch]; 
+                this.currentMatch++;  
+            } else {
 
-// Selectors for DOM elements
-const scoreCounter = document.querySelector(".score");
-const roundCounter = document.querySelector(".round");
+            }
+        }
+    }
+})
 
-const chart = document.querySelector(".chart");
-const quiz = document.querySelector(".quiz");
-const home = document.querySelector(".home");
-
-const promptCards = document.querySelector(".promptCards");
-const answerCards = document.querySelector(".answerCards");
-
-const heading = document.querySelector('h1');
-const nextButton = document.querySelector(".nextButton");
-const chartButton = document.querySelector(".chartButton");
-const quizButton = document.querySelector(".quizButton");
-
-const radioButtons = document.getElementsByName("sound");
-const hiraganaList = document.querySelector(".hiraganaList");
-const modal = document.querySelector('.modal');
+// Checks if the user has match the pairs of kana and romaji correctly by comparing pairs to the original object
+function evaluateAnswers() {  
+    for (const prop in app.answerLog) { 
+        if (app.answerLog[prop] === app.answerKey[prop]) { 
+            app.score++;   
+        }
+    }     
+    app.answerKey = {};
+    app.answerLog = {};
+} 
 
 // Returns a randomized array, accepts the data array and desired length as parameters
 const getRandomArray = (array, length) => {
     let randomArray = [];
-
     for (let i = 0; i < length; i++) {
         const index = Math.floor(Math.random()*array.length);
         if (randomArray.includes(array[index])) {
@@ -42,198 +87,28 @@ const getRandomArray = (array, length) => {
         }
     } 
     return randomArray; 
-} 
+}    
 
-// Effect when a card is picked up
-const onDragStart = (event) => event.dataTransfer.setData('text/html', event.target.id);  
-
-// Effect when a card is dropped into the dropzone
-const drop = (event) => {
-    event.preventDefault(); 
-    const currentCard = event.target;
-    // Data transfer from item being droppped to the dropzone
-    const data = event.dataTransfer.getData("text/html");
-    currentCard.appendChild(document.getElementById(data)); 
-    const userkana = currentCard.previousSibling.data;
-    const userromaji = currentCard.innerText;
-    
-    // Updates an object containing a log of user's past matches. Allows a match to be updated if the user wants to change their answer
-    answerLog[userromaji] = userkana;  
-} 
-
-// Checks if the user has match the pairs of kana and romaji correctly by comparing pairs to the original object
-function evaluateAnswers () { 
-    for (const prop in answerLog) {
-        const answer = document.getElementById(prop);
-        if (answerLog[prop] === answerKey[prop]) { 
-            score++;   
-            answer.style.backgroundColor = '#D4EA55'; // Highlights the correct answers
-        } else {
-            answer.style.backgroundColor = 'tomato'; // Highlights the incorrect answers
-        }
-    } 
+function assignGrade(finalScore) {
+    if (finalScore === 0) {
+        return { grade: "F", message: "Keep Studying! 😢" };
+    } else if (finalScore > 0 && finalScore < 15) {
+        return { grade: "D", message: "Keep Studying! 😢" };
+    } else if (finalScore > 15 && finalScore < 21) {
+        return { grade: "C", message: "Keep Studying! 😁" };
+    } else if (finalScore > 21 && finalScore < 24) {
+        return { grade: "B", message: "Good Job! 😄" };
+    } else if (finalScore > 24 && finalScore < 30) {
+        return { grade: "A", message: "Excellent! 😄" };
+    } else if (finalScore === 100) {
+        return { grade: "A+", message: "Perfect! 🎉" };
+    }
 }
 
-const setQuestions = () => {
-    // Clears the prompt cards' child elements
-    while (promptCards.firstChild) {
-        promptCards.removeChild(promptCards.firstChild);
-    }
-    // Clears the answer cards' child elements
-    while (answerCards.firstChild) {
-        answerCards.removeChild(answerCards.firstChild);
-    }
-    // Returns an array of 6 random hiragana
-    const promptSet = getRandomArray(hiragana, 6);  
-    // Populates the container for prompt cards 
-    promptSet.forEach(index => {  
-        answerKey[index.romaji] = index.kana; 
-        const cards = document.createElement("li"); 
-        cards.classList.add("droppable"); 
-        const dropzone = document.createElement('div');  
-
-        dropzone.addEventListener("dragover", function(e){
-            e.preventDefault();
-        }); 
-
-        dropzone.addEventListener("dragenter", function(e) { 
-            const box = e.target;
-            box.classList.add("dragover");
-            box.classList.remove("dragleave");
-        })
-
-        dropzone.addEventListener("dragleave", function (e) {
-            const box = e.target;
-            box.classList.remove("dragover");
-            box.classList.add("dragleave");
-        })
-
-        dropzone.addEventListener("drop", drop); 
-        cards.innerText = index.kana;
-        cards.appendChild(dropzone);
-        promptCards.appendChild(cards);
-    })
-    
-    // Return the first array of hiragana in a random order
-    const answers = getRandomArray(promptSet, promptSet.length)
-    answers.forEach(index => {  
-        const cards = document.createElement("li"); 
-        cards.setAttribute("draggable", "true"); 
-        cards.setAttribute("id", `${index.romaji}`)   
-        cards.addEventListener("dragstart", onDragStart, false);  
-        cards.textContent = index.romaji; 
-        answerCards.appendChild(cards);
-    })
-}  
-
-const updateRound = () => roundCounter.innerHTML = `${round} / 5`;
-
-// Switch page content between Home, Chart and Quiz
-const switchDisplay = (type) => {    
-    switch(type) {
-        case 'home' :
-            chart.style.display = 'none';
-            quiz.style.display = 'none';
-            home.style.display = '';
-            break;
-
-        case 'chart' : 
-            loadChart("basic");
-            chart.style.display = '';
-            quiz.style.display = 'none';
-            home.style.display = 'none';
-            break;
-
-        case 'quiz' :
-            setQuestions(); 
-            updateRound();
-            chart.style.display = 'none';
-            quiz.style.display = '';
-            home.style.display = 'none';
-            break; 
-    } 
-}  
-
-// Increments the round counter when user clicks Next button
-const incrementRound = () => { 
-    if (round === 5) {
-        modal.classList.add('visible');
-        scoreCounter.innerText = score; 
-        assignGrade(score);
-        round = 0;
-        score = 0;
-    } else {
-        round++; 
-    }
-    updateRound();
+const init = () => {    
+    app.loadQuiz(); 
 }
 
-// Displays the type of hiragana depending on user's radio button selection 
-const loadChart = (kanaType) => {
-    // Removes previously appended child elements from hiraganaList
-    while (hiraganaList.firstChild) {
-        hiraganaList.removeChild(hiraganaList.firstChild);
-    }
-
-    const kanaList = hiragana.filter(item => item.type === kanaType);
-
-    kanaList.forEach(char => {
-        const node = document.createElement("li");
-        node.classList.add('animate__animated', 'animate__fadeIn'); 
-
-        node.innerHTML = 
-            `<div class="cardFront">
-                <span>${char.kana}</span> 
-            </div>
-            <div class="cardBack"> 
-                <span>${char.romaji}</span>
-            </div>`   
-        
-        hiraganaList.appendChild(node);
-    });
-} 
-
-const init = () => {   
-    // When user clicks outside of the modal, close modal
-    modal.addEventListener('click', function(e) {  
-        e.target.closest('.modalInner') === null ? this.classList.remove('visible') : null; 
-    });
-
-    // When user clicks the escape key while modal is open, close modal
-    window.addEventListener('keydown', function(e) {
-        e.key === 'Escape' ? modal.classList.remove('visible') : null;
-    }); 
-
-    switchDisplay('home'); 
-    heading.addEventListener("click", () => switchDisplay('home'));
-    chartButton.addEventListener("click", () => switchDisplay('chart'));
-    quizButton.addEventListener("click", () => switchDisplay('quiz'));
-
-    // Adds an event listener to each radio button in the chart 
-    radioButtons.forEach(button => {
-        button.addEventListener("click", function(e) {  
-            loadChart(e.target.value);
-        })
-    }) 
-
-    // On clicking Next button: reset the DOM, clear answer log, and display the next question set 
-    nextButton.addEventListener("click", function() {
-        evaluateAnswers()
-
-        setTimeout(()=>{
-            answerKey = {};
-            answerLog = {};
-    
-            while (answerCards.firstChild) {
-                answerCards.removeChild(answerCards.firstChild); 
-            }
-            
-            promptCards.innerHTML = "";
-            incrementRound();
-            setQuestions();
-        }, 1000)
-    });
-}
 // Define a convenience method and use it
 const ready = callback => {
     if (document.readyState != "loading") callback();

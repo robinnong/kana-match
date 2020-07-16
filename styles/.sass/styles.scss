@@ -31,17 +31,14 @@ header {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 20px;
-    background-color: #000638;  
-    color: white;
+    padding: 20px; 
     transition: all 0.3s; 
 }
 
 .navButtons {
     button {
         font-weight: 600;
-        font-size: 1.6rem;
-        color: pink;  
+        font-size: 1.6rem; 
         width: 90px;
         padding: 5px 0;
         margin: 0 20px;
@@ -52,32 +49,12 @@ header {
     justify-content: center; 
 }
 
-section {    
+main {       
     display: flex;  
     justify-content: center;
+    align-items: center;
     padding: 50px 0; 
 }
-
-.home { 
-    display: flex; 
-    text-align: center;
-    align-items: center; 
-    div { 
-        margin: 0 auto;
-    }
-    p {
-        margin-top: 10px; 
-    }
-    button {
-        text-transform: uppercase; 
-        font-size: 2rem;
-        font-weight: 600;
-        margin: 20px 0;
-        display: flex;
-        align-items: center;    
-        border-radius: 5px; 
-    } 
-}  
 
 footer {  
     position: absolute;
@@ -87,6 +64,34 @@ footer {
     text-align: center;
     padding: 10px;
     font-size: 1.4rem;
+    a {text-decoration: underline;}
+}
+
+// Modifiers 
+.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+// Transitions 
+.fade-enter-active, .fade-leave-active {
+    opacity: 1;
+    transform: scale(100%);
+    transition: all 0.3s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    transform: scale(50%);
+}
+
+.fadeIn-enter-active, .fadeIn-leave-active {
+    opacity: 1; 
+    transition: all 0.3s;
+}
+
+.fadeIn-enter, .fadeIn-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0; 
 }
 
 @media (max-width:768px) { 
