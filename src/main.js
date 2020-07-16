@@ -40,8 +40,12 @@ const app = new Vue({
             if (this.round === 5) {         
                 this.isModalOn = true;
                 this.result = assignGrade(this.score); 
+                this.round = 0;
+                this.score = 0;
             } 
             evaluateAnswers();   
+            app.answerKey = {};
+            app.answerLog = {}; 
             this.currentMatch = 0; 
         },
         closeModal: function(e) {
@@ -71,12 +75,9 @@ function evaluateAnswers() {
         } else {
             // answer.style.backgroundColor = 'tomato'; // Highlights the incorrect answers
         }
-    }   
-    app.answerKey = {};
-    app.answerLog = {};   
-    app.loadQuiz()
+    }     
+    app.loadQuiz();
     app.round++;
-    console.log(app.score); 
 } 
 
 // Returns a randomized array, accepts the data array and desired length as parameters

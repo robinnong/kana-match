@@ -49,7 +49,7 @@
                                     </transition>
                                 </div>
                             </li>
-                            </ul>            
+                        </ul>            
                         <ul class="answerCards">
                             <li v-for="card in answerCards" v-bind:id=card @click=setCurrentCard :class="{disabled:answerLog[card]}">
                                 <div>
@@ -70,7 +70,7 @@
                         <input type="radio" id="handakuon" name="sound" value="handakuon">
                         <label for="handakuon">Handakuon</label> 
                     </form> 
-                    <ul class="hiraganaList">
+                    <ul class="hiraganaList"> 
                         <li v-for="items in chart">
                             <p class="cardFront">{{ items.kana }}</p>
                             <p class="cardBack">{{ items.romaji }}</p>
@@ -82,11 +82,10 @@
             <transition name="fadeIn">
                 <div class="modalOuter" v-if="isModalOn === true" @click=closeModal>
                     <div class="modalInner">
+                        <h3 class="finalMessage">{{ result.message }}</h3> 
                         <p class="grade">{{ result.grade }}</p>
-                        <h3 class="finalMessage">{{ result.message }}</h3>
-                        <p class="score">{{ score }}</p>
-                        <p>of 30 matches correct</p>
-                        <button>Exit</button>
+                        <p>{{ score }} of 30 matches correct</p>
+                        <button @click="isModalOn = false">Exit</button>
                     </div>
                 </div>
             </transition>

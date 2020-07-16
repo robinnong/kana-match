@@ -81,7 +81,7 @@
     height: 30px;
     margin: 0 auto;
     border-radius: 50%;
-    background-color: rgb(252, 182, 194);
+    background-color: #ff85aa;
 
     display: flex;
     justify-content: center;
@@ -93,8 +93,8 @@
     border: none;
     border-radius: 5px;
     padding: 10px 20px; 
-    background-color: rgb(255, 133, 170);
+    background-color: #ff85aa;
     box-shadow: 0 0 10px 2px rgba(231, 122, 155, 0.363);
     &:focus,
-    &:hover {background-color: rgb(231, 122, 155);}
+    &:hover {background-color: #e77a9b;}
 }

@@ -258,7 +258,7 @@ html {
 /* default wrapper - DO NOT CHANGE */
 .wrapper {
   width: 90%;
-  max-width: 1050px;
+  max-width: 1250px;
   margin: 0 auto;
 }
 
@@ -457,7 +457,7 @@ p {
   height: 30px;
   margin: 0 auto;
   border-radius: 50%;
-  background-color: #fcb6c2;
+  background-color: #ff85aa;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -542,6 +542,7 @@ input:checked + label {
   font-size: 2.8rem;
   background-color: white;
   border-radius: 5px;
+  border: 1px solid #bae3ff;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   -webkit-box-shadow: 0px 0px 8px 3px #00a9dd1c;
@@ -586,35 +587,30 @@ input:checked + label {
 }
 
 .modalOuter {
-  opacity: 1;
-  pointer-events: all;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
   z-index: 10;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   background-color: #0000003a;
+  opacity: 1;
+  pointer-events: all;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
-.modalOuter h3 {
-  margin-bottom: 10px;
-}
-
 .modalOuter div {
-  padding: 30px 20px;
   width: 300px;
+  padding: 30px 20px;
   margin: auto;
   background-color: white;
   border: 1px solid #d4d4d4;
   -webkit-box-shadow: 0 0 5px 5px #24242407;
           box-shadow: 0 0 5px 5px #24242407;
-  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -628,55 +624,30 @@ input:checked + label {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  z-index: 20;
 }
 
 .modalOuter button {
-  margin-top: 15px;
   color: white;
-  background-color: #ff85aa;
-  -webkit-box-shadow: 0 0 10px 2px rgba(231, 122, 155, 0.363);
-          box-shadow: 0 0 10px 2px rgba(231, 122, 155, 0.363);
-  cursor: pointer;
-  border-radius: 5px;
+  margin-top: 15px;
   padding: 10px 30px;
+  background-color: #ff85aa;
+  -webkit-box-shadow: 0 0 10px 2px #e77a9b5d;
+          box-shadow: 0 0 10px 2px #e77a9b5d;
+  border-radius: 5px;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+  cursor: pointer;
 }
 
 .modalOuter button:focus, .modalOuter button:hover {
   background-color: #e77a9b;
 }
 
-.modalOuter p:last-of-type {
-  font-size: 1.6rem;
-}
-
 .grade {
-  position: absolute;
-  left: -10px;
-  top: -10px;
-  width: 40px;
-  height: 40px;
+  font-size: 2.8rem;
   font-weight: 600;
-  color: white;
-  background-color: #e02683;
-  border-radius: 50%;
-  margin-right: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.score {
-  font-size: 2.2rem;
-  font-weight: 600;
+  color: #e77a9b;
+  margin: 10px 0;
 }
 
 body {
