@@ -12,7 +12,7 @@ Beginner Hiragana learning application and quiz written in vanilla Javascript, c
 
 ### Improvements from Vanilla JS to Vue
 - Discontinued Drag and Drop feature in quiz and implemented "Tap to Match" feature for improved accessibility. 
-- Switch from manipulating the DOM with vanilla js querey selectors and store all changes in the DOM in the Vue object's state. 
+- Switch from manipulating the DOM with vanilla js query selectors and storing all DOM changes in the Vue object's state. 
 
 ## How to use this repository
 
