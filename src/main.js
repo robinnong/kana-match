@@ -1,6 +1,7 @@
 import './styles.css';
 import Vue from '../node_modules/vue/dist/vue.esm.js';  
-import hiragana from './hiragana.js';   
+// import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js';
+import hiragana from './hiragana.js';    
 
 const app = new Vue({
     el: '#app',
@@ -18,14 +19,17 @@ const app = new Vue({
         currentCard: "",
         isModalOn: false,  
         display: "quiz"
-    },
+    }, 
+    mounted: function () {
+        this.loadQuiz();
+    }, 
     methods: {
         // Displays chart type based on user's selection  
         loadChart: function(kanaType) {
             this.chart = hiragana.filter(item => item.type === kanaType);
         },
         changeChart: function(e) {
-            app.loadChart(e.target.value);
+            this.loadChart(e.target.value);
         },
         loadQuiz: function() {
             // Returns an array of 6 random hiragana  
@@ -44,7 +48,7 @@ const app = new Vue({
             } else {
                 app.round++;
             }
-            app.loadQuiz();
+            this.loadQuiz();
             this.currentMatch = 0; 
         },
         closeModal: function(e) {
@@ -76,7 +80,7 @@ function evaluateAnswers() {
 } 
 
 // Returns a randomized array, accepts the data array and desired length as parameters
-const getRandomArray = (array, length) => {
+function getRandomArray (array, length) {
     let randomArray = [];
     for (let i = 0; i < length; i++) {
         const index = Math.floor(Math.random()*array.length);
@@ -103,19 +107,4 @@ function assignGrade(finalScore) {
     } else if (finalScore === 100) {
         return { grade: "A+", message: "Perfect! 🎉" };
     }
-}
-
-const init = () => {    
-    app.loadQuiz(); 
-}
-
-// Define a convenience method and use it
-const ready = callback => {
-    if (document.readyState != "loading") callback();
-    else document.addEventListener("DOMContentLoaded", callback);
-}
-
-ready(() => {
-    init();
-});
-
+}  

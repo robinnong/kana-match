@@ -52,8 +52,8 @@ header {
 main {       
     display: flex;  
     justify-content: center;
-    align-items: center;
-    padding: 50px 0; 
+    align-items: center; 
+    padding-bottom: 80px;
 }
 
 footer {  
@@ -76,18 +76,18 @@ footer {
 // Transitions 
 .fade-enter-active, .fade-leave-active {
     opacity: 1;
-    transform: scale(100%);
-    transition: all 0.3s;
+    transform: scale(100%); 
+    transition: all 0.3s; 
 }
 
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
-    transform: scale(50%);
+    transform: scale(50%); 
 }
 
 .fadeIn-enter-active, .fadeIn-leave-active {
     opacity: 1; 
-    transition: all 0.3s;
+    transition: all 0.3s; 
 }
 
 .fadeIn-enter, .fadeIn-leave-to /* .fade-leave-active below version 2.1.8 */ {
@@ -95,8 +95,8 @@ footer {
 }
 
 @media (max-width:768px) { 
-    .hiraganaList {
-        padding: 50px 0;
+    .hiraganaList { 
+        grid-gap: 5px;
         li { font-size: 2.4rem; }
         span:last-child {font-size: 1.4rem;}
     }

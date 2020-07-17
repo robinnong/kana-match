@@ -1,6 +1,6 @@
 {
-  "name": "hiraganaMatch",
-  "homepage": "https://robinnong.github.io/robin-nong-beyond-bootcamp",
+  "name": "kana-match",
+  "homepage": "https://robinnong.github.io/kana-match",
   "version": "1.0.0",
   "private": true,
   "description": "Japanese Hiragana alphabet learning quiz",
@@ -25,11 +25,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/robinnong/robin-nong-beyond-bootcamp.git"
+    "url": "git+https://github.com/robinnong/kana-match.git"
   },
   "author": "Robin Nong",
   "bugs": {
-    "url": "https://github.com/robinnong/robin-nong-beyond-bootcamp/issues"
+    "url": "https://github.com/robinnong/kana-match/issues"
   },
   "keywords": []
 }
