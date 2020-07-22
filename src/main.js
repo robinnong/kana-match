@@ -26,6 +26,9 @@ const app = new Vue({
         this.loadChart('basic')
     }, 
     methods: {
+        closeNav: function() { 
+            this.isOpen = false;
+        },
         // Displays chart type based on user's selection  
         loadChart: function(kanaType) {
             this.chart = hiragana.filter(item => item.type === kanaType);

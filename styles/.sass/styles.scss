@@ -14,12 +14,9 @@ body {
     color: #222222;
 } 
 
-h1 { 
-    color: white;
-    font-size: 2.4rem;
-    font-weight: 600;
-    text-align: center; 
-    margin: 0 auto 50px auto; 
+h1 {   
+    font-size: 2.2rem;
+    font-weight: 600; 
     cursor: pointer;
 }
 
@@ -27,26 +24,34 @@ h2 {margin-bottom: 20px;}
 
 button {letter-spacing: 0.2rem;} 
 
-#app {display: flex;}
-
-header {
-    display: none;
-    font-size: 2.4rem;
-    padding: 20px;
+header { 
+    display: flex;
+    align-items: center;
+    font-size: 2.4rem; 
+    padding: 0 20px;
+    height: 60px;  
+    background-color: white;
+    border-bottom: 1px solid rgb(186, 227, 255);
+    button {display: none;}
 }
 
-aside {
+section{padding-bottom: 50px; }
+
+nav { 
+    background-color: white;
+    border-right: 1px solid rgb(186, 227, 255);
     width: 250px;
-    padding: 20px;
-    background-color: #150842;
-    height: 100vh;
+    padding: 20px; 
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column; 
+    transition: all 0.3s;
     button {
         display: inline-block;
         position: relative;  
-        height: 40px;  
-        color: white;
+        height: 40px;   
         margin-bottom: 10px;
-        background-color: rgb(43, 48, 124); 
+        background-color: rgb(186, 227, 255);
         span { 
             text-transform: uppercase;
             font-size: 1.2rem;
@@ -59,7 +64,7 @@ aside {
             font-weight: 600;
             position: absolute;
             bottom: 8px;
-            right: 8px;
+            right: 8px; 
         }  
         &:focus,
         &:hover { 
@@ -67,24 +72,24 @@ aside {
             background-color: rgb(195, 233, 255);  
         }
     } 
-}  
+}   
 
-.home p {
-    max-width: 600px;
+.about {
     line-height: 2.8rem;
-}
-
-nav {
-    display: flex;
-    flex-direction: column; 
+    max-width: 600px;
+    margin: 0 auto;
 } 
 
-main {       
-    padding: 30px;
-    padding-bottom: 80px;
+main {        
+    display: flex;  
+}
+
+.main {
     display: flex;  
     justify-content: center;
     align-items: center; 
+    padding-bottom: 80px; 
+    padding: 30px;
 }
 
 footer {  
@@ -96,7 +101,7 @@ footer {
     padding: 10px;
 }
 
-main, footer {width: calc(100% - 250px);}
+.main, footer {width: calc(100% - 250px);}
 
 // Modifiers 
 .disabled {
@@ -127,7 +132,7 @@ main, footer {width: calc(100% - 250px);}
 
 .navOpen {left: 0;}
 
-@media (max-width:768px) { 
+@media (max-width: 768px) { 
     .hiraganaList { 
         grid-gap: 5px;
         li { font-size: 2.4rem; }
@@ -136,16 +141,20 @@ main, footer {width: calc(100% - 250px);}
     .chartOptions {font-size: 1.4rem;}
 } 
 
-@media (max-width:600px) { 
-    aside {
+@media (max-width: 600px) { 
+    nav {
         position: absolute;
         left: -250px;
-        transition: all 0.3s;
+        z-index: 20;
     }
+    
+    .main {width: 100%;}
 
-    main, footer {width: 100%;}
-
-    header {display: block;}
-
-    #app {flex-direction: column;}
+    main, footer {width: 100%;}  
 } 
+
+@media (max-width: 480px) { 
+    header button {display: block;}
+
+    h1 {display: none;}
+}

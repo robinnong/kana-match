@@ -14,11 +14,11 @@
 <body>
     <div id="app">
         <header> 
-            <button @click="isOpen = !isOpen">🍙</button>
-        </header>
-        <aside v-bind:class="{navOpen: isOpen}"> 
-            <h1 @click="display = 'home'">Kana Match<span>🔥</span></h1>
-            <nav>
+            <h1 @click="display = 'home'">Kana Match <span>🔥</span></h1>
+            <button @click="isOpen = !isOpen" aria-label="Toggle navigation menu" aria-hidden="true">🔥</button>
+        </header> 
+        <main>   
+            <nav @click=closeNav v-bind:class="{navOpen: isOpen}">  
                 <button @click="display = 'chart'">
                     <span>Hiragana</span>
                     <p>Learn</p> 
@@ -30,63 +30,65 @@
                 <button @click=loadQuiz value="katakana">
                     <span>Katakana</span>
                     <p>Test</p> 
-                </button>
-            </nav>
-        </aside> 
-        <main>   
-            <section v-if="display === 'home'" class="home wrapper">
-                <h2>About</h2>
-                <p>Hi there! Kana Match is a place where you can learn and test your knowledge of the Japanese kana alphabet. I created this project as a way to practice Javascript, UI design and Vue.js. A work in progress. Feel free to view the <a href="https://github.com/robinnong/robin-nong-beyond-bootcamp">GitHub repository</a> or send me suggestions for features! I'm always looking for user feedback 👋</p>
-            </section>
-            <section v-if="display === 'chart'" class="chart wrapper"> 
-                <form action="" class="chartOptions" v-on:change="changeChart">
-                    <div>
-                        <input type="radio" id="basic" name="sound" value="basic" checked="checked">
-                        <label for="basic">Basic (Gojūon)</label>
+                </button> 
+            </nav> 
+            <div class="main">
+                <section v-if="display === 'home'" class="wrapper">
+                    <div class="about">
+                        <h2>About</h2>
+                        <p>Kana Match is a place where you can test your knowledge of the Japanese kana alphabet. I created this project as a way to practice building a Vue.js app. A work in progress. Feel free to check out the <a href="https://github.com/robinnong/robin-nong-beyond-bootcamp">GitHub repository</a> or send me suggestions for features! I'm always looking for user feedback 👋</p>
                     </div>
-                    <div>
-                        <input type="radio" id="dakuon" name="sound" value="dakuon">
-                        <label for="dakuon">Dakuon</label> 
-                    </div>
-                    <div>
-                        <input type="radio" id="handakuon" name="sound" value="handakuon">
-                        <label for="handakuon">Handakuon</label> 
-                    </div>
-                </form> 
-                <ul class="hiraganaList"> 
-                    <li v-for="items in chart">
-                        <p class="cardFront">{{ items.kana }}</p>
-                        <p class="cardBack">{{ items.romaji }}</p>
-                    </li>
-                </ul> 
-            </section> 
-            <section v-if="display === 'quiz'" class="quiz wrapper animate__animated animate__fadeIn">
-                <p>Tap to match <span role="img" aria-hidden="true">💭</span></p>
-                <div class="cardsContainer"> 
-                    <ul class="promptCards">
-                        <li v-for="card, index in promptCards">
-                            <span>{{ card }}</span>
-                            <div>  
-                                <transition name="fade">
-                                    <span v-if="currentMatch === index" class="key">{{ index + 1 }}</span>
-                                </transition>
-                                <transition name="fade">
-                                    <span v-if="currentMatch > index" class="matchCard">{{ Object.keys(answerLog)[index] }}</span>
-                                </transition>
-                            </div>
-                        </li>
-                    </ul>            
-                    <ul class="answerCards">
-                        <li v-for="card in answerCards" v-bind:id=card @click=setCurrentCard :class="{disabled:answerLog[card]}">
-                            <div>
-                                <span>{{ card }}</span>
-                            </div>
+                </section>
+                <section v-if="display === 'chart'" class="chart"> 
+                    <form action="" class="chartOptions" v-on:change="changeChart">
+                        <div>
+                            <input type="radio" id="basic" name="sound" value="basic" checked="checked">
+                            <label for="basic">Basic (Gojūon)</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="dakuon" name="sound" value="dakuon">
+                            <label for="dakuon">Dakuon</label> 
+                        </div>
+                        <div>
+                            <input type="radio" id="handakuon" name="sound" value="handakuon">
+                            <label for="handakuon">Handakuon</label> 
+                        </div>
+                    </form> 
+                    <ul class="hiraganaList"> 
+                        <li v-for="items in chart">
+                            <p class="cardFront">{{ items.kana }}</p>
+                            <p class="cardBack">{{ items.romaji }}</p>
                         </li>
                     </ul> 
-                </div> 
-                <p class="round">{{ round }} / 5</p> 
-                <button type="button" class="nextButton" @click=evaluateAnswer>Next ></button>
-            </section>
+                </section> 
+                <section v-if="display === 'quiz'" class="quiz wrapper animate__animated animate__fadeIn">
+                    <p>Tap to match <span role="img" aria-hidden="true">💭</span></p>
+                    <div class="cardsContainer"> 
+                        <ul class="promptCards">
+                            <li v-for="card, index in promptCards">
+                                <span>{{ card }}</span>
+                                <div>  
+                                    <transition name="fade">
+                                        <span v-if="currentMatch === index" class="key">{{ index + 1 }}</span>
+                                    </transition>
+                                    <transition name="fade">
+                                        <span v-if="currentMatch > index" class="matchCard">{{ Object.keys(answerLog)[index] }}</span>
+                                    </transition>
+                                </div>
+                            </li>
+                        </ul>            
+                        <ul class="answerCards">
+                            <li v-for="card in answerCards" v-bind:id=card @click=setCurrentCard :class="{disabled:answerLog[card]}">
+                                <div>
+                                    <span>{{ card }}</span>
+                                </div>
+                            </li>
+                        </ul> 
+                    </div> 
+                    <p class="round">{{ round }} / 5</p> 
+                    <button type="button" class="nextButton" @click=evaluateAnswer>Next ></button>
+                </section>
+            </div>
             <!-- Pop-up modal box at end of quiz-->
             <transition name="fadeIn">
                 <div class="modalOuter" v-if="isModalOn === true" @click=closeModal>
