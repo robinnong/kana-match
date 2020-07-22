@@ -21,6 +21,7 @@ const app = new Vue({
         isModalOn: false,  
         display: "home",
         isOpen: false,
+        quizType: "",
     }, 
     mounted: function () {
         this.loadChart('basic')
@@ -36,11 +37,15 @@ const app = new Vue({
         changeChart: function(e) {
             this.loadChart(e.target.value);
         },
-        loadQuiz: function(e) {  
+        getQuizType: function(e){
+            this.quizType = e.currentTarget.value;
+            this.loadQuiz();
+        },
+        loadQuiz: function() {  
             this.display = 'quiz'; 
-            let promptSet = undefined; 
+            let promptSet = undefined;  
             // Returns an array of 6 random hiragana  
-            switch (e.currentTarget.value) {
+            switch (this.quizType) {
                 case 'hiragana':
                     promptSet = getRandomArray(hiragana, 6); 
                     break;
@@ -63,8 +68,8 @@ const app = new Vue({
                 this.round = 0;
             } else {
                 app.round++;
-            }
-            this.loadQuiz(quizType);
+            } 
+            this.loadQuiz();
             this.currentMatch = 0; 
         },
         closeModal: function(e) {
