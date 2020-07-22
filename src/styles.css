@@ -283,7 +283,6 @@ li {
 
 a {
   color: inherit;
-  text-decoration: none;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
@@ -485,6 +484,7 @@ p {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin-bottom: 10px;
+  font-size: 1.6rem;
 }
 
 .chartOptions input {
@@ -613,6 +613,7 @@ input:checked + label {
   margin: auto;
   background-color: white;
   border: 1px solid #d4d4d4;
+  border-radius: 5px;
   -webkit-box-shadow: 0 0 5px 5px #24242407;
           box-shadow: 0 0 5px 5px #24242407;
   display: -webkit-box;
@@ -665,59 +666,89 @@ body {
 }
 
 h1 {
-  display: inline-block;
+  color: white;
   font-size: 2.4rem;
   font-weight: 600;
   text-align: center;
-  margin: 0 auto 10px auto;
+  margin: 0 auto 50px auto;
   cursor: pointer;
 }
 
-button,
 h2 {
+  margin-bottom: 20px;
+}
+
+button {
   letter-spacing: 0.2rem;
 }
 
-header {
+#app {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+}
+
+header {
+  display: none;
+  font-size: 2.4rem;
+  padding: 20px;
+}
+
+aside {
+  width: 250px;
+  padding: 20px;
+  background-color: #150842;
+  height: 100vh;
+}
+
+aside button {
+  display: inline-block;
+  position: relative;
+  height: 40px;
+  color: white;
+  margin-bottom: 10px;
+  background-color: #2b307c;
+}
+
+aside button span {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  position: absolute;
+  left: 8px;
+  top: 8px;
+}
+
+aside button p {
+  font-size: 2rem;
+  font-weight: 600;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+}
+
+aside button:focus, aside button:hover {
+  color: #0e0e0e;
+  background-color: #c3e9ff;
+}
+
+.home p {
+  max-width: 600px;
+  line-height: 2.8rem;
+}
+
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 20px;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-}
-
-.navButtons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.navButtons button {
-  font-weight: 600;
-  font-size: 1.6rem;
-  width: 90px;
-  padding: 5px 0;
-  margin: 0 20px;
 }
 
 main {
+  padding: 30px;
+  padding-bottom: 80px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -727,21 +758,19 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-bottom: 80px;
 }
 
 footer {
   position: absolute;
   bottom: 0;
   right: 0;
-  left: 0;
   text-align: center;
-  padding: 10px;
   font-size: 1.4rem;
+  padding: 10px;
 }
 
-footer a {
-  text-decoration: underline;
+main, footer {
+  width: calc(100% - 250px);
 }
 
 .disabled {
@@ -773,6 +802,10 @@ footer a {
   opacity: 0;
 }
 
+.navOpen {
+  left: 0;
+}
+
 @media (max-width: 768px) {
   .hiraganaList {
     grid-gap: 5px;
@@ -782,5 +815,29 @@ footer a {
   }
   .hiraganaList span:last-child {
     font-size: 1.4rem;
+  }
+  .chartOptions {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  aside {
+    position: absolute;
+    left: -250px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  main, footer {
+    width: 100%;
+  }
+  header {
+    display: block;
+  }
+  #app {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 }

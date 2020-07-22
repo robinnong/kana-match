@@ -14,18 +14,31 @@
 <body>
     <div id="app">
         <header> 
-            <h1>Kana Match<span>🔥</span></h1>
-            <div class="navButtons">
-                <button @click="display='chart', loadChart('basic')" class="chartButton"> 
-                    <p>Learn <span aria-hidden="true">📖</span></p>
-                </button> 
-                <button @click="display='quiz'" class="quizButton">  
-                    <p>Test <span aria-hidden="true">🎴</span></p>
-                </button>  
-            </div>   
+            <button @click="isOpen = !isOpen">🍙</button>
         </header>
-        <main class="wrapper">   
-            <section v-if="display === 'chart'" class="chart"> 
+        <aside v-bind:class="{navOpen: isOpen}"> 
+            <h1 @click="display = 'home'">Kana Match<span>🔥</span></h1>
+            <nav>
+                <button @click="display = 'chart'">
+                    <span>Hiragana</span>
+                    <p>Learn</p> 
+                </button>
+                <button @click=loadQuiz value="hiragana">
+                    <span>Hiragana</span>
+                    <p>Test</p>
+                </button> 
+                <button @click=loadQuiz value="katakana">
+                    <span>Katakana</span>
+                    <p>Test</p> 
+                </button>
+            </nav>
+        </aside> 
+        <main>   
+            <section v-if="display === 'home'" class="home wrapper">
+                <h2>About</h2>
+                <p>Hi there! Kana Match is a place where you can learn and test your knowledge of the Japanese kana alphabet. I created this project as a way to practice Javascript, UI design and Vue.js. A work in progress. Feel free to view the <a href="https://github.com/robinnong/robin-nong-beyond-bootcamp">GitHub repository</a> or send me suggestions for features! I'm always looking for user feedback 👋</p>
+            </section>
+            <section v-if="display === 'chart'" class="chart wrapper"> 
                 <form action="" class="chartOptions" v-on:change="changeChart">
                     <div>
                         <input type="radio" id="basic" name="sound" value="basic" checked="checked">
@@ -47,7 +60,7 @@
                     </li>
                 </ul> 
             </section> 
-            <section v-if="display === 'quiz'" class="quiz animate__animated animate__fadeIn">
+            <section v-if="display === 'quiz'" class="quiz wrapper animate__animated animate__fadeIn">
                 <p>Tap to match <span role="img" aria-hidden="true">💭</span></p>
                 <div class="cardsContainer"> 
                     <ul class="promptCards">
@@ -87,10 +100,10 @@
             </transition>
         </main>
         <footer>
-            <p>© 2020 <a href="https://www.robinnong.com/">Robin Nong</a>. View the code <a href="https://github.com/robinnong/robin-nong-beyond-bootcamp">here</a>.</p>
+            <p>© 2020 <a href="https://www.robinnong.com/">Robin Nong</a>.</p>
         </footer>
     </div>    
-    <!-- <script type="module" src="../src/main.js"></script>   -->
-    <script type="module" src="./bundle.js"></script> 
+    <script type="module" src="../src/main.js"></script>  
+    <!-- <script type="module" src="./bundle.js"></script>  -->
 </body>
 </html>

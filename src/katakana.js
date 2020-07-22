@@ -1,361 +1,361 @@
-const hiragana = [
+const katakana = [     
     {
-        kana: "あ",
+        kana: "ア",
         romaji: "A",
         type: "basic"
     },
     {
-        kana: "い",
+        kana: "イ",
         romaji: "I",
         type: "basic"
     },
     {
-        kana: "う",
+        kana: "ウ",
         romaji: "U",
         type: "basic"
     },
     {
-        kana: "え",
+        kana: "エ",
         romaji: "E",
         type: "basic"
     },
     {
-        kana: "お",
+        kana: "オ",
         romaji: "O",
         type: "basic"
     },
     {
-        kana: "か",
+        kana: "カ",
         romaji: "KA",
         type: "basic"
     },
     {
-        kana: "き",
+        kana: "キ",
         romaji: "KI",
         type: "basic"
     },
     {
-        kana: "く",
+        kana: "ク",
         romaji: "KU",
         type: "basic"
     },
     {
-        kana: "け",
+        kana: "ケ",
         romaji: "KE",
         type: "basic"
     },
     {
-        kana: "こ",
+        kana: "コ",
         romaji: "KO",
         type: "basic"
     }, 
     {
-        kana: "が",
+        kana: "ガ",
         romaji: "GA",
         type: "dakuon"
     },
     {
-        kana: "ぎ",
+        kana: "ギ",
         romaji: "GI",
         type: "dakuon"
     },
     {
-        kana: "ぐ",
+        kana: "グ",
         romaji: "GU",
         type: "dakuon"
     },
     {
-        kana: "げ",
+        kana: "ゲ",
         romaji: "GE",
         type: "dakuon"
     },
     {
-        kana: "ご",
+        kana: "ゴ",
         romaji: "GO",
         type: "dakuon"
     },
     {
-        kana: "さ",
+        kana: "サ",
         romaji: "SA",
         type: "basic"
     },
     {
-        kana: "し",
+        kana: "シ",
         romaji: "SHI",
         type: "basic"
     },
     {
-        kana: "す",
+        kana: "ス",
         romaji: "SU",
         type: "basic"
     }
     ,
     {
-        kana: "せ",
+        kana: "セ",
         romaji: "SE",
         type: "basic"
     },
     {
-        kana: "そ",
+        kana: "ソ",
         romaji: "SO",
         type: "basic"
     },
     {
-        kana: "ざ",
+        kana: "ザ",
         romaji: "ZA",
         type: "dakuon"
     },
     {
-        kana: "じ",
+        kana: "ジ",
         romaji: "JI",
         type: "basic"
     },
     {
-        kana: "ず",
+        kana: "ズ",
         romaji: "ZU",
         type: "dakuon"
     }
     ,
     {
-        kana: "ぜ",
+        kana: "ゼ",
         romaji: "ZE",
         type: "dakuon"
     },
     {
-        kana: "ぞ",
+        kana: "ゾ",
         romaji: "ZO",
         type: "dakuon"
     }, 
     {
-        kana: "た",
+        kana: "タ",
         romaji: "TA",
         type: "basic"
     },
     {
-        kana: "ち",
+        kana: "チ",
         romaji: "CHI",
         type: "basic"
     },
     {
-        kana: "つ",
+        kana: "ツ",
         romaji: "TSU",
         type: "basic"
     },
     {
-        kana: "て",
+        kana: "テ",
         romaji: "TE",
         type: "basic"
     },
     {
-        kana: "と",
+        kana: "ト",
         romaji: "TO",
         type: "basic"
     },
     {
-        kana: "だ",
+        kana: "ダ",
         romaji: "DA",
         type: "dakuon"
     },
     {
-        kana: "ぢ",
+        kana: "ヂ",
         romaji: "JI",
         type: "dakuon"
     },
     {
-        kana: "づ",
+        kana: "ヅ",
         romaji: "DZU",
         type: "dakuon"
     },
     {
-        kana: "で",
+        kana: "デ",
         romaji: "DE",
         type: "dakuon"
     },
     {
-        kana: "ど",
+        kana: "ド",
         romaji: "DO",
         type: "dakuon"
     }, 
     {
-        kana: "な",
+        kana: "ナ",
         romaji: "NA",
         type: "basic"
     },
     {
-        kana: "に",
+        kana: "ニ",
         romaji: "NI",
         type: "basic"
     },
     {
-        kana: "ぬ",
+        kana: "ヌ",
         romaji: "NU", 
         type: "basic"
     },
     {
-        kana: "ね",
+        kana: "ネ",
         romaji: "NE",
         type: "basic"
     },
     {
-        kana: "の",
+        kana: "ノ",
         romaji: "NO",
         type: "basic"
     },
     {
-        kana: "は",
+        kana: "ハ",
         romaji: "HA",
         type: "basic"
     },
     {
-        kana: "ひ",
+        kana: "ヒ",
         romaji: "HI",
         type: "basic"
     },
     {
-        kana: "ふ",
+        kana: "フ",
         romaji: "FU",
         type: "basic"
     },
     {
-        kana: "へ",
+        kana: "ヘ",
         romaji: "HE",
         type: "basic"
     },
     {
-        kana: "ほ",
+        kana: "ホ",
         romaji: "HO",
         type: "basic"
     },
     {
-        kana: "ば",
+        kana: "バ",
         romaji: "BA",
         type: "dakuon"
     },
     {
-        kana: "び",
+        kana: "ビ",
         romaji: "BI",
         type: "dakuon"
     },
     {
-        kana: "ぶ",
+        kana: "ブ",
         romaji: "BU",
         type: "dakuon"
     },
     {
-        kana: "べ",
+        kana: "ベ",
         romaji: "BE",
         type: "dakuon"
     },
     {
-        kana: "ぼ",
+        kana: "ボ",
         romaji: "BO",
         type: "dakuon"
     }, 
     {
-        kana: "ぱ",
+        kana: "パ",
         romaji: "PA",
         type: "handakuon"
     },
     {
-        kana: "ぴ",
+        kana: "ピ",
         romaji: "PI",
         type: "handakuon"
     },
     {
-        kana: "ぷ",
+        kana: "プ",
         romaji: "PU",
         type: "handakuon"
     },
     {
-        kana: "ぺ",
+        kana: "ペ",
         romaji: "PE",
         type: "handakuon"
     }, 
     {
-        kana: "ぽ",
+        kana: "ポ",
         romaji: "PO",
         type: "handakuon"
     },  
     {
-        kana: "ま",
+        kana: "マ",
         romaji: "MA",
         type: "basic"
     },
     {
-        kana: "み",
+        kana: "ミ",
         romaji: "MI",
         type: "basic"
     },
     {
-        kana: "む",
+        kana: "ム",
         romaji: "MU",
         type: "basic"
     },
     {
-        kana: "め",
+        kana: "メ",
         romaji: "ME",
         type: "basic"
     },
     {
-        kana: "も",
+        kana: "モ",
         romaji: "MO",
         type: "basic"
     },
     {
-        kana: "や",
+        kana: "ヤ",
         romaji: "YA",
         type: "basic"
     },
     {
-        kana: "ゆ",
+        kana: "ユ",
         romaji: "YU",
         type: "basic"
     },
     {
-        kana: "よ",
+        kana: "ヨ",
         romaji: "YO",
         type: "basic"
     },
     {
-        kana: "ら",
+        kana: "ラ",
         romaji: "RA",
         type: "basic"
     },
     {
-        kana: "り",
+        kana: "リ",
         romaji: "RI",
         type: "basic"
     },
     {
-        kana: "る",
+        kana: "ル",
         romaji: "RU",
         type: "basic"
     },
     {
-        kana: "れ",
+        kana: "レ",
         romaji: "RE",
         type: "basic"
     },
     {
-        kana: "ろ",
+        kana: "ロ",
         romaji: "RO",
         type: "basic"
-    },
+    }, 	 
     {
-        kana: "わ",
+        kana: "ワ",
         romaji: "WA",
         type: "basic"
     },
     {
-        kana: "を",
+        kana: "ヲ",
         romaji: "WO",
         type: "basic"
     },
     {
-        kana: "ん",
+        kana: "ン",
         romaji: "N",
         type: "basic"
     }
 ]   
 
-export default hiragana;
+export default katakana;

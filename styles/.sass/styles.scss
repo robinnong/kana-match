@@ -14,58 +14,89 @@ body {
     color: #222222;
 } 
 
-h1 {
-    display: inline-block; 
+h1 { 
+    color: white;
     font-size: 2.4rem;
     font-weight: 600;
     text-align: center; 
-    margin: 0 auto 10px auto; 
+    margin: 0 auto 50px auto; 
     cursor: pointer;
 }
 
-button,
-h2 {letter-spacing: 0.2rem;}
+h2 {margin-bottom: 20px;}
 
-header {  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px; 
-    transition: all 0.3s; 
+button {letter-spacing: 0.2rem;} 
+
+#app {display: flex;}
+
+header {
+    display: none;
+    font-size: 2.4rem;
+    padding: 20px;
 }
 
-.navButtons {
+aside {
+    width: 250px;
+    padding: 20px;
+    background-color: #150842;
+    height: 100vh;
     button {
-        font-weight: 600;
-        font-size: 1.6rem; 
-        width: 90px;
-        padding: 5px 0;
-        margin: 0 20px;
-    }
+        display: inline-block;
+        position: relative;  
+        height: 40px;  
+        color: white;
+        margin-bottom: 10px;
+        background-color: rgb(43, 48, 124); 
+        span { 
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 8px;
+            top: 8px;
+        }
+        p { 
+            font-size: 2rem;
+            font-weight: 600;
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+        }  
+        &:focus,
+        &:hover { 
+            color: rgb(14, 14, 14);
+            background-color: rgb(195, 233, 255);  
+        }
+    } 
+}  
 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
+.home p {
+    max-width: 600px;
+    line-height: 2.8rem;
 }
+
+nav {
+    display: flex;
+    flex-direction: column; 
+} 
 
 main {       
+    padding: 30px;
+    padding-bottom: 80px;
     display: flex;  
     justify-content: center;
     align-items: center; 
-    padding-bottom: 80px;
 }
 
 footer {  
     position: absolute;
     bottom: 0;
-    right: 0;
-    left: 0;
+    right: 0; 
     text-align: center;
+    font-size: 1.4rem; 
     padding: 10px;
-    font-size: 1.4rem;
-    a {text-decoration: underline;}
 }
+
+main, footer {width: calc(100% - 250px);}
 
 // Modifiers 
 .disabled {
@@ -94,10 +125,27 @@ footer {
     opacity: 0; 
 }
 
+.navOpen {left: 0;}
+
 @media (max-width:768px) { 
     .hiraganaList { 
         grid-gap: 5px;
         li { font-size: 2.4rem; }
         span:last-child {font-size: 1.4rem;}
     }
+    .chartOptions {font-size: 1.4rem;}
+} 
+
+@media (max-width:600px) { 
+    aside {
+        position: absolute;
+        left: -250px;
+        transition: all 0.3s;
+    }
+
+    main, footer {width: 100%;}
+
+    header {display: block;}
+
+    #app {flex-direction: column;}
 } 

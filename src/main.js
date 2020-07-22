@@ -1,7 +1,8 @@
-import './styles.css';
-import Vue from '../node_modules/vue/dist/vue.esm.js';  
-// import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js';
+// import './styles.css';
+// import Vue from '../node_modules/vue/dist/vue.esm.js';  
+import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js';
 import hiragana from './hiragana.js';    
+import katakana from './katakana.js';
 
 const app = new Vue({
     el: '#app',
@@ -18,10 +19,11 @@ const app = new Vue({
         currentMatch: 0, 
         currentCard: "",
         isModalOn: false,  
-        display: "quiz"
+        display: "home",
+        isOpen: false,
     }, 
     mounted: function () {
-        this.loadQuiz();
+        this.loadChart('basic')
     }, 
     methods: {
         // Displays chart type based on user's selection  
@@ -31,9 +33,20 @@ const app = new Vue({
         changeChart: function(e) {
             this.loadChart(e.target.value);
         },
-        loadQuiz: function() {
+        loadQuiz: function(e) {  
+            this.display = 'quiz'; 
+            let promptSet = undefined; 
             // Returns an array of 6 random hiragana  
-            const promptSet = getRandomArray(hiragana, 6);  
+            switch (e.currentTarget.value) {
+                case 'hiragana':
+                    promptSet = getRandomArray(hiragana, 6); 
+                    break;
+                case 'katakana':
+                    promptSet = getRandomArray(katakana, 6); 
+                    break;
+                default:
+                    console.log('error')
+            }
             // Set current round's answer key
             promptSet.forEach(index => this.answerKey[index.romaji] = index.kana);
             this.promptCards = promptSet.map(item => item.kana); 
@@ -48,7 +61,7 @@ const app = new Vue({
             } else {
                 app.round++;
             }
-            this.loadQuiz();
+            this.loadQuiz(quizType);
             this.currentMatch = 0; 
         },
         closeModal: function(e) {
