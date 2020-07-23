@@ -1,12 +1,12 @@
 # Kana Match
 ![Screenshot](./assets/screenshot.png) 
 
-A beginner Hiragana learning application and quiz written in vanilla Javascript. Currently migrating project to Vue. A work in progress, no yet mobile compatible.  
+A beginner Japanese alphabet learning application and quiz written in vanilla Javascript. Currently migrating project to Vue. A work in progress.  
 Live link 👉<a href="https://robinnong.github.io/kana-match/">here</a>👈
 
 ## Features
 - Learning with a Hiragana chart displaying different sounds and equivalent english (romaji) pronounciation
-- Quiz with 5 rounds of random hiragana matching
+- Quiz with 5 rounds of random hiragana and katakana matching
 - Project as an exercise for using ES6 modules and bundling with Webpack
 
 ### To Do
