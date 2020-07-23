@@ -11,7 +11,7 @@ body {
     min-width: 320px;
     font-size: 1.8rem;
     font-family: 'Manrope', sans-serif; 
-    color: #222222;
+    color: #222222; 
 } 
 
 h1 {   
@@ -20,58 +20,72 @@ h1 {
     cursor: pointer;
 }
 
-h2 {margin-bottom: 20px;}
+h2 {margin-bottom: 20px;} 
 
-button {letter-spacing: 0.2rem;} 
-
-header { 
+header {   
+    position: fixed; 
+    z-index: 20;
     display: flex;
     align-items: center;
+
     font-size: 2.4rem; 
-    padding: 0 20px;
     height: 60px;  
+    width: 100%;
+    padding: 0 20px;
     background-color: white;
     border-bottom: 1px solid rgb(186, 227, 255);
-    button {display: none;}
+    button {
+        position: absolute;
+        left: 20px;
+        display: none;
+    }
 }
 
-section{padding-bottom: 50px; }
+section {padding-bottom: 50px; }
 
 nav { 
-    background-color: white;
-    border-right: 1px solid rgb(186, 227, 255);
-    width: 250px;
-    padding: 20px; 
-    height: calc(100vh - 60px);
+    position: fixed;
+    top: 60px;
     display: flex;
     flex-direction: column; 
+    justify-content: space-between;
+
+    height: calc(100vh - 60px);
+    width: 250px;
+    padding: 30px 20px 10px 20px; 
+    
+    color: #2e2e2e;
+    font-size: 1.6rem;  
+    background-color: white;
+    
+    border-right: 1px solid rgb(186, 227, 255);
     transition: all 0.3s;
-    button {
-        display: inline-block;
-        position: relative;  
-        height: 40px;   
-        margin-bottom: 10px;
-        background-color: rgb(186, 227, 255);
-        span { 
-            text-transform: uppercase;
-            font-size: 1.2rem;
-            position: absolute;
-            left: 8px;
-            top: 8px;
+        & > div { 
+            display: flex;
+            flex-direction: column; 
         }
-        p { 
-            font-size: 2rem;
-            font-weight: 600;
-            position: absolute;
-            bottom: 8px;
-            right: 8px; 
-        }  
-        &:focus,
-        &:hover { 
-            color: rgb(14, 14, 14);
-            background-color: rgb(195, 233, 255);  
+        h3 {  
+            font-size: 1.5rem;
+            letter-spacing: 0.2rem; 
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgb(163, 163, 163); 
+        }   
+        button {  
+            text-align: right;
+            padding: 5px 10px; 
+            margin-bottom: 10px;
+            &:focus,
+            &:hover { 
+                color: rgb(14, 14, 14);
+                background-color: rgb(231, 231, 231); 
+            }
+        } 
+        p {  
+            font-size: 1.4rem;
+            text-align: center; 
+            justify-self: flex-end;
         }
-    } 
 }   
 
 .about {
@@ -80,26 +94,22 @@ nav {
     margin: 0 auto;
 } 
 
-main {        
-    display: flex;  
-}
+main { display: flex; }
 
-.main {
+.main {  
+    position: absolute;
+    top: 60px;
+    right: 0;
+
     display: flex;  
     justify-content: center;
-    align-items: center; 
+    align-items: center;
+    
     padding-bottom: 80px; 
-    padding: 30px;
-}
-
-footer {  
-    position: absolute;
-    bottom: 0;
-    right: 0; 
-    text-align: center;
-    font-size: 1.4rem; 
-    padding: 10px;
-}
+    padding: 30px;  
+    min-height: calc(100% - 60px);
+} 
+  
 
 .main, footer {width: calc(100% - 250px);}
 
@@ -130,7 +140,7 @@ footer {
     opacity: 0; 
 }
 
-.navOpen {left: 0;}
+.navOpen {left: 0px;}
 
 @media (max-width: 768px) { 
     .hiraganaList { 
@@ -142,19 +152,18 @@ footer {
 } 
 
 @media (max-width: 600px) { 
-    nav {
-        position: absolute;
-        left: -250px;
+    header {
+        justify-content: center;
+        button {display: block;}
+    } 
+
+    nav { 
+        left: -300px;
         z-index: 20;
+        box-shadow: 10px 10px 10px 5px rgba(47, 177, 209, 0.075);
     }
     
-    .main {width: 100%;}
-
     main, footer {width: 100%;}  
+    .main {width: 100%;}
 } 
-
-@media (max-width: 480px) { 
-    header button {display: block;}
-
-    h1 {display: none;}
-}
+ 

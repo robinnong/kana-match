@@ -37,8 +37,9 @@ button {
     background-color: inherit;
     font-family: inherit;   
     border: none; 
+    letter-spacing: 0.1rem;
     cursor: pointer;    
-    transition: all 0.2s;
+    transition: all 0.1s;
 }
 
 img {display: block;} 

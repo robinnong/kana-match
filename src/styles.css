@@ -291,9 +291,10 @@ button {
   background-color: inherit;
   font-family: inherit;
   border: none;
+  letter-spacing: 0.1rem;
   cursor: pointer;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
 }
 
 img {
@@ -334,6 +335,9 @@ p {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -675,11 +679,9 @@ h2 {
   margin-bottom: 20px;
 }
 
-button {
-  letter-spacing: 0.2rem;
-}
-
 header {
+  position: fixed;
+  z-index: 20;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -687,13 +689,16 @@ header {
       -ms-flex-align: center;
           align-items: center;
   font-size: 2.4rem;
-  padding: 0 20px;
   height: 60px;
+  width: 100%;
+  padding: 0 20px;
   background-color: white;
   border-bottom: 1px solid #bae3ff;
 }
 
 header button {
+  position: absolute;
+  left: 20px;
   display: none;
 }
 
@@ -702,11 +707,8 @@ section {
 }
 
 nav {
-  background-color: white;
-  border-right: 1px solid #bae3ff;
-  width: 250px;
-  padding: 20px;
-  height: calc(100vh - 60px);
+  position: fixed;
+  top: 60px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -714,37 +716,53 @@ nav {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: calc(100vh - 60px);
+  width: 250px;
+  padding: 30px 20px 10px 20px;
+  color: #2e2e2e;
+  font-size: 1.6rem;
+  background-color: white;
+  border-right: 1px solid #bae3ff;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
-nav button {
-  display: inline-block;
-  position: relative;
-  height: 40px;
+nav > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+nav h3 {
+  font-size: 1.5rem;
+  letter-spacing: 0.2rem;
   margin-bottom: 10px;
-  background-color: #bae3ff;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #a3a3a3;
 }
 
-nav button span {
-  text-transform: uppercase;
-  font-size: 1.2rem;
-  position: absolute;
-  left: 8px;
-  top: 8px;
-}
-
-nav button p {
-  font-size: 2rem;
-  font-weight: 600;
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
+nav button {
+  text-align: right;
+  padding: 5px 10px;
+  margin-bottom: 10px;
 }
 
 nav button:focus, nav button:hover {
   color: #0e0e0e;
-  background-color: #c3e9ff;
+  background-color: #e7e7e7;
+}
+
+nav p {
+  font-size: 1.4rem;
+  text-align: center;
+  justify-self: flex-end;
 }
 
 .about {
@@ -760,6 +778,9 @@ main {
 }
 
 .main {
+  position: absolute;
+  top: 60px;
+  right: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -771,15 +792,7 @@ main {
           align-items: center;
   padding-bottom: 80px;
   padding: 30px;
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  text-align: center;
-  font-size: 1.4rem;
-  padding: 10px;
+  min-height: calc(100% - 60px);
 }
 
 .main, footer {
@@ -816,7 +829,7 @@ footer {
 }
 
 .navOpen {
-  left: 0;
+  left: 0px;
 }
 
 @media (max-width: 768px) {
@@ -835,24 +848,24 @@ footer {
 }
 
 @media (max-width: 600px) {
-  nav {
-    position: absolute;
-    left: -250px;
-    z-index: 20;
+  header {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
-  .main {
-    width: 100%;
+  header button {
+    display: block;
+  }
+  nav {
+    left: -300px;
+    z-index: 20;
+    -webkit-box-shadow: 10px 10px 10px 5px rgba(47, 177, 209, 0.075);
+            box-shadow: 10px 10px 10px 5px rgba(47, 177, 209, 0.075);
   }
   main, footer {
     width: 100%;
   }
-}
-
-@media (max-width: 480px) {
-  header button {
-    display: block;
-  }
-  h1 {
-    display: none;
+  .main {
+    width: 100%;
   }
 }
