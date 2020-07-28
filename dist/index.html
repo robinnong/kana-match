@@ -22,8 +22,11 @@
                 <div>
                     <h3><span aria-hidden="true">📚</span> Learn</h3>
                     <button @click="display = 'chart'">
-                        <span>Hiragana</span> 
+                        <span>Kana</span> 
                     </button>
+                    <!-- <button>
+                        <span>Kanji</span>
+                    </button> -->
                     <h3><span aria-hidden="true">🎮</span> Test</h3>
                     <button @click=getQuizType value="hiragana">
                         <span>Hiragana</span> 
@@ -41,21 +44,25 @@
                         <p>Kana Match is a place where you can test your knowledge of the Japanese kana alphabet. I created this project as a way to practice building a Vue.js app. A work in progress. Feel free to check out the <a href="https://github.com/robinnong/robin-nong-beyond-bootcamp">GitHub repository</a> or send me suggestions for features! I'm always looking for user feedback 👋</p>
                     </div>
                 </section>
-                <section v-if="display === 'chart'" class="chart"> 
-                    <form action="" class="chartOptions" v-on:change="changeChart">
+                <section v-if="display === 'chart'" class="chart animate__animated animate__fadeIn"> 
+                    <form action="" class="chartOptions" v-on:change="changeChart"> 
                         <div>
-                            <input type="radio" id="basic" name="sound" value="basic" checked="checked">
-                            <label for="basic">Basic (Gojūon)</label>
+                            <input type="radio" id="hiragana" name="type" value="hiragana" checked="checked">
+                            <label for="hiragana">Hiragana</label>
                         </div>
                         <div>
-                            <input type="radio" id="dakuon" name="sound" value="dakuon">
-                            <label for="dakuon">Dakuon</label> 
-                        </div>
-                        <div>
-                            <input type="radio" id="handakuon" name="sound" value="handakuon">
-                            <label for="handakuon">Handakuon</label> 
-                        </div>
+                            <input type="radio" id="katakana" name="type" value="katakana">
+                            <label for="katakana">Katakana</label> 
+                        </div>  
                     </form> 
+                    <form action="" class="filterOptions" v-on:change="filterChart">
+                        <input type="checkbox" id="basic" value="basic" checked>
+                        <label for="basic">Basic</label>
+                        <input type="checkbox" id="dakuon" value="dakuon">
+                        <label for="dakuon">Dakuon</label>
+                        <input type="checkbox" id="handakuon" value="handakuon">
+                        <label for="handakuon">Handakuon</label> 
+                    </form>
                     <ul class="hiraganaList"> 
                         <li v-for="items in chart">
                             <p class="cardFront">{{ items.kana }}</p>

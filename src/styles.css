@@ -271,6 +271,7 @@ h1,
 h2,
 h3,
 button,
+fieldset,
 p {
   margin: 0;
   padding: 0;
@@ -478,26 +479,27 @@ p {
   background-color: #e77a9b;
 }
 
-.chartOptions {
+form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin-bottom: 10px;
   font-size: 1.6rem;
 }
 
-.chartOptions input {
+form input {
   margin-right: 5px;
+}
+
+form label {
+  cursor: pointer;
+}
+
+input:checked + label {
+  font-weight: 600;
 }
 
 .chartOptions label {
   margin: 5px 0;
-  cursor: pointer;
 }
 
 .chartOptions div {
@@ -510,12 +512,21 @@ p {
   padding: 0 15px;
   margin-right: 10px;
   background-color: white;
-  border-radius: 25px;
+  border-radius: 5px;
+  border: 1px solid #bae3ff;
+  margin-bottom: 5px;
+}
+
+.filterOptions {
+  margin-bottom: 10px;
+  padding: 5px 15px;
+  background-color: white;
+  border-radius: 5px;
   border: 1px solid #bae3ff;
 }
 
-input:checked + label {
-  font-weight: 600;
+.filterOptions label {
+  margin-right: 20px;
 }
 
 .chart {
@@ -538,8 +549,8 @@ input:checked + label {
   font-family: 'Kosugi Maru', sans-serif;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(30px, 1fr))[5];
-      grid-template-columns: repeat(5, minmax(30px, 1fr));
+  -ms-grid-columns: (minmax(50px, 100px))[5];
+      grid-template-columns: repeat(5, minmax(50px, 100px));
   grid-auto-rows: 60px;
   grid-gap: 10px;
 }
@@ -688,11 +699,12 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  color: white;
   font-size: 2.4rem;
   height: 60px;
   width: 100%;
   padding: 0 20px;
-  background-color: white;
+  background-color: #181818;
   border-bottom: 1px solid #bae3ff;
 }
 
