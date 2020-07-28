@@ -1,8 +1,11 @@
 // import './styles.css';
 // import Vue from '../node_modules/vue/dist/vue.esm.js';  
-import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js';
+import Vue from '../node_modules/vue/dist/vue.esm.browser.js';
+// import VueRouter from '../node_modules/vue-router/dist/vue-router.esm.js';
 import hiragana from './hiragana.js';    
 import katakana from './katakana.js';
+
+// Vue.use(VueRouter);
 
 const app = new Vue({
     el: '#app',
@@ -22,20 +25,37 @@ const app = new Vue({
         display: "home",
         isOpen: false,
         quizType: "",
+        chartType: 'hiragana',
+        filters: ['basic']
     }, 
     mounted: function () {
-        this.loadChart('basic')
+        this.loadChart()
     }, 
     methods: {
         closeNav: function() { 
             this.isOpen = false;
         },
         // Displays chart type based on user's selection  
-        loadChart: function(kanaType) {
-            this.chart = hiragana.filter(item => item.type === kanaType);
+        loadChart: function() { 
+            switch (this.chartType) {
+                case 'hiragana':
+                    this.chart = hiragana.filter(item => this.filters.includes(item.type)); 
+                    break;
+                case 'katakana': 
+                    this.chart = katakana.filter(item => this.filters.includes(item.type)); 
+                    break;
+                default:
+                    console.log('error')
+            }
         },
-        changeChart: function(e) {
-            this.loadChart(e.target.value);
+        changeChart: function(e) {   
+            this.chartType = e.target.value;
+            this.loadChart()
+        },
+        filterChart: function(e) {
+            if (e.target.checked) {
+                console.log(e.target.value)  
+            }  
         },
         getQuizType: function(e){
             this.quizType = e.currentTarget.value;
@@ -72,7 +92,7 @@ const app = new Vue({
             this.loadQuiz();
             this.currentMatch = 0; 
         },
-        closeModal: function(e) {
+        closeModal: function(e) { 
             // When user clicks outside of the modal, close modal 
             e.target.closest('.modalInner') === null ? this.isModalOn = false : null;  
             this.score = 0;
