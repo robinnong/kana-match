@@ -1,7 +1,6 @@
 // import './styles.css';
 // import Vue from '../node_modules/vue/dist/vue.esm.js';  
-import Vue from '../node_modules/vue/dist/vue.esm.browser.js';
-// import VueRouter from '../node_modules/vue-router/dist/vue-router.esm.js';
+import Vue from '../node_modules/vue/dist/vue.esm.browser.js'; 
 import hiragana from './hiragana.js';    
 import katakana from './katakana.js';
 
@@ -17,7 +16,7 @@ const app = new Vue({
         answerCards: [],
         promptCards: [],
         key: 0,
-        round: 0, 
+        round: 1, 
         score: 0,
         currentMatch: 0, 
         currentCard: "",
@@ -85,10 +84,10 @@ const app = new Vue({
             if (this.round === 5) {         
                 this.isModalOn = true;
                 this.result = assignGrade(this.score); 
-                this.round = 0;
+                this.round = 1;
             } else {
                 app.round++;
-            } 
+            }  
             this.loadQuiz();
             this.currentMatch = 0; 
         },
@@ -145,7 +144,7 @@ function assignGrade(finalScore) {
         return { grade: "B", message: "Good Job! 😄" };
     } else if (finalScore > 24 && finalScore < 30) {
         return { grade: "A", message: "Excellent! 😄" };
-    } else if (finalScore === 100) {
+    } else if (finalScore === 30) {
         return { grade: "A+", message: "Perfect! 🎉" };
     }
 }  
