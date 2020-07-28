@@ -479,27 +479,23 @@ p {
   background-color: #e77a9b;
 }
 
-form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 1.6rem;
-}
-
-form input {
-  margin-right: 5px;
-}
-
-form label {
-  cursor: pointer;
-}
-
 input:checked + label {
   font-weight: 600;
 }
 
+.chartOptions {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
 .chartOptions label {
   margin: 5px 0;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.chartOptions input {
+  margin-right: 5px;
 }
 
 .chartOptions div {
@@ -509,24 +505,20 @@ input:checked + label {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0 15px;
-  margin-right: 10px;
-  background-color: white;
-  border-radius: 5px;
-  border: 1px solid #bae3ff;
-  margin-bottom: 5px;
 }
 
-.filterOptions {
-  margin-bottom: 10px;
+fieldset {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   padding: 5px 15px;
   background-color: white;
-  border-radius: 5px;
   border: 1px solid #bae3ff;
+  border-radius: 5px;
 }
 
-.filterOptions label {
-  margin-right: 20px;
+fieldset:first-of-type {
+  margin-bottom: 5px;
 }
 
 .chart {
@@ -855,7 +847,7 @@ main {
   .hiraganaList span:last-child {
     font-size: 1.4rem;
   }
-  .chartOptions {
+  form {
     font-size: 1.4rem;
   }
 }

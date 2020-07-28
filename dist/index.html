@@ -20,14 +20,14 @@
         <main>   
             <nav @click=closeNav v-bind:class="{navOpen: isOpen}">   
                 <div>
-                    <h3><span aria-hidden="true">📚</span> Learn</h3>
+                    <h3><span aria-hidden="true">📚</span> Flashcards</h3>
                     <button @click="display = 'chart'">
                         <span>Kana</span> 
                     </button>
                     <!-- <button>
                         <span>Kanji</span>
                     </button> -->
-                    <h3><span aria-hidden="true">🎮</span> Test</h3>
+                    <h3><span aria-hidden="true">🎮</span> Quizes</h3>
                     <button @click=getQuizType value="hiragana">
                         <span>Hiragana</span> 
                     </button> 
@@ -45,24 +45,26 @@
                     </div>
                 </section>
                 <section v-if="display === 'chart'" class="chart animate__animated animate__fadeIn"> 
-                    <form action="" class="chartOptions" v-on:change="changeChart"> 
-                        <div>
-                            <input type="radio" id="hiragana" name="type" value="hiragana" checked="checked">
-                            <label for="hiragana">Hiragana</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="katakana" name="type" value="katakana">
-                            <label for="katakana">Katakana</label> 
-                        </div>  
-                    </form> 
-                    <form action="" class="filterOptions" v-on:change="filterChart">
-                        <input type="checkbox" id="basic" value="basic" checked>
-                        <label for="basic">Basic</label>
-                        <input type="checkbox" id="dakuon" value="dakuon">
-                        <label for="dakuon">Dakuon</label>
-                        <input type="checkbox" id="handakuon" value="handakuon">
-                        <label for="handakuon">Handakuon</label> 
-                    </form>
+                    <form action="" class="chartOptions" v-on:change="loadChart"> 
+                        <fieldset>
+                            <div>
+                                <input type="radio" id="hiragana" name="type" value="hiragana" v-model="chartType" checked>
+                                <label for="hiragana">Hiragana</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="katakana" name="type" value="katakana" v-model="chartType">
+                                <label for="katakana">Katakana</label> 
+                            </div>  
+                        </fieldset>
+                        <fieldset>
+                            <input type="checkbox" id="basic" value="basic" v-model="checkedFilters" checked>
+                            <label for="basic">Basic</label>
+                            <input type="checkbox" id="dakuon" value="dakuon" v-model="checkedFilters">
+                            <label for="dakuon">Dakuon</label>
+                            <input type="checkbox" id="handakuon" value="handakuon" v-model="checkedFilters">
+                            <label for="handakuon">Handakuon</label>  
+                        </fieldset>
+                    </form>  
                     <ul class="hiraganaList"> 
                         <li v-for="items in chart">
                             <p class="cardFront">{{ items.kana }}</p>
@@ -104,7 +106,7 @@
                     <div class="modalInner">
                         <h3 class="finalMessage">{{ result.message }}</h3> 
                         <p class="grade">{{ result.grade }}</p>
-                        <p>{{ score }} of 30 matches correct</p>
+                        <>{{ score }} of 30 matches correct</ p>
                         <button @click="isModalOn = false, this.score = 0">Exit</button>
                     </div>
                 </div>

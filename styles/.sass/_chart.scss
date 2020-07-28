@@ -1,35 +1,28 @@
-
-form {
-    display: flex;  
-    font-size: 1.6rem; 
-    input { margin-right: 5px; }
-    label{cursor: pointer;}
-}
-
 input:checked + label { font-weight: 600; }
 
-.chartOptions {   
-    label { margin: 5px 0; }
+.chartOptions {    
+    font-size: 1.6rem;   
+    margin-bottom: 10px;
+    label { 
+        margin: 5px 0;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+    input {margin-right: 5px;}
     div {
         display: flex;
-        align-items: center;
-        padding: 0 15px;
-        margin-right: 10px;
-        background-color: white;
-        border-radius: 5px;
-        border: 1px solid #bae3ff;
-        margin-bottom: 5px;
+        align-items: center; 
     }
 }
 
-.filterOptions {
-    margin-bottom: 10px;
-    padding: 5px 15px;
+fieldset {
+    display: flex;
+    padding: 5px 15px; 
     background-color: white;
-    border-radius: 5px;
     border: 1px solid #bae3ff;
-    label {margin-right: 20px;}
-}
+    border-radius: 5px;
+    &:first-of-type {margin-bottom: 5px;}
+} 
 
 .chart {
     position: relative;  

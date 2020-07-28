@@ -25,7 +25,7 @@ const app = new Vue({
         isOpen: false,
         quizType: "",
         chartType: 'hiragana',
-        filters: ['basic']
+        checkedFilters: ['basic']
     }, 
     mounted: function () {
         this.loadChart()
@@ -38,24 +38,15 @@ const app = new Vue({
         loadChart: function() { 
             switch (this.chartType) {
                 case 'hiragana':
-                    this.chart = hiragana.filter(item => this.filters.includes(item.type)); 
+                    this.chart = hiragana.filter(item => this.checkedFilters.includes(item.type)); 
                     break;
                 case 'katakana': 
-                    this.chart = katakana.filter(item => this.filters.includes(item.type)); 
+                    this.chart = katakana.filter(item => this.checkedFilters.includes(item.type)); 
                     break;
                 default:
                     console.log('error')
             }
-        },
-        changeChart: function(e) {   
-            this.chartType = e.target.value;
-            this.loadChart()
-        },
-        filterChart: function(e) {
-            if (e.target.checked) {
-                console.log(e.target.value)  
-            }  
-        },
+        },  
         getQuizType: function(e){
             this.quizType = e.currentTarget.value;
             this.loadQuiz();
