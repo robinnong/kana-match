@@ -20,14 +20,14 @@
         <main>   
             <nav @click=closeNav v-bind:class="{navOpen: isOpen}">   
                 <div>
-                    <h3><span aria-hidden="true">📚</span> Learn</h3>
+                    <h3><span aria-hidden="true">📚</span> Flashcards</h3>
                     <button @click="display = 'chart'">
                         <span>Kana</span> 
                     </button>
                     <!-- <button>
                         <span>Kanji</span>
                     </button> -->
-                    <h3><span aria-hidden="true">🎮</span> Test</h3>
+                    <h3><span aria-hidden="true">🎮</span> Quizes</h3>
                     <button @click=getQuizType value="hiragana">
                         <span>Hiragana</span> 
                     </button> 
@@ -55,14 +55,14 @@
                             <label for="katakana">Katakana</label> 
                         </div>  
                     </form> 
-                    <form action="" class="filterOptions" v-on:change="filterChart">
+                    <!-- <form action="" class="filterOptions" v-on:change="filterChart">
                         <input type="checkbox" id="basic" value="basic" checked>
                         <label for="basic">Basic</label>
                         <input type="checkbox" id="dakuon" value="dakuon">
                         <label for="dakuon">Dakuon</label>
                         <input type="checkbox" id="handakuon" value="handakuon">
                         <label for="handakuon">Handakuon</label> 
-                    </form>
+                    </form> -->
                     <ul class="hiraganaList"> 
                         <li v-for="items in chart">
                             <p class="cardFront">{{ items.kana }}</p>
