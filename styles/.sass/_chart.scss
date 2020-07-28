@@ -1,3 +1,11 @@
+.chart {
+    position: relative;  
+    max-width: 500px; 
+    margin: 0 auto; 
+    align-self: flex-start;
+    margin-top: 50px;
+}
+
 input:checked + label { font-weight: 600; }
 
 .chartOptions {    
@@ -23,12 +31,6 @@ fieldset {
     border-radius: 5px;
     &:first-of-type {margin-bottom: 5px;}
 } 
-
-.chart {
-    position: relative;  
-    max-width: 500px; 
-    margin: 0 auto; 
-}
 
 .cardBack { 
     transform: rotateY(180deg);

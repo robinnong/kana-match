@@ -479,6 +479,15 @@ p {
   background-color: #e77a9b;
 }
 
+.chart {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin-top: 50px;
+}
+
 input:checked + label {
   font-weight: 600;
 }
@@ -519,12 +528,6 @@ fieldset {
 
 fieldset:first-of-type {
   margin-bottom: 5px;
-}
-
-.chart {
-  position: relative;
-  max-width: 500px;
-  margin: 0 auto;
 }
 
 .cardBack {
