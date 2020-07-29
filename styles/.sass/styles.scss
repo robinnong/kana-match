@@ -119,6 +119,8 @@ main { display: flex; }
     opacity: 0.4;
 }
 
+.clicked {background-color: grey;}
+
 // Transitions 
 .fade-enter-active, .fade-leave-active {
     opacity: 1;

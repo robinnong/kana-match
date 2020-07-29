@@ -2,10 +2,10 @@
 // import Vue from '../node_modules/vue/dist/vue.esm.js';  
 import Vue from '../node_modules/vue/dist/vue.esm.browser.js'; 
 import hiragana from './hiragana.js';    
-import katakana from './katakana.js';
+import katakana from './katakana.js'; 
 
 const app = new Vue({
-    el: '#app',
+    el: '#app', 
     data: { 
         answerKey: {}, // Format ==> {O: "お", KO: "こ"}
         answerLog: {}, // Format ==> {O: "お", KO: "こ"}
@@ -17,6 +17,7 @@ const app = new Vue({
         isModalOn: false,  
         display: "home",
         isOpen: false,
+        isClicked: false,
         quizType: "",
         chartType: 'hiragana',
         checkedFilters: ['basic']
@@ -48,20 +49,20 @@ const app = new Vue({
     methods: {
         closeNav: function() { 
             this.isOpen = false;
-        }, 
-        getQuizType: function(e){
-            this.quizType = e.currentTarget.value; 
-            this.display = 'quiz';  
-        }, 
+        },  
         evaluateAnswer: function() {
-            evaluateAnswers();    
+            // Checks if the user has match the pairs of kana and romaji correctly by comparing pairs to the original object
+            for (const prop in app.answerLog) {
+                this.answerLog[prop] === this.answerKey[prop] ? app.score++ : null ;
+            }
             if (this.round === 5) {         
                 this.isModalOn = true;
-                this.round = 1;
-            } else {
-                this.round++;
-            }   
+                this.round = 0;
+            }  
+            this.round++;
             this.currentMatch = 0; 
+            this.answerKey = {};
+            this.answerLog = {};
         },
         closeModal: function(e) {   
             (e.target.closest('.modalInner') === null || e.target.id === "modalButton")
@@ -77,18 +78,7 @@ const app = new Vue({
             }
         }
     }
-})
-
-// Checks if the user has match the pairs of kana and romaji correctly by comparing pairs to the original object
-function evaluateAnswers() {  
-    for (const prop in app.answerLog) { 
-        if (app.answerLog[prop] === app.answerKey[prop]) { 
-            app.score++;   
-        }
-    }     
-    app.answerKey = {};
-    app.answerLog = {};
-} 
+})   
 
 // Returns a randomized array, accepts the data array and desired length as parameters
 function getRandomArray (array, length) {

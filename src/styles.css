@@ -516,17 +516,14 @@ input:checked + label {
           align-items: center;
 }
 
-fieldset {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.fieldset {
   padding: 5px 15px;
   background-color: white;
   border: 1px solid #bae3ff;
   border-radius: 5px;
 }
 
-fieldset:first-of-type {
+.fieldset:first-of-type {
   margin-bottom: 5px;
 }
 
@@ -810,6 +807,10 @@ main {
 .disabled {
   pointer-events: none;
   opacity: 0.4;
+}
+
+.clicked {
+  background-color: grey;
 }
 
 .fade-enter-active, .fade-leave-active {
