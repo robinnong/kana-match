@@ -8,11 +8,9 @@ import katakana from './katakana.js';
 
 const app = new Vue({
     el: '#app',
-    data: {
-        chart: {},  
+    data: { 
         answerKey: {}, // Format ==> {O: "お", KO: "こ"}
         answerLog: {}, // Format ==> {O: "お", KO: "こ"}
-        result: {},
         answerCards: [],
         promptCards: [],
         key: 0,
@@ -26,45 +24,31 @@ const app = new Vue({
         quizType: "",
         chartType: 'hiragana',
         checkedFilters: ['basic']
-    }, 
-    mounted: function () {
-        this.loadChart()
-    }, 
+    },  
+    computed: {
+        result: function() {
+            return assignGrade(this.score)
+        },
+        chart: function() {
+            return this.chartType === 'hiragana'
+                ? hiragana.filter(item => this.checkedFilters.includes(item.type))
+                : katakana.filter(item => this.checkedFilters.includes(item.type)) 
+        }
+    },
     methods: {
         closeNav: function() { 
             this.isOpen = false;
-        },
-        // Displays chart type based on user's selection  
-        loadChart: function() { 
-            switch (this.chartType) {
-                case 'hiragana':
-                    this.chart = hiragana.filter(item => this.checkedFilters.includes(item.type)); 
-                    break;
-                case 'katakana': 
-                    this.chart = katakana.filter(item => this.checkedFilters.includes(item.type)); 
-                    break;
-                default:
-                    console.log('error')
-            }
-        },  
+        }, 
         getQuizType: function(e){
             this.quizType = e.currentTarget.value;
             this.loadQuiz();
         },
         loadQuiz: function() {  
-            this.display = 'quiz'; 
-            let promptSet = undefined;  
+            this.display = 'quiz';  
             // Returns an array of 6 random hiragana  
-            switch (this.quizType) {
-                case 'hiragana':
-                    promptSet = getRandomArray(hiragana, 6); 
-                    break;
-                case 'katakana':
-                    promptSet = getRandomArray(katakana, 6); 
-                    break;
-                default:
-                    console.log('error')
-            }
+            const promptSet = this.quizType === 'hiragana'
+                ? getRandomArray(hiragana, 6)
+                : getRandomArray(katakana, 6)
             // Set current round's answer key
             promptSet.forEach(index => this.answerKey[index.romaji] = index.kana);
             this.promptCards = promptSet.map(item => item.kana); 
@@ -82,8 +66,7 @@ const app = new Vue({
             this.loadQuiz();
             this.currentMatch = 0; 
         },
-        closeModal: function(e) { 
-            // When user clicks outside of the modal, close modal 
+        closeModal: function(e) {  
             e.target.closest('.modalInner') === null ? this.isModalOn = false : null;  
             this.score = 0;
         },
@@ -92,8 +75,6 @@ const app = new Vue({
                 this.currentCard = e.currentTarget.id;    
                 this.answerLog[e.currentTarget.id] = this.promptCards[this.currentMatch]; 
                 this.currentMatch++;  
-            } else {
-
             }
         }
     }

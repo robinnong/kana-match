@@ -45,7 +45,7 @@
                     </div>
                 </section>
                 <section v-if="display === 'chart'" class="chart animate__animated animate__fadeIn"> 
-                    <form action="" class="chartOptions" v-on:change="loadChart"> 
+                    <form action="" class="chartOptions"> 
                         <fieldset>
                             <div>
                                 <input type="radio" id="hiragana" name="type" value="hiragana" v-model="chartType" checked>
@@ -106,7 +106,7 @@
                     <div class="modalInner">
                         <h3 class="finalMessage">{{ result.message }}</h3> 
                         <p class="grade">{{ result.grade }}</p>
-                        <>{{ score }} of 30 matches correct</ p>
+                        <p>{{ score }} of 30 matches correct</p>
                         <button @click="isModalOn = false, this.score = 0">Exit</button>
                     </div>
                 </div>
