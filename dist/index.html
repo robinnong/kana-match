@@ -107,7 +107,7 @@
                         <h3 class="finalMessage">{{ result.message }}</h3> 
                         <p class="grade">{{ result.grade }}</p>
                         <p>{{ score }} of 30 matches correct</p>
-                        <button @click="isModalOn = false, this.score = 0">Exit</button>
+                        <button @click=closeModal id="modalButton">Exit</button>
                     </div>
                 </div>
             </transition>

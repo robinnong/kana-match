@@ -4,15 +4,11 @@ import Vue from '../node_modules/vue/dist/vue.esm.browser.js';
 import hiragana from './hiragana.js';    
 import katakana from './katakana.js';
 
-// Vue.use(VueRouter);
-
 const app = new Vue({
     el: '#app',
     data: { 
         answerKey: {}, // Format ==> {O: "お", KO: "こ"}
         answerLog: {}, // Format ==> {O: "お", KO: "こ"}
-        answerCards: [],
-        promptCards: [],
         key: 0,
         round: 1, 
         score: 0,
@@ -34,6 +30,19 @@ const app = new Vue({
             return this.chartType === 'hiragana'
                 ? hiragana.filter(item => callback(item))
                 : katakana.filter(item => callback(item)) 
+        },
+        promptSet: function () {
+            const set = this.quizType === 'hiragana'
+                ? getRandomArray(hiragana, 6)
+                : getRandomArray(katakana, 6)
+            set.forEach(index => this.answerKey[index.romaji] = index.kana);
+            return set;
+        },
+        promptCards: function() {
+            return this.promptSet.map(item => item.kana);  
+        },
+        answerCards: function() {
+            return getRandomArray(this.promptSet, this.promptSet.length).map(item => item.romaji);
         }
     },
     methods: {
@@ -41,34 +50,23 @@ const app = new Vue({
             this.isOpen = false;
         }, 
         getQuizType: function(e){
-            this.quizType = e.currentTarget.value;
-            this.loadQuiz();
-        },
-        loadQuiz: function() {  
+            this.quizType = e.currentTarget.value; 
             this.display = 'quiz';  
-            // Returns an array of 6 random hiragana  
-            const promptSet = this.quizType === 'hiragana'
-                ? getRandomArray(hiragana, 6)
-                : getRandomArray(katakana, 6)
-            // Set current round's answer key
-            promptSet.forEach(index => this.answerKey[index.romaji] = index.kana);
-            this.promptCards = promptSet.map(item => item.kana); 
-            this.answerCards = getRandomArray(promptSet, promptSet.length).map(item => item.romaji); 
         }, 
         evaluateAnswer: function() {
             evaluateAnswers();    
             if (this.round === 5) {         
                 this.isModalOn = true;
-                this.result = assignGrade(this.score); 
                 this.round = 1;
             } else {
-                app.round++;
-            }  
-            this.loadQuiz();
+                this.round++;
+            }   
             this.currentMatch = 0; 
         },
-        closeModal: function(e) {  
-            e.target.closest('.modalInner') === null ? this.isModalOn = false : null;  
+        closeModal: function(e) {   
+            (e.target.closest('.modalInner') === null || e.target.id === "modalButton")
+                ? this.isModalOn = false 
+                : null;  
             this.score = 0;
         },
         setCurrentCard: function(e) {
