@@ -30,9 +30,10 @@ const app = new Vue({
             return assignGrade(this.score)
         },
         chart: function() {
+            const callback = item => this.checkedFilters.includes(item.type);
             return this.chartType === 'hiragana'
-                ? hiragana.filter(item => this.checkedFilters.includes(item.type))
-                : katakana.filter(item => this.checkedFilters.includes(item.type)) 
+                ? hiragana.filter(item => callback(item))
+                : katakana.filter(item => callback(item)) 
         }
     },
     methods: {
