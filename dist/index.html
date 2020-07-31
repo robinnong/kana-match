@@ -3,114 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hiragana Flashcards</title> 
+    <title>Kana Match</title> 
     <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru:wght@500&family=Manrope:wght@400;600&display=swap"
         rel="stylesheet">
     <!-- link to Fontawesome -->
     <script src="https://kit.fontawesome.com/f3369905b3.js" crossorigin="anonymous"></script> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
-    <link rel="stylesheet" href="../src/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" /> 
 </head>
 <body>
-    <div id="app">
-        <header> 
-            <button @click="isOpen = !isOpen" aria-label="Toggle navigation menu"><i class="fas fa-hamburger" aria-hidden="true"></i></button>
-            <h1 @click="display = 'home'">Kana Match<span aria-hidden="true">🔥</span></h1>
-        </header> 
-        <main>   
-            <nav @click=closeNav v-bind:class="{navOpen: isOpen}">   
-                <div>
-                    <h3><span aria-hidden="true">📚</span> Flashcards</h3>
-                    <button @click="display = 'chart'">
-                        <span>Kana</span> 
-                    </button> 
-                    <h3><span aria-hidden="true">🎮</span> Quizes</h3>
-                    <button @click="display = 'quiz', quizType = 'hiragana'" value="hiragana">
-                        <span>Hiragana</span> 
-                    </button> 
-                    <button @click="display = 'quiz', quizType = 'katakana'" value="katakana">
-                        <span>Katakana</span> 
-                    </button> 
-                </div>
-                <p>© 2020 <a href="https://www.robinnong.com/">Robin Nong</a>.</p>
-            </nav> 
-            <div class="main">
-                <section v-if="display === 'home'" class="wrapper home">
-                    <div class="about">
-                        <h2>About</h2>
-                        <p>Kana Match is a place where you can test your knowledge of the Japanese kana alphabet. I created this project as a way to practice building a Vue.js app. A work in progress. Feel free to check out the <a href="https://github.com/robinnong/robin-nong-beyond-bootcamp">GitHub repository</a> or send me suggestions for features! I'm always looking for user feedback 👋</p>
-                    </div>
-                </section>
-                <section v-if="display === 'chart'" class="chart animate__animated animate__fadeIn"> 
-                    <form action="" class="chartOptions"> 
-                        <div class="fieldset">
-                            <div>
-                                <input type="radio" id="hiragana" name="type" value="hiragana" v-model="chartType" checked>
-                                <label for="hiragana">Hiragana</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="katakana" name="type" value="katakana" v-model="chartType">
-                                <label for="katakana">Katakana</label> 
-                            </div>  
-                        </div>
-                        <div class="fieldset"> 
-                            <input type="checkbox" id="basic" value="basic" v-model="checkedFilters" checked>
-                            <label for="basic">Basic</label>
-                            <input type="checkbox" id="dakuon" value="dakuon" v-model="checkedFilters">
-                            <label for="dakuon">Dakuon</label>
-                            <input type="checkbox" id="handakuon" value="handakuon" v-model="checkedFilters">
-                            <label for="handakuon">Handakuon</label>  
-                        </div>
-                    </form>  
-                    <ul class="hiraganaList"> 
-                        <li v-for="items in chart">
-                            <p class="cardFront">{{ items.kana }}</p>
-                            <p class="cardBack">{{ items.romaji }}</p>
-                        </li>
-                    </ul> 
-                </section> 
-                <section v-if="display === 'quiz'" class="quiz wrapper animate__animated animate__fadeIn">
-                    <p>Tap to match <span role="img" aria-hidden="true">💭</span></p>
-                    <div class="cardsContainer"> 
-                        <ul class="promptCards">
-                            <li v-for="card, index in promptCards">
-                                <span>{{ card }}</span>
-                                <div>  
-                                    <transition name="fade">
-                                        <span v-if="currentMatch === index" class="key">{{ index + 1 }}</span>
-                                    </transition>
-                                    <transition name="fade">
-                                        <span v-if="currentMatch > index" class="matchCard">{{ Object.keys(answerLog)[index] }}</span>
-                                    </transition>
-                                </div>
-                            </li>
-                        </ul>            
-                        <ul class="answerCards">
-                            <li v-for="card in answerCards" v-bind:id=card @click=setCurrentCard :class="{disabled:answerLog[card]}">
-                                <div>
-                                    <span>{{ card }}</span>
-                                </div>
-                            </li>
-                        </ul> 
-                    </div> 
-                    <p class="round">{{ round }} / 5</p> 
-                    <button type="button" class="nextButton" @click=evaluateAnswer>Next ></button>
-                </section>
-            </div>
-            <!-- Pop-up modal box at end of quiz-->
-            <transition name="fadeIn">
-                <div class="modalOuter" v-if="isModalOn === true" @click=closeModal>
-                    <div class="modalInner">
-                        <h3 class="finalMessage">{{ result.message }}</h3> 
-                        <p class="grade">{{ result.grade }}</p>
-                        <p>{{ score }} of 30 matches correct</p>
-                        <button @click=closeModal id="modalButton">Exit</button>
-                    </div>
-                </div>
-            </transition>
-        </main> 
-    </div>    
-    <script type="module" src="../src/main.js"></script>  
-    <!-- <script type="module" src="./bundle.js"></script>  -->
+    <div id="app"></div>    
+    <script type="module" src="../src/main.js"></script>   
 </body>
 </html>
