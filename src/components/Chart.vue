@@ -30,13 +30,13 @@
 </template>
 
 <script> 
-    import hiragana from '../hiragana';    
-    import katakana from '../katakana'; 
+    import hiragana from './hiragana';    
+    import katakana from './katakana'; 
 
     export default {
         name: 'Chart',
-        data(){
-            return{ 
+        data() {
+            return {  
                 chartType: 'hiragana',
                 checkedFilters: ['basic']
             }

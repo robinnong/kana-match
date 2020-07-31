@@ -16,14 +16,14 @@
                 </li>
             </ul>            
             <ul class="answerCards">
-                <li 
-                v-for="card in answerCards" 
-                v-bind:id=card 
-                @click="setCurrentCard" :class="{disabled:answerLog[card]}">
-                    <div>
-                        <span>{{ card }}</span>
-                    </div>
-                </li>
+                <AnswerCard 
+                    v-for="(card, index) in answerCards" 
+                    v-bind:id=card 
+                    v-bind:key=index
+                    :card=card
+                    :currentCard="answerLog[card]" 
+                    @set-current-card="setCurrentCard">
+                </AnswerCard>
             </ul> 
         </div> 
         <p class="round">{{ round }} / 5</p> 
@@ -32,12 +32,16 @@
 </template>
 
 <script> 
-    import hiragana from '../hiragana';    
-    import katakana from '../katakana'; 
+    import AnswerCard from './AnswerCard';
+    import hiragana from './hiragana';    
+    import katakana from './katakana'; 
 
     export default {
         name: 'Quiz',
-        props: ['quizType'],   
+        components: {
+            AnswerCard,
+        }, 
+        props: ['type'],   
         data() {
             return { 
                 clicks: 0,  
@@ -49,7 +53,7 @@
         },
         computed: {
             promptSet: function () {
-                const set = this.quizType === 'hiragana'
+                const set = this.type === 'hiragana'
                     ? getRandomArray(hiragana, 6)
                     : getRandomArray(katakana, 6)
                 set.forEach(index => this.answerKey[index.romaji] = index.kana);
@@ -76,7 +80,7 @@
                 // Checks if the user has match the pairs of kana and romaji correctly by comparing pairs to the original object 
                 for (const prop in this.answerLog) { 
                     this.answerLog[prop] === this.answerKey[prop] 
-                        ? this.$emit('increment-score')
+                        ? this.$emit('increment-score') 
                         : null ;
                 } 
                 this.answerKey = {};

@@ -3,7 +3,6 @@
     max-width: 500px; 
     margin: 0 auto; 
     align-self: flex-start;
-    margin-top: 50px;
 }
 
 input:checked + label { font-weight: 600; }
@@ -41,7 +40,7 @@ input:checked + label { font-weight: 600; }
 }
 
 .hiraganaList {
-    font-family: 'Kosugi Maru', sans-serif; 
+    font-family: 'M PLUS Rounded 1c', sans-serif;
     display: grid;
     grid-template-columns: repeat(5, minmax(50px, 100px));
     grid-auto-rows: 60px;

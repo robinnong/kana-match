@@ -1,18 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Manrope:400,600|M+PLUS+Rounded+1c);
 @import 'setup';
 @import 'global';
 @import 'quiz';
 @import 'chart';
 @import 'modal';
-
-body { 
-    position: relative;
-    background-color: #f2fafd;
-    min-height: 100vh;
-    min-width: 320px;
-    font-size: 1.8rem;
-    font-family: 'Manrope', sans-serif; 
-    color: #222222; 
-} 
 
 h1 {   
     font-size: 2.2rem;
@@ -40,6 +31,7 @@ header {
         color: white;
         display: none;
     }
+    a {text-decoration: none;}
 }
 
 section {padding-bottom: 50px; }
@@ -67,15 +59,16 @@ nav {
         }
         h3 {  
             font-size: 1.5rem;
-            letter-spacing: 0.2rem; 
+            letter-spacing: 0.1rem; 
             margin-bottom: 10px;
             padding-bottom: 5px;
             border-bottom: 1px solid rgb(163, 163, 163); 
         }   
-        button {  
+        a {  
             text-align: right;
             padding: 5px 10px; 
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            text-decoration: none;
             &:focus,
             &:hover { 
                 color: rgb(14, 14, 14);
@@ -86,6 +79,10 @@ nav {
             font-size: 1.4rem;
             text-align: center; 
             justify-self: flex-end;
+            a {
+                text-decoration: underline;
+                padding: 0;
+            }
         }
 }   
 
@@ -105,13 +102,12 @@ main { display: flex; }
     display: flex;  
     justify-content: center;
     align-items: center;
-    
+
+    width: calc(100% - 250px);
     padding-bottom: 80px; 
     padding: 30px;  
     min-height: calc(100% - 60px);
-} 
-
-.main, footer {width: calc(100% - 250px);}
+}  
 
 // Modifiers 
 .disabled {
@@ -165,7 +161,7 @@ main { display: flex; }
         box-shadow: 10px 10px 10px 5px rgba(47, 177, 209, 0.075);
     }
     
-    main, footer {width: 100%;}  
-    .main {width: 100%;}
+    main,
+    .main {width: 100%;}   
 } 
  

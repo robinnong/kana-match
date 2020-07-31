@@ -2,73 +2,53 @@
     <div id="app">
         <header> 
             <button @click="isOpen = !isOpen" aria-label="Toggle navigation menu">
-                <i class="fas fa-hamburger" aria-hidden="true"></i>
+                <img src="../assets/menu-24px.svg" aria-hidden="true"></img> 
             </button>
-            <h1 @click="display = 'home'">
-                Kana Match<span aria-hidden="true">🔥</span>
-            </h1>
+            <router-link :to="{ name: 'home' }">
+                <h1>Kana Match<span aria-hidden="true">🔥</span></h1>
+            </router-link>
         </header> 
         <main>   
-            <Nav v-bind:class="{navOpen: isOpen}"
-                @close-nav="closeNav"
-                @set-route="setRoute"
-                @set-quiz="setQuiz"></Nav> 
+            <Nav v-bind:class="{navOpen: isOpen}" @close-nav="closeNav"></Nav> 
             <div class="main">
-                <Home v-if="display === 'home'"></Home>
-                <Chart v-if="display === 'chart'"></Chart> 
-                <Quiz v-if="display === 'quiz'" :quizType=quizType
-                    @increment-score="addScore"
-                    @show-modal="isModalOn = true"></Quiz>
+                <router-view class="view" 
+                    @show-modal="isModalOn = true"
+                    @increment-score="() => score++">
+                </router-view> 
             </div> 
             <transition name="fadeIn">
-                <Modal v-if="isModalOn === true" :finalScore=score :result=result
-                    @close-modal="closeModal"></Modal>
+                <Modal v-if="isModalOn === true" 
+                    :finalScore=score 
+                    :result=result 
+                    @close-modal="closeModal">
+                </Modal>
             </transition>
         </main> 
     </div>
-</template>
-
+</template> 
 <script>
-    import Nav from './components/Nav';
-    import Home from './components/Home'; 
-    import Chart from './components/Chart'; 
-    import Quiz from './components/Quiz'; 
-    import Modal from './components/Modal'; 
+    import Nav from './Nav';  
+    import Modal from './Modal';  
 
     export default {
         name: 'app',
         components: {
-            Nav,
-            Home,
-            Chart,
-            Quiz, 
+            Nav,   
             Modal
         }, 
         data() {
             return {
-                    score: 0,
-                    isModalOn: false,  
-                    display: "home",
-                    isOpen: false, 
-                    quizType: "",
-                }
+                score: 0,
+                isModalOn: false,   
+                isOpen: false,  
+            }
         },
         computed: {
             result: function() {
                 return assignGrade(this.score)
             },
         }, 
-        methods: {
-            addScore() {
-                this.score++;
-                console.log("hi") 
-            },
-            setRoute(type) {
-                this.display = type
-            },
-            setQuiz(type) {
-                this.quizType = type
-            }, 
+        methods: {   
             closeNav() { 
                 this.isOpen = false;
             },   

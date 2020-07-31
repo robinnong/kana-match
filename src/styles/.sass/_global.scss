@@ -30,7 +30,7 @@ p {
 li {list-style: none;}
 
 a {
-	color: inherit; 
+    color: inherit;  
     transition: all 0.3s;   
 }
 
@@ -49,9 +49,14 @@ input {
     display: block;   
 } 
 
-p {line-height: 2.6rem;} 
+p {line-height: 2.6rem;}   
 
-.draggable { background-color: #4AAE9B; padding: 10px; } 
-.dropzone { background-color: #6DB65B; padding: 10px; }
-.dragleave {background-color: #ffffff;}
-.dragover {background-color: rgb(223, 247, 255);}
+body { 
+    position: relative;
+    background-color: #f2fafd;
+    min-height: 100vh;
+    min-width: 320px;
+    font-size: 1.8rem;
+    font-family: 'Manrope', sans-serif; 
+    color: #222222; 
+} 

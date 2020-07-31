@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Manrope:400,600|M+PLUS+Rounded+1c);
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -310,22 +311,14 @@ p {
   line-height: 2.6rem;
 }
 
-.draggable {
-  background-color: #4AAE9B;
-  padding: 10px;
-}
-
-.dropzone {
-  background-color: #6DB65B;
-  padding: 10px;
-}
-
-.dragleave {
-  background-color: #ffffff;
-}
-
-.dragover {
-  background-color: #dff7ff;
+body {
+  position: relative;
+  background-color: #f2fafd;
+  min-height: 100vh;
+  min-width: 320px;
+  font-size: 1.8rem;
+  font-family: 'Manrope', sans-serif;
+  color: #222222;
 }
 
 .quiz {
@@ -386,7 +379,6 @@ p {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 250px;
           flex: 1 0 250px;
-  font-family: 'Kosugi Maru', sans-serif;
   display: -ms-grid;
   display: grid;
   grid-gap: 10px;
@@ -396,6 +388,7 @@ p {
 
 .promptCards {
   font-size: 2.4rem;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
   -ms-grid-columns: (minmax(100px, 1fr))[3];
       grid-template-columns: repeat(3, minmax(100px, 1fr));
   grid-auto-rows: 100px;
@@ -485,7 +478,6 @@ p {
   margin: 0 auto;
   -ms-flex-item-align: start;
       align-self: flex-start;
-  margin-top: 50px;
 }
 
 input:checked + label {
@@ -538,7 +530,7 @@ input:checked + label {
 }
 
 .hiraganaList {
-  font-family: 'Kosugi Maru', sans-serif;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (minmax(50px, 100px))[5];
@@ -662,16 +654,6 @@ input:checked + label {
   margin: 10px 0;
 }
 
-body {
-  position: relative;
-  background-color: #f2fafd;
-  min-height: 100vh;
-  min-width: 320px;
-  font-size: 1.8rem;
-  font-family: 'Manrope', sans-serif;
-  color: #222222;
-}
-
 h1 {
   font-size: 2.2rem;
   font-weight: 600;
@@ -705,6 +687,10 @@ header button {
   left: 20px;
   color: white;
   display: none;
+}
+
+header a {
+  text-decoration: none;
 }
 
 section {
@@ -747,19 +733,20 @@ nav > div {
 
 nav h3 {
   font-size: 1.5rem;
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.1rem;
   margin-bottom: 10px;
   padding-bottom: 5px;
   border-bottom: 1px solid #a3a3a3;
 }
 
-nav button {
+nav a {
   text-align: right;
   padding: 5px 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  text-decoration: none;
 }
 
-nav button:focus, nav button:hover {
+nav a:focus, nav a:hover {
   color: #0e0e0e;
   background-color: #e7e7e7;
 }
@@ -768,6 +755,11 @@ nav p {
   font-size: 1.4rem;
   text-align: center;
   justify-self: flex-end;
+}
+
+nav p a {
+  text-decoration: underline;
+  padding: 0;
 }
 
 .about {
@@ -795,13 +787,10 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: calc(100% - 250px);
   padding-bottom: 80px;
   padding: 30px;
   min-height: calc(100% - 60px);
-}
-
-.main, footer {
-  width: calc(100% - 250px);
 }
 
 .disabled {
@@ -871,9 +860,7 @@ main {
     -webkit-box-shadow: 10px 10px 10px 5px rgba(47, 177, 209, 0.075);
             box-shadow: 10px 10px 10px 5px rgba(47, 177, 209, 0.075);
   }
-  main, footer {
-    width: 100%;
-  }
+  main,
   .main {
     width: 100%;
   }
