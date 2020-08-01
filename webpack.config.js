@@ -1,4 +1,5 @@
 const path = require('path');  
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
@@ -11,7 +12,7 @@ module.exports = {
     }, 
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: path.join(__dirname, 'dist'), 
+        contentBase: path.join(__dirname, 'src'), 
         port: 3000
     }, 
     module: {
@@ -19,7 +20,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    'style-loader',
+                    'vue-style-loader',
                     'css-loader',
                 ]
             },  
@@ -30,6 +31,9 @@ module.exports = {
         ],
     },
     plugins: [ 
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+        }),
         new VueLoaderPlugin()
     ]
 };

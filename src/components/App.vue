@@ -1,8 +1,10 @@
 <template>
     <div id="app">
         <header> 
-            <button @click="isOpen = !isOpen" aria-label="Toggle navigation menu">
-                <img src="../assets/menu-24px.svg" aria-hidden="true"></img> 
+            <button @click="isOpen = !isOpen" aria-label="Toggle navigation menu"> 
+                <svg aria-hidden="true" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                    <path fill="#FFFFFF" d="M3,18h18v-2H3V18z M3,13h18v-2H3V13z M3,6v2h18V6H3z"/>
+                </svg>
             </button>
             <router-link :to="{ name: 'home' }">
                 <h1>Kana Match<span aria-hidden="true">🔥</span></h1>

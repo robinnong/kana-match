@@ -1,5 +1,5 @@
 import './styles.css';  
-import Vue from '../node_modules/vue/dist/vue.esm.browser.js'; 
+import Vue from '../node_modules/vue/dist/vue.common.js'; 
 import VueRouter from '../node_modules/vue-router/dist/vue-router.esm.js';
 import App from './components/App.vue';
 import Home from './components/Home.vue'
