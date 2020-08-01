@@ -1,7 +1,7 @@
 # Kana Match
 ![Screenshot](./assets/screenshot.png) 
 
-A beginner Japanese alphabet learning application and quiz written in vanilla Javascript. Currently migrating project to Vue. A work in progress.  
+A beginner Japanese alphabet learning application and quiz built with Vue. A work in progress.  
 Live link 👉<a href="https://robinnong.github.io/kana-match/">here</a>👈
 
 ## Features
