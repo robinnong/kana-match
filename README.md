@@ -17,6 +17,7 @@ Live link 👉<a href="https://robinnong.github.io/kana-match/">here</a>👈
 ## To Do
 - Accessibility audit
 - Add a Kanji learning section and calls to an API to receive kanji information
+- Add transition between mounting and unmounting components
 
 ## Improvements made
 - Discontinued Drag and Drop feature in quiz and implemented "Tap to Match" feature for improved accessibility. 
