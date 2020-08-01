@@ -5,19 +5,22 @@ A beginner Japanese alphabet learning application and quiz written in vanilla Ja
 Live link 👉<a href="https://robinnong.github.io/kana-match/">here</a>👈
 
 ## Features
-- Learning with a Hiragana chart displaying different sounds and equivalent english (romaji) pronounciation
+- Learning with Hiragana and Katakana flashcards displaying different sounds and equivalent english (romaji) pronounciation
 - Quiz with 5 rounds of random hiragana and katakana matching
-- Project as an exercise for using ES6 modules and bundling with Webpack
+- Tech and concepts used: 
+    * Single File Vue Components
+    * Vue Router
+    * Vue CLI
+    * Webpack
 
 ### To Do
-- Responsiveness
 - Accessibility audit
-- Incorporate Katakana charts
 - Add a Kanji learning section and calls to an API to receive kanji information
 
 ### Improvements from Vanilla JS to Vue
 - Discontinued Drag and Drop feature in quiz and implemented "Tap to Match" feature for improved accessibility. 
-- Switch from manipulating the DOM with vanilla js query selectors and storing all DOM changes in the Vue object's state. 
+- Refactored the web application from Vanilla JS to Vue's single file components
+- Routing to Home, Chart and Quiz pages  
 
 ## How to use this repository
 

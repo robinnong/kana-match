@@ -13,17 +13,17 @@ const router = new VueRouter({
     base: __dirname,
     routes: [
         { 
-            path: '/', 
+            path: '/kana-match/', 
             name: 'home', 
             component: Home 
         },
         { 
-            path: '/chart', 
+            path: '/kana-match/chart', 
             name: 'chart', 
             component: Chart 
         },
         { 
-            path: '/quiz/:type', 
+            path: '/kana-match/quiz/:type', 
             name: 'quiz', 
             component: Quiz, 
             props: true 
