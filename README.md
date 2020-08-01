@@ -12,6 +12,7 @@ Live link 👉<a href="https://robinnong.github.io/kana-match/">here</a>👈
     * Vue Router
     * Vue CLI
     * Webpack
+    * SCSS
 
 ### To Do
 - Accessibility audit
