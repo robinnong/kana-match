@@ -14,13 +14,13 @@ Live link 👉<a href="https://robinnong.github.io/kana-match/">here</a>👈
     * Webpack
     * SCSS
 
-### To Do
+## To Do
 - Accessibility audit
 - Add a Kanji learning section and calls to an API to receive kanji information
 
-### Improvements from Vanilla JS to Vue
+## Improvements made
 - Discontinued Drag and Drop feature in quiz and implemented "Tap to Match" feature for improved accessibility. 
-- Refactored the web application from Vanilla JS to Vue's single file components
+- Refactored the entire web application from Vanilla JS to Vue's single file components
 - Routing to Home, Chart and Quiz pages  
 
 ## How to use this repository
