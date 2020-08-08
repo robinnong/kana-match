@@ -3,14 +3,14 @@
         <p>Tap to match <span role="img" aria-hidden="true">💭</span></p>
         <div class="cardsContainer"> 
             <ul class="promptCards">
-                <li v-for="card, index in promptCards">
+                <li v-for="card, index in promptCards"> 
                     <span>{{ card }}</span>
                     <div>  
                         <transition name="fade">
                             <span v-if="clicks === index" class="key">{{ index + 1 }}</span>
                         </transition>
                         <transition name="fade">
-                            <span v-if="clicks > index" class="matchCard">{{ Object.keys(answerLog)[index] }}</span>
+                            <span v-if="clicks > index">{{ Object.keys(answerLog)[index] }}</span>
                         </transition>
                     </div>
                 </li>
@@ -49,6 +49,7 @@
                 answerKey: {}, // Format ==> {O: "お", KO: "こ"}
                 answerLog: {}, // Format ==> {O: "お", KO: "こ"} 
                 currentCard: "",
+                isCorrect: false,
             }
         },
         computed: {
@@ -83,6 +84,7 @@
                         ? this.$emit('increment-score') 
                         : null ;
                 } 
+
                 this.answerKey = {};
                 this.answerLog = {};
                 this.round++ 
@@ -95,6 +97,7 @@
                     this.currentCard = e.currentTarget.id;    
                     this.answerLog[e.currentTarget.id] = this.promptCards[this.clicks]; 
                     this.clicks++;   
+                    this.isCorrect = true
                 }
             }
         }

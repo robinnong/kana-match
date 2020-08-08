@@ -22,8 +22,8 @@
         </form>  
         <ul class="hiraganaList"> 
             <li v-for="(item, index) in chart" v-bind:key="index">
-                <p class="cardFront">{{ item.kana }}</p>
-                <p class="cardBack">{{ item.romaji }}</p>
+                <span class="cardKana">{{ item.kana }}</span>
+                <span class="cardRomaji">{{ item.romaji }}</span>
             </li> 
         </ul>  
     </section>
