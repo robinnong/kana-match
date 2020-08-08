@@ -519,18 +519,7 @@ input:checked + label {
   margin-bottom: 5px;
 }
 
-.cardBack {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
-  opacity: 0;
-  font-size: 2rem;
-  font-weight: 600;
-  letter-spacing: 0.2rem;
-  color: #ff9fb4;
-}
-
 .hiraganaList {
-  font-family: 'M PLUS Rounded 1c', sans-serif;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (minmax(50px, 100px))[5];
@@ -541,39 +530,6 @@ input:checked + label {
 
 .hiraganaList li {
   position: relative;
-  text-align: center;
-  font-size: 2.8rem;
-  background-color: white;
-  border-radius: 5px;
-  border: 1px solid #bae3ff;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  -webkit-box-shadow: 0px 0px 8px 3px #00a9dd1c;
-          box-shadow: 0px 0px 8px 3px #00a9dd1c;
-}
-
-.hiraganaList li:focus, .hiraganaList li:hover {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
-  cursor: pointer;
-}
-
-.hiraganaList li:focus .cardBack, .hiraganaList li:hover .cardBack {
-  opacity: 1;
-}
-
-.hiraganaList li:focus .cardFront, .hiraganaList li:hover .cardFront {
-  opacity: 0;
-}
-
-.hiraganaList li p {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -581,12 +537,25 @@ input:checked + label {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  text-align: center;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #bae3ff;
+}
+
+.hiraganaList .cardKana {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 2.6rem;
+}
+
+.hiraganaList .cardRomaji {
+  color: #ff9fb4;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2rem;
 }
 
 .modalOuter {
@@ -655,7 +624,7 @@ input:checked + label {
 }
 
 h1 {
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 600;
   cursor: pointer;
 }

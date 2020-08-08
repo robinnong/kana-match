@@ -1,7 +1,7 @@
 <template>
     <nav @click="closeNav">   
         <div>
-            <h3><span aria-hidden="true">📚</span> Flashcards</h3>
+            <h3><span aria-hidden="true">📚</span> Charts</h3>
             <router-link :to="{ name: 'chart' }">Kana</router-link>
             <h3><span aria-hidden="true">🎮</span> Quizes</h3>
             <router-link :to="{ name: 'quiz', params: { type: 'hiragana' } }">Hiragana</router-link>
