@@ -66,13 +66,13 @@
     function assignGrade(finalScore) {
         if (finalScore === 0) {
             return { grade: "F", message: "Keep Studying! 😢" };
-        } else if (finalScore > 0 && finalScore < 15) {
+        } else if (0 < finalScore < 15) {
             return { grade: "D", message: "Keep Studying! 😢" };
-        } else if (finalScore > 15 && finalScore < 21) {
+        } else if (15 < finalScore < 21) {
             return { grade: "C", message: "Keep Studying! 😁" };
-        } else if (finalScore > 21 && finalScore < 24) {
+        } else if (21 < finalScore < 24) {
             return { grade: "B", message: "Good Job! 😄" };
-        } else if (finalScore > 24 && finalScore < 30) {
+        } else if (24 < finalScore < 30) {
             return { grade: "A", message: "Excellent! 😄" };
         } else if (finalScore === 30) {
             return { grade: "A+", message: "Perfect! 🎉" };
