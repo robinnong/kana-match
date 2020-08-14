@@ -1,9 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Manrope:400,600|M+PLUS+Rounded+1c);
 @import 'setup';
-@import 'global';
-@import 'quiz';
-@import 'chart';
-@import 'modal';
+@import 'global';  
 
 h1 {   
     font-size: 2rem;
@@ -140,12 +137,7 @@ main { display: flex; }
 
 .navOpen {left: 0px;}
 
-@media (max-width: 768px) { 
-    .hiraganaList { 
-        grid-gap: 5px;
-        li { font-size: 2.4rem; }
-        span:last-child {font-size: 1.4rem;}
-    }
+@media (max-width: 768px) {  
     form {font-size: 1.4rem;}
 } 
 
