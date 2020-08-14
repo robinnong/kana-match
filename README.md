@@ -9,10 +9,10 @@ Live link 👉<a href="https://robinnong.github.io/kana-match/">here</a>👈
 - Quiz with 5 rounds of random hiragana and katakana matching
 - Tech and concepts used: 
     * Single File Vue Components
+    * Scoped CSS + SCSS
     * Vue Router
     * Vue CLI
     * Webpack
-    * SCSS
 
 ## To Do
 - Accessibility audit
